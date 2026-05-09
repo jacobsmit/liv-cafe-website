@@ -1,7 +1,5 @@
-
 ---
 import '../styles/global.css';
-const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/';
 ---
 
 <!doctype html>
@@ -16,14 +14,14 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/';
 		<!-- Navigation -->
 		<nav class="bg-white shadow-sm p-4">
 			<div class="max-w-4xl mx-auto flex justify-between items-center flex-wrap gap-4">
-				<a href={base} class="text-2xl font-bold tracking-tighter text-stone-800">Liv Cafe</a>
+				<a href={import.meta.env.BASE_URL} class="text-2xl font-bold tracking-tighter text-stone-800">Liv Cafe</a>
 				<ul class="flex gap-4 font-medium text-stone-600 flex-wrap">
-					<li><a href={`${base}about`} class="hover:text-emerald-600 transition-colors">About</a></li>
-					<li><a href={`${base}hours`} class="hover:text-emerald-600 transition-colors">Hours</a></li>
-					<li><a href={`${base}menu`} class="hover:text-emerald-600 transition-colors">Menu</a></li>
-					<li><a href={`${base}contact`} class="hover:text-emerald-600 transition-colors">Reservations</a></li>
-					<li><a href={`${base}catering`} class="hover:text-emerald-600 transition-colors">Catering</a></li>
-					<li><a href={`${base}food-to-go`} class="hover:text-emerald-600 transition-colors">Food To Go</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}/about`} class="hover:text-emerald-600 transition-colors">About</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}/hours`} class="hover:text-emerald-600 transition-colors">Hours</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}/menu`} class="hover:text-emerald-600 transition-colors">Menu</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}/contact`} class="hover:text-emerald-600 transition-colors">Reservations</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}/catering`} class="hover:text-emerald-600 transition-colors">Catering</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}/food-to-go`} class="hover:text-emerald-600 transition-colors">Food To Go</a></li>
 				</ul>
 			</div>
 		</nav>
