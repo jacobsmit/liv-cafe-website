@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import MenuItem from '../components/MenuItem.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<!-- Hero Section -->
+	<header class="bg-stone-200 py-24 text-center px-4">
+		<h1 class="text-5xl md:text-7xl font-bold text-stone-800 mb-6">Welcome to Liv Cafe</h1>
+		<p class="text-xl text-stone-600 max-w-2xl mx-auto">
+			Fresh coffee, warm pastries, and a cozy atmosphere. 
+		</p>
+	</header>
+
+	<!-- About Section -->
+	<section id="about" class="max-w-4xl mx-auto py-16 px-4 text-center">
+		<h2 class="text-3xl font-bold mb-6 text-stone-800">Our Story</h2>
+		<p class="text-lg text-stone-600 leading-relaxed">
+			We believe in simple, high-quality ingredients. Whether you are grabbing a quick espresso on your way to work or settling in for an afternoon of reading, we've got a spot for you.
+		</p>
+	</section>
+
+	<!-- Menu Section -->
+	<section id="menu" class="max-w-4xl mx-auto py-16 px-4">
+		<h2 class="text-3xl font-bold mb-8 text-center text-stone-800">Our Menu</h2>
+		
+		<!-- CSS Grid for the menu items -->
+		<div class="grid md:grid-cols-2 gap-6">
+			<MenuItem 
+				name="House Espresso" 
+				description="Double shot of our signature dark roast."
+				price="$3.50"
+			/>
+			<MenuItem 
+				name="Oat Milk Latte" 
+				description="Creamy and smooth, poured with latte art."
+				price="$5.00"
+			/>
+			<MenuItem 
+				name="Avocado Toast" 
+				description="Smashed avocado on sourdough with chili flakes."
+				price="$9.00"
+			/>
+			<MenuItem 
+				name="Almond Croissant" 
+				description="Baked fresh daily, filled with almond paste."
+				price="$4.50"
+			/>
+		</div>
+	</section>
 </Layout>
