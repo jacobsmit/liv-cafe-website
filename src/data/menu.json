@@ -1,0 +1,22 @@
+[
+  {
+    "name": "House Espresso",
+    "description": "Double shot of our signature dark roast.",
+    "price": "$3.50"
+  },
+  {
+    "name": "Oat Milk Latte",
+    "description": "Creamy and smooth, poured with latte art.",
+    "price": "$5.00"
+  },
+  {
+    "name": "Avocado Toast",
+    "description": "Smashed avocado on sourdough with chili flakes.",
+    "price": "$9.00"
+  },
+  {
+    "name": "Almond Croissant",
+    "description": "Baked fresh daily, filled with almond paste.",
+    "price": "$4.50"
+  }
+]
