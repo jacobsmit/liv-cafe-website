@@ -63,6 +63,9 @@ import Layout from '../layouts/Layout.astro';
 				Tell us about your event and we'll be in touch with catering options and pricing.
 			</p>
 			<form action="https://formspree.io/f/mzdokbnq" method="POST" class="space-y-4">
+				<input type="hidden" name="_subject" value="New Catering Inquiry from Liv Café" />
+				<input type="hidden" name="_captcha" value="false" />
+				
 				<div>
 					<label class="block text-stone-700 font-bold mb-2">Name <span class="text-red-500">*</span></label>
 					<input type="text" name="name" placeholder="Your name" required class="w-full px-4 py-2 border border-stone-300 rounded" />
