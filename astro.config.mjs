@@ -2,10 +2,12 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  // Required for GitHub Pages paths to work
-  site: 'https://jacobsmit.github.io',
+  // Your GitHub Pages base URL
+  site: 'https://jacobsmit.github.io', 
   
-  // Required for Tailwind 4
+  // The exact name of your repository, starting with a forward slash
+  base: '/liv-cafe-website', 
+  
   vite: {
     plugins: [tailwindcss()],
   },
