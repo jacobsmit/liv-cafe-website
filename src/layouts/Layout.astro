@@ -1,6 +1,7 @@
+
 ---
-// src/layouts/Layout.astro
 import '../styles/global.css';
+const base = import.meta.env.BASE_URL || '/';
 ---
 
 <!doctype html>
@@ -15,7 +16,7 @@ import '../styles/global.css';
 		<!-- Navigation -->
 		<nav class="bg-white shadow-sm p-4">
 			<div class="max-w-4xl mx-auto flex justify-between items-center">
-				<a href="#" class="text-2xl font-bold tracking-tighter text-stone-800">Liv Cafe</a>
+				<a href={base} class="text-2xl font-bold tracking-tighter text-stone-800">Liv Cafe</a>
 				<ul class="flex gap-6 font-medium text-stone-600">
 					<li><a href="#about" class="hover:text-emerald-600 transition-colors">About</a></li>
 					<li><a href="#menu" class="hover:text-emerald-600 transition-colors">Menu</a></li>
