@@ -1,39 +1,34 @@
 ---
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-import MenuItem from '../components/MenuItem.astro';
-
-// 1. Import the JSON data directly!
-import menuData from '../data/menu.json';
 ---
 
 <Layout>
 	<header class="bg-stone-200 py-24 text-center px-4">
-		<h1 class="text-5xl md:text-7xl font-bold text-stone-800 mb-6">Welcome to Liv Cafe</h1>
+		<h1 class="text-5xl md:text-7xl font-bold text-stone-800 mb-6">Liv Café & Bistro</h1>
 		<p class="text-xl text-stone-600 max-w-2xl mx-auto">
-			Fresh coffee, warm pastries, and a cozy atmosphere. 
+			A cocoon to live a little. Ingredient-driven dining in the heart of Oak Bay.
 		</p>
 	</header>
 
-	<section id="about" class="max-w-4xl mx-auto py-16 px-4 text-center">
-		<h2 class="text-3xl font-bold mb-6 text-stone-800">Our Story</h2>
-		<p class="text-lg text-stone-600 leading-relaxed">
-			We believe in simple, high-quality ingredients. Whether you are grabbing a quick espresso on your way to work or settling in for an afternoon of reading, we've got a spot for you.
-		</p>
-	</section>
+	<nav class="max-w-4xl mx-auto py-12 px-4">
+		<ul class="flex flex-wrap justify-center gap-6 text-lg">
+			<li><a href={`${import.meta.env.BASE_URL}about`} class="text-emerald-600 hover:underline">About</a></li>
+			<li><a href={`${import.meta.env.BASE_URL}hours`} class="text-emerald-600 hover:underline">Hours</a></li>
+			<li><a href={`${import.meta.env.BASE_URL}menu`} class="text-emerald-600 hover:underline">Menu</a></li>
+			<li><a href={`${import.meta.env.BASE_URL}contact`} class="text-emerald-600 hover:underline">Reservations</a></li>
+			<li><a href={`${import.meta.env.BASE_URL}catering`} class="text-emerald-600 hover:underline">Catering</a></li>
+		</ul>
+	</nav>
 
-	<section id="menu" class="max-w-4xl mx-auto py-16 px-4">
-		<h2 class="text-3xl font-bold mb-8 text-center text-stone-800">Our Menu</h2>
-		
-		<div class="grid md:grid-cols-2 gap-6">
-			<!-- 2. Loop through the JSON array and render a MenuItem for each one -->
-			{menuData.map((item) => (
-				<MenuItem 
-					name={item.name} 
-					description={item.description}
-					price={item.price}
-				/>
-			))}
-		</div>
+	<section class="max-w-4xl mx-auto py-16 px-4 text-center">
+		<h2 class="text-2xl font-bold mb-4 text-stone-800">Nestled within Oak Bay</h2>
+		<p class="text-stone-600 leading-relaxed mb-4">
+			713 St. Patrick Street, Victoria, BC
+		</p>
+		<p class="text-stone-600 leading-relaxed">
+			<a href="tel:(250) 590-5229" class="text-emerald-600 hover:underline">(250) 590-5229</a> | 
+			<a href="mailto:info@livcafeandbistro.com" class="text-emerald-600 hover:underline">info@livcafeandbistro.com</a>
+		</p>
 	</section>
 </Layout>

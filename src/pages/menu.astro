@@ -1,0 +1,41 @@
+---
+// src/pages/menu.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<header class="bg-stone-200 py-12 text-center px-4">
+		<h1 class="text-4xl font-bold text-stone-800">Our Menu</h1>
+	</header>
+
+	<main class="max-w-4xl mx-auto py-16 px-4">
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Dine In</h2>
+			<p class="text-stone-600 leading-relaxed mb-4">
+				Explore our ever-changing seasonal menus that celebrate fresh, local, and sustainably sourced ingredients.
+			</p>
+			<ul class="text-stone-600 leading-relaxed space-y-2">
+				<li><a href="#" class="text-emerald-600 hover:underline">Bistro Lunch Menu</a></li>
+				<li><a href="#" class="text-emerald-600 hover:underline">Weekend Brunch Menu</a></li>
+				<li><a href="#" class="text-emerald-600 hover:underline">Dinner Menu</a></li>
+			</ul>
+		</section>
+
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Dietary Notes</h2>
+			<ul class="text-stone-600 leading-relaxed space-y-2">
+				<li><strong>#gf</strong> – Gluten Free</li>
+				<li><strong>#gf A</strong> – Gluten Free Available</li>
+				<li><strong>#vegan A</strong> – Vegan Available</li>
+				<li><strong>#veg</strong> – Vegetarian</li>
+			</ul>
+		</section>
+
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Philosophy</h2>
+			<p class="text-stone-600 leading-relaxed">
+				Our menu changes seasonally to reflect what grows locally and sustainably. From our own farm in Saanich to your plate, every ingredient is chosen with care and intention. We blend tradition with innovation, always prioritizing simplicity and elegance.
+			</p>
+		</section>
+	</main>
+</Layout>

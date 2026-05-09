@@ -1,0 +1,104 @@
+---
+// src/pages/catering.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<header class="bg-stone-200 py-12 text-center px-4">
+		<h1 class="text-4xl font-bold text-stone-800">Catering</h1>
+	</header>
+
+	<main class="max-w-4xl mx-auto py-16 px-4">
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Chef Driven Catering</h2>
+			<p class="text-stone-600 leading-relaxed mb-4">
+				From small intimate gatherings to chef-driven five-course dinners at your home or any venue in and surrounding Oak Bay and Greater Victoria, we are passionate about what we do, and we strive to ensure all our celebrations are exceptional.
+			</p>
+			<p class="text-stone-600 leading-relaxed font-bold">
+				We bring fine dining to you!
+			</p>
+		</section>
+
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Our Offerings</h2>
+			<ul class="text-stone-600 leading-relaxed space-y-2">
+				<li>• Canapés & Appetizers</li>
+				<li>• Charcuterie Boards</li>
+				<li>• Dessert Platters</li>
+				<li>• Family Style Dinners</li>
+				<li>• Custom Multi-Course Menus</li>
+			</ul>
+		</section>
+
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Philosophy</h2>
+			<p class="text-stone-600 leading-relaxed">
+				<strong>Farm Fueled ~ Chef Driven</strong>
+			</p>
+			<p class="text-stone-600 leading-relaxed mt-2">
+				All our catering uses the same philosophy as our restaurant: seasonal, locally sourced, and beautifully presented. We believe in creating memorable experiences through exceptional food.
+			</p>
+		</section>
+
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Book Your Event</h2>
+			<p class="text-stone-600 leading-relaxed mb-6">
+				For more information about our catering services and custom menus, please reach out:
+			</p>
+			
+			<div class="mb-6">
+				<h3 class="text-lg font-bold mb-2 text-stone-800">Contact Us</h3>
+				<p class="text-stone-600 mb-2">
+					<a href="tel:(250) 590-5229" class="text-emerald-600 hover:underline">(250) 590-5229</a>
+				</p>
+				<p class="text-stone-600">
+					<a href="mailto:info@livcafeandbistro.com" class="text-emerald-600 hover:underline">info@livcafeandbistro.com</a>
+				</p>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-2xl font-bold mb-6 text-stone-800">Catering Inquiry Form</h2>
+			<form class="space-y-4">
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Name</label>
+					<input type="text" placeholder="Your name" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Phone</label>
+					<input type="tel" placeholder="Your phone number" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Email</label>
+					<input type="email" placeholder="Your email" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Date & Time of Event</label>
+					<input type="datetime-local" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Type of Celebration</label>
+					<input type="text" placeholder="e.g., Wedding, Birthday, Corporate Event" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Number of Guests</label>
+					<input type="number" placeholder="Guest count" min="1" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Details & Special Requests</label>
+					<textarea placeholder="Tell us about your event..." rows="4" class="w-full px-4 py-2 border border-stone-300 rounded"></textarea>
+				</div>
+				
+				<button type="submit" class="bg-emerald-600 text-white px-6 py-2 rounded hover:bg-emerald-700">
+					Submit Catering Inquiry
+				</button>
+			</form>
+		</section>
+	</main>
+</Layout>

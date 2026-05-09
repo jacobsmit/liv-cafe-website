@@ -1,0 +1,72 @@
+---
+// src/pages/contact.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<header class="bg-stone-200 py-12 text-center px-4">
+		<h1 class="text-4xl font-bold text-stone-800">Reservations</h1>
+	</header>
+
+	<main class="max-w-4xl mx-auto py-16 px-4">
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-4 text-stone-800">Get In Touch</h2>
+			<p class="text-stone-600 leading-relaxed mb-6">
+				To make a reservation, please call us or send us a message with your details below.
+			</p>
+			
+			<div class="mb-8">
+				<h3 class="text-lg font-bold mb-2 text-stone-800">Call Us</h3>
+				<p class="text-stone-600">
+					<a href="tel:(250) 590-5229" class="text-emerald-600 hover:underline">(250) 590-5229</a>
+				</p>
+			</div>
+
+			<div class="mb-8">
+				<h3 class="text-lg font-bold mb-2 text-stone-800">Email Us</h3>
+				<p class="text-stone-600">
+					<a href="mailto:info@livcafeandbistro.com" class="text-emerald-600 hover:underline">info@livcafeandbistro.com</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="mb-12">
+			<h2 class="text-2xl font-bold mb-6 text-stone-800">Reservation Form</h2>
+			<form class="space-y-4">
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Name</label>
+					<input type="text" placeholder="Your name" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Phone</label>
+					<input type="tel" placeholder="Your phone number" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Email</label>
+					<input type="email" placeholder="Your email" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Day & Time</label>
+					<input type="datetime-local" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Number of People</label>
+					<input type="number" placeholder="Party size" min="1" class="w-full px-4 py-2 border border-stone-300 rounded" />
+				</div>
+				
+				<div>
+					<label class="block text-stone-700 font-bold mb-2">Message</label>
+					<textarea placeholder="Any special requests..." rows="4" class="w-full px-4 py-2 border border-stone-300 rounded"></textarea>
+				</div>
+				
+				<button type="submit" class="bg-emerald-600 text-white px-6 py-2 rounded hover:bg-emerald-700">
+					Send Reservation Request
+				</button>
+			</form>
+		</section>
+	</main>
+</Layout>
