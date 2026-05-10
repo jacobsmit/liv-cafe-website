@@ -4,38 +4,45 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<header class="bg-stone-200 py-12 text-center px-4">
-		<h1 class="text-4xl font-bold text-stone-800">Our Menu</h1>
-	</header>
+	<div class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-orange-500 selection:text-white">
+		<header class="relative py-20 px-4 border-b border-zinc-800">
+			<div class="max-w-4xl mx-auto text-center">
+				<h1 class="text-5xl md:text-6xl font-serif text-white mb-4 tracking-wide">Our Menu</h1>
+				<div class="w-16 h-[2px] bg-orange-500 mx-auto"></div>
+			</div>
+		</header>
 
-	<main class="max-w-4xl mx-auto py-16 px-4">
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Dine In</h2>
-			<p class="text-stone-600 leading-relaxed mb-4">
-				Explore our ever-changing seasonal menus that celebrate fresh, local, and sustainably sourced ingredients.
-			</p>
-			<ul class="text-stone-600 leading-relaxed space-y-2">
-				<li><a href="#" class="text-emerald-600 hover:underline">Bistro Lunch Menu</a></li>
-				<li><a href="#" class="text-emerald-600 hover:underline">Weekend Brunch Menu</a></li>
-				<li><a href="#" class="text-emerald-600 hover:underline">Dinner Menu</a></li>
-			</ul>
-		</section>
+		<main class="max-w-4xl mx-auto py-20 px-4">
+			<section class="mb-16">
+				<h2 class="text-3xl font-serif text-white mb-6">Dine In</h2>
+				<p class="text-zinc-300 leading-relaxed mb-6">
+					Explore our ever-changing seasonal menus that celebrate fresh, local, and sustainably sourced ingredients.
+				</p>
+				<ul class="text-zinc-300 leading-relaxed space-y-3">
+					<li><a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">Bistro Lunch Menu</a></li>
+					<li><a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">Weekend Brunch Menu</a></li>
+					<li><a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">Dinner Menu</a></li>
+				</ul>
+			</section>
 
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Dietary Notes</h2>
-			<ul class="text-stone-600 leading-relaxed space-y-2">
-				<li><strong>#gf</strong> – Gluten Free</li>
-				<li><strong>#gf A</strong> – Gluten Free Available</li>
-				<li><strong>#vegan A</strong> – Vegan Available</li>
-				<li><strong>#veg</strong> – Vegetarian</li>
-			</ul>
-		</section>
+			<section class="mb-16">
+				<h2 class="text-3xl font-serif text-white mb-6">Dietary Notes</h2>
+				<ul class="text-zinc-300 leading-relaxed space-y-3 border-l-2 border-orange-500 pl-6">
+					<li><span class="text-orange-500">#gf</span> – Gluten Free</li>
+					<li><span class="text-orange-500">#gf A</span> – Gluten Free Available</li>
+					<li><span class="text-orange-500">#vegan A</span> – Vegan Available</li>
+					<li><span class="text-orange-500">#veg</span> – Vegetarian</li>
+				</ul>
+			</section>
 
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Philosophy</h2>
-			<p class="text-stone-600 leading-relaxed">
-				Our menu changes seasonally to reflect what grows locally and sustainably. From our own farm in Saanich to your plate, every ingredient is chosen with care and intention. We blend tradition with innovation, always prioritizing simplicity and elegance.
-			</p>
-		</section>
-	</main>
+			<section>
+				<h2 class="text-3xl font-serif text-white mb-6">Philosophy</h2>
+				<div class="border-l-2 border-orange-500 pl-6">
+					<p class="text-zinc-300 leading-relaxed">
+						Our menu changes seasonally to reflect what grows locally and sustainably. From our own farm in Saanich to your plate, every ingredient is chosen with care and intention. We blend tradition with innovation, always prioritizing simplicity and elegance.
+					</p>
+				</div>
+			</section>
+		</main>
+	</div>
 </Layout>

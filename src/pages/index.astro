@@ -4,31 +4,91 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<header class="bg-stone-200 py-24 text-center px-4">
-		<h1 class="text-5xl md:text-7xl font-bold text-stone-800 mb-6">Liv Café & Bistro</h1>
-		<p class="text-xl text-stone-600 max-w-2xl mx-auto">
-			A cocoon to live a little. Ingredient-driven dining in the heart of Oak Bay.
-		</p>
-	</header>
+    <!-- Main wrapper to enforce the dark theme across the page -->
+    <main class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-orange-500 selection:text-white">
+        
+        <!-- Hero Section with Background Image Placeholder -->
+        <header class="relative flex flex-col items-center justify-center py-40 px-4 min-h-[75vh] bg-zinc-900 border-b border-zinc-800 overflow-hidden">
+            <!-- Background Image Placeholder -->
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-zinc-800 flex items-center justify-center opacity-40">
+                    <span class="text-zinc-500 tracking-widest uppercase text-sm border border-zinc-600 px-6 py-3 rounded-sm">
+                        <img src={`${import.meta.env.BASE_URL}/mainbowl.JPG`} alt="Featured Dish or Interior Placeholder" class="w-full h-full object-cover opacity-80" />
+                    </span>
+                </div>
+            </div>
 
-	<nav class="max-w-4xl mx-auto py-12 px-4">
-		<ul class="flex flex-wrap justify-center gap-6 text-lg">
-			<li><a href={`${import.meta.env.BASE_URL}/about`} class="text-emerald-600 hover:underline">About</a></li>
-			<li><a href={`${import.meta.env.BASE_URL}/hours`} class="text-emerald-600 hover:underline">Hours</a></li>
-			<li><a href={`${import.meta.env.BASE_URL}/menu`} class="text-emerald-600 hover:underline">Menu</a></li>
-			<li><a href={`${import.meta.env.BASE_URL}/contact`} class="text-emerald-600 hover:underline">Reservations</a></li>
-			<li><a href={`${import.meta.env.BASE_URL}/catering`} class="text-emerald-600 hover:underline">Catering</a></li>
-		</ul>
-	</nav>
+            <!-- Hero Content -->
+            <div class="relative z-10 text-center">
+                <h1 class="text-5xl md:text-7xl font-serif text-white mb-8 tracking-wide">
+                    Liv Café & Bistro
+                </h1>
+                <!-- Elegant Orange Accent Divider -->
+                <div class="w-24 h-[2px] bg-orange-500 mx-auto mb-8"></div>
+                <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light italic">
+                    A cocoon to live a little. <br class="hidden md:block" />
+                    Ingredient-driven dining in the heart of Oak Bay.
+                </p>
+            </div>
+        </header>
 
-	<section class="max-w-4xl mx-auto py-16 px-4 text-center">
-		<h2 class="text-2xl font-bold mb-4 text-stone-800">Nestled within Oak Bay</h2>
-		<p class="text-stone-600 leading-relaxed mb-4">
-			713 St. Patrick Street, Victoria, BC
-		</p>
-		<p class="text-stone-600 leading-relaxed">
-			<a href="tel:(250) 590-5229" class="text-emerald-600 hover:underline">(250) 590-5229</a> | 
-			<a href="mailto:info@livcafeandbistro.com" class="text-emerald-600 hover:underline">info@livcafeandbistro.com</a>
-		</p>
-	</section>
+        <!-- Featured Section (New layout for a classy vibe) -->
+        <section class="max-w-6xl mx-auto py-24 px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <!-- Portrait Image Placeholder -->
+                <div class="aspect-[4/5] bg-zinc-900 border border-zinc-800 flex items-center justify-center relative group overflow-hidden shadow-2xl">
+                    <span class="text-zinc-600 tracking-widest uppercase text-xs border border-zinc-700 px-4 py-2 group-hover:border-orange-500 group-hover:text-orange-500 transition-colors z-10 duration-500">
+                        <img src={`${import.meta.env.BASE_URL}/chickenwaffel.JPG`} alt="Featured Dish or Interior Placeholder" class="w-full h-full object-cover opacity-80" />
+                    </span>
+                    <!-- Subtle decorative gradient -->
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500/30 to-transparent"></div>
+                </div>
+                
+                <div class="text-center md:text-left space-y-8">
+                    <h2 class="text-3xl md:text-5xl font-serif text-white">An Elevated Experience</h2>
+                    <p class="text-zinc-400 leading-relaxed font-light text-lg">
+                        Immerse yourself in an atmosphere designed for elegance and comfort. Whether it's an intimate evening or a celebratory feast, our space is tailored to provide an unforgettable culinary journey.
+                    </p>
+                    <a href={`${import.meta.env.BASE_URL}/contact`} class="inline-block border border-orange-500 text-orange-500 px-8 py-3 uppercase tracking-widest text-sm hover:bg-orange-500 hover:text-white transition-all duration-300">
+                        Book a Table
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Contact Footer-style Section -->
+        <section class="bg-zinc-900 py-24 px-4 border-t border-zinc-800">
+            <div class="max-w-5xl mx-auto text-center">
+                <h2 class="text-4xl font-serif mb-16 text-white tracking-wide">Nestled within Oak Bay</h2>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-32">
+                    <!-- Location Info -->
+                    <div class="space-y-4 md:w-1/3 text-center md:text-right">
+                        <h3 class="text-orange-500 uppercase tracking-[0.2em] text-xs font-semibold">Location</h3>
+                        <p class="text-zinc-300 font-light text-lg">
+                            713 St. Patrick Street<br />
+                            Victoria, BC
+                        </p>
+                    </div>
+                    
+                    <!-- Small Circular Image/Logo Placeholder -->
+                    <div class="w-32 h-32 bg-zinc-950 border border-zinc-800 flex items-center justify-center rounded-full shrink-0 shadow-lg">
+                        <span class="text-zinc-600 text-[10px] tracking-widest uppercase text-center px-2">
+                            <img src={`${import.meta.env.BASE_URL}/favicon.png`} alt="Logo Mark Placeholder" class="w-16 h-16 object-contain" />
+						</span>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-4 md:w-1/3 text-center md:text-left">
+                        <h3 class="text-orange-500 uppercase tracking-[0.2em] text-xs font-semibold">Contact</h3>
+                        <p class="text-zinc-300 font-light text-lg flex flex-col space-y-2">
+                            <a href="tel:(250) 590-5229" class="hover:text-orange-400 transition-colors">(250) 590-5229</a>
+                            <a href="mailto:info@livcafeandbistro.com" class="hover:text-orange-400 transition-colors">info@livcafeandbistro.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 </Layout>

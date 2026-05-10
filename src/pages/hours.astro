@@ -4,57 +4,62 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<header class="bg-stone-200 py-12 text-center px-4">
-		<h1 class="text-4xl font-bold text-stone-800">Hours & Location</h1>
-	</header>
+	<div class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-orange-500 selection:text-white">
+		<header class="relative py-20 px-4 border-b border-zinc-800">
+			<div class="max-w-4xl mx-auto text-center">
+				<h1 class="text-5xl md:text-6xl font-serif text-white mb-4 tracking-wide">Hours & Location</h1>
+				<div class="w-16 h-[2px] bg-orange-500 mx-auto"></div>
+			</div>
+		</header>
 
-	<main class="max-w-4xl mx-auto py-16 px-4">
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Location</h2>
-			<p class="text-stone-600 leading-relaxed">
-				713 St. Patrick Street<br />
-				Victoria, BC
-			</p>
-		</section>
+		<main class="max-w-4xl mx-auto py-20 px-4">
+			<section class="mb-16">
+				<h2 class="text-3xl font-serif text-white mb-6">Location</h2>
+				<p class="text-zinc-300 leading-relaxed text-lg">
+					713 St. Patrick Street<br />
+					Victoria, BC
+				</p>
+			</section>
 
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Brunch & Lunch</h2>
-			<p class="text-stone-600 leading-relaxed mb-2">
-				<strong>Wednesday to Friday</strong><br />
-				10:00am – 2:30pm
-			</p>
-			<p class="text-stone-600 leading-relaxed">
-				<strong>Saturday & Sunday</strong><br />
-				9:30am – 2:30pm
-			</p>
-		</section>
+			<section class="mb-16">
+				<h2 class="text-3xl font-serif text-white mb-6">Brunch & Lunch</h2>
+				<div class="space-y-4">
+					<div class="border-l-2 border-orange-500 pl-6">
+						<h3 class="text-orange-500 font-serif text-lg mb-2">Wednesday to Friday</h3>
+						<p class="text-zinc-300">10:00am – 2:30pm</p>
+					</div>
+					<div class="border-l-2 border-orange-500 pl-6">
+						<h3 class="text-orange-500 font-serif text-lg mb-2">Saturday & Sunday</h3>
+						<p class="text-zinc-300">9:30am – 2:30pm</p>
+					</div>
+				</div>
+			</section>
 
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Dinner</h2>
-			<p class="text-stone-600 leading-relaxed mb-4">
-				<strong>Thursday to Saturday</strong><br />
-				5:00pm – 9:00pm
-			</p>
-			<p class="text-stone-600 leading-relaxed text-sm">
-				Coming soon to expand our dinner service.
-			</p>
-		</section>
+			<section class="mb-16">
+				<h2 class="text-3xl font-serif text-white mb-6">Dinner</h2>
+				<div class="border-l-2 border-orange-500 pl-6">
+					<h3 class="text-orange-500 font-serif text-lg mb-2">Thursday to Saturday</h3>
+					<p class="text-zinc-300 mb-4">5:00pm – 9:00pm</p>
+					<p class="text-zinc-400 text-sm">Coming soon to expand our dinner service.</p>
+				</div>
+			</section>
 
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Closed</h2>
-			<p class="text-stone-600 leading-relaxed">
-				Monday & Tuesday
-			</p>
-		</section>
+			<section class="mb-16">
+				<h2 class="text-3xl font-serif text-white mb-6">Closed</h2>
+				<p class="text-zinc-300 text-lg">Monday & Tuesday</p>
+			</section>
 
-		<section class="mb-12">
-			<h2 class="text-2xl font-bold mb-4 text-stone-800">Contact</h2>
-			<p class="text-stone-600 leading-relaxed mb-2">
-				<a href="tel:(250) 590-5229" class="text-emerald-600 hover:underline">(250) 590-5229</a>
-			</p>
-			<p class="text-stone-600 leading-relaxed">
-				<a href="mailto:info@livcafeandbistro.com" class="text-emerald-600 hover:underline">info@livcafeandbistro.com</a>
-			</p>
-		</section>
-	</main>
+			<section>
+				<h2 class="text-3xl font-serif text-white mb-6">Contact</h2>
+				<div class="space-y-3">
+					<p class="text-zinc-300">
+						<a href="tel:(250) 590-5229" class="text-orange-500 hover:text-orange-400 transition-colors">(250) 590-5229</a>
+					</p>
+					<p class="text-zinc-300">
+						<a href="mailto:info@livcafeandbistro.com" class="text-orange-500 hover:text-orange-400 transition-colors">info@livcafeandbistro.com</a>
+					</p>
+				</div>
+			</section>
+		</main>
+	</div>
 </Layout>
