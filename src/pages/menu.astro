@@ -12,37 +12,80 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</header>
 
-		<main class="max-w-4xl mx-auto py-20 px-4">
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Dine In</h2>
-				<p class="text-zinc-300 leading-relaxed mb-6">
-					Explore our ever-changing seasonal menus that celebrate fresh, local, and sustainably sourced ingredients.
-				</p>
-				<ul class="text-zinc-300 leading-relaxed space-y-3">
-					<li><a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">Bistro Lunch Menu</a></li>
-					<li><a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">Weekend Brunch Menu</a></li>
-					<li><a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">Dinner Menu</a></li>
-				</ul>
-			</section>
-
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Dietary Notes</h2>
-				<ul class="text-zinc-300 leading-relaxed space-y-3 border-l-2 border-orange-500 pl-6">
-					<li><span class="text-orange-500">#gf</span> – Gluten Free</li>
-					<li><span class="text-orange-500">#gf A</span> – Gluten Free Available</li>
-					<li><span class="text-orange-500">#vegan A</span> – Vegan Available</li>
-					<li><span class="text-orange-500">#veg</span> – Vegetarian</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2 class="text-3xl font-serif text-white mb-6">Philosophy</h2>
-				<div class="border-l-2 border-orange-500 pl-6">
-					<p class="text-zinc-300 leading-relaxed">
-						Our menu changes seasonally to reflect what grows locally and sustainably. From our own farm in Saanich to your plate, every ingredient is chosen with care and intention. We blend tradition with innovation, always prioritizing simplicity and elegance.
-					</p>
+		<main class="max-w-6xl mx-auto py-20 px-4">
+			<!-- Featured Dish Section -->
+			<section class="mb-24 bg-zinc-900 rounded-sm overflow-hidden shadow-2xl border border-zinc-800">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+					<div class="h-80 md:h-full overflow-hidden group">
+						<img src={`${import.meta.env.BASE_URL}/2DD07909-9F91-434A-BFC3-2027EA93BCA6_1_201_a.jpeg`} alt="Featured Dish" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+					</div>
+					<div class="p-12 flex flex-col justify-center">
+						<h2 class="text-3xl font-serif text-white mb-4">Culinary Excellence</h2>
+						<p class="text-zinc-400 leading-relaxed mb-6 font-light">
+							Every dish on our menu is crafted with meticulous attention to detail. We celebrate seasonal ingredients sourced from our own farm and trusted local suppliers, creating dishes that are both visually stunning and deliciously memorable.
+						</p>
+						<p class="text-zinc-300 text-sm italic">
+							"A creative blend of tradition and innovation, paired with ethically sourced and sustainable local ingredients."
+						</p>
+					</div>
 				</div>
 			</section>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+				<!-- Left Column -->
+				<section class="mb-16 md:mb-0">
+					<h2 class="text-3xl font-serif text-white mb-6">Dine In</h2>
+					<p class="text-zinc-300 leading-relaxed mb-8">
+						Explore our ever-changing seasonal menus that celebrate fresh, local, and sustainably sourced ingredients. Each menu is thoughtfully curated to reflect the bounty of our island and the vision of our chefs.
+					</p>
+					<ul class="text-zinc-300 leading-relaxed space-y-4 border-l-2 border-orange-500 pl-6">
+						<li>
+							<a href="#" class="text-orange-500 hover:text-orange-400 transition-colors font-serif text-lg">Bistro Lunch Menu</a>
+							<p class="text-zinc-400 text-sm mt-1">Casual elegance for your midday break</p>
+						</li>
+						<li>
+							<a href="#" class="text-orange-500 hover:text-orange-400 transition-colors font-serif text-lg">Weekend Brunch Menu</a>
+							<p class="text-zinc-400 text-sm mt-1">Leisurely dining at its finest</p>
+						</li>
+						<li>
+							<a href="#" class="text-orange-500 hover:text-orange-400 transition-colors font-serif text-lg">Dinner Menu</a>
+							<p class="text-zinc-400 text-sm mt-1">An evening of culinary artistry</p>
+						</li>
+					</ul>
+				</section>
+
+				<!-- Right Column -->
+				<section>
+					<h2 class="text-3xl font-serif text-white mb-6">Dietary Notes</h2>
+					<div class="bg-zinc-900 rounded-sm p-8 border border-zinc-800 mb-8">
+						<ul class="text-zinc-300 leading-relaxed space-y-4">
+							<li class="flex items-center gap-3">
+								<span class="text-orange-500 font-bold">#gf</span>
+								<span>Gluten Free</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<span class="text-orange-500 font-bold">#gf A</span>
+								<span>Gluten Free Available</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<span class="text-orange-500 font-bold">#vegan A</span>
+								<span>Vegan Available</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<span class="text-orange-500 font-bold">#veg</span>
+								<span>Vegetarian</span>
+							</li>
+						</ul>
+					</div>
+
+					<h2 class="text-3xl font-serif text-white mb-6">Our Philosophy</h2>
+					<div class="border-l-2 border-orange-500 pl-6">
+						<p class="text-zinc-300 leading-relaxed">
+							Our menu changes seasonally to reflect what grows locally and sustainably. From our own farm in Saanich to your plate, every ingredient is chosen with care and intention. We blend tradition with innovation, always prioritizing simplicity and elegance.
+						</p>
+					</div>
+				</section>
+			</div>
 		</main>
 	</div>
 </Layout>

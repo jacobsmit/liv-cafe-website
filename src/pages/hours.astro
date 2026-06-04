@@ -12,42 +12,62 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</header>
 
-		<main class="max-w-4xl mx-auto py-20 px-4">
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Location</h2>
-				<p class="text-zinc-300 leading-relaxed text-lg">
-					713 St. Patrick Street<br />
-					Victoria, BC
-				</p>
-			</section>
+		<main class="max-w-6xl mx-auto py-20 px-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+				<!-- Left Column - Hours and Location Info -->
+				<div>
+					<section class="mb-16">
+						<h2 class="text-3xl font-serif text-white mb-6">Location</h2>
+						<div class="bg-zinc-900 p-8 rounded-sm border border-zinc-800">
+							<p class="text-zinc-300 leading-relaxed text-lg font-light">
+								713 St. Patrick Street<br />
+								Victoria, BC
+							</p>
+							<p class="text-zinc-400 text-sm mt-6">
+								Nestled in the heart of charming Oak Bay
+							</p>
+						</div>
+					</section>
 
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Brunch & Lunch</h2>
-				<div class="space-y-4">
-					<div class="border-l-2 border-orange-500 pl-6">
-						<h3 class="text-orange-500 font-serif text-lg mb-2">Wednesday to Friday</h3>
-						<p class="text-zinc-300">10:00am – 2:30pm</p>
-					</div>
-					<div class="border-l-2 border-orange-500 pl-6">
-						<h3 class="text-orange-500 font-serif text-lg mb-2">Saturday & Sunday</h3>
-						<p class="text-zinc-300">9:30am – 2:30pm</p>
+					<section class="mb-16">
+						<h2 class="text-3xl font-serif text-white mb-6">Brunch & Lunch</h2>
+						<div class="space-y-4">
+							<div class="border-l-2 border-orange-500 pl-6">
+								<h3 class="text-orange-500 font-serif text-lg mb-2">Wednesday to Friday</h3>
+								<p class="text-zinc-300">10:00am – 2:30pm</p>
+							</div>
+							<div class="border-l-2 border-orange-500 pl-6">
+								<h3 class="text-orange-500 font-serif text-lg mb-2">Saturday & Sunday</h3>
+								<p class="text-zinc-300">9:30am – 2:30pm</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="mb-16">
+						<h2 class="text-3xl font-serif text-white mb-6">Dinner</h2>
+						<div class="border-l-2 border-orange-500 pl-6">
+							<h3 class="text-orange-500 font-serif text-lg mb-2">Thursday to Saturday</h3>
+							<p class="text-zinc-300 mb-4">5:00pm – 9:00pm</p>
+							<p class="text-zinc-400 text-sm">Coming soon to expand our dinner service.</p>
+						</div>
+					</section>
+
+					<section class="mb-16">
+						<h2 class="text-3xl font-serif text-white mb-6">Closed</h2>
+						<div class="bg-zinc-900 p-6 rounded-sm border border-zinc-800">
+							<p class="text-zinc-300 text-lg">Monday & Tuesday</p>
+							<p class="text-zinc-400 text-sm mt-2">We take these days to recharge and prepare for the week ahead</p>
+						</div>
+					</section>
+				</div>
+
+				<!-- Right Column - Image -->
+				<div class="sticky top-8">
+					<div class="h-96 md:h-[600px] rounded-sm shadow-2xl overflow-hidden group border border-zinc-800">
+						<img src={`${import.meta.env.BASE_URL}/67b4e6fe71e6bd52cde977ea_IMG_6645.jpeg`} alt="Liv Café & Bistro location" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 					</div>
 				</div>
-			</section>
-
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Dinner</h2>
-				<div class="border-l-2 border-orange-500 pl-6">
-					<h3 class="text-orange-500 font-serif text-lg mb-2">Thursday to Saturday</h3>
-					<p class="text-zinc-300 mb-4">5:00pm – 9:00pm</p>
-					<p class="text-zinc-400 text-sm">Coming soon to expand our dinner service.</p>
-				</div>
-			</section>
-
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Closed</h2>
-				<p class="text-zinc-300 text-lg">Monday & Tuesday</p>
-			</section>
+			</div>
 
 			<section>
 				<h2 class="text-3xl font-serif text-white mb-6">Contact</h2>

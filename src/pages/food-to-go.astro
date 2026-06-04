@@ -12,55 +12,105 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</header>
 
-		<main class="max-w-4xl mx-auto py-20 px-4">
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Market & Prepared Meals</h2>
-				<div class="border-l-2 border-orange-500 pl-6 space-y-4">
-					<p class="text-zinc-300 leading-relaxed">
-						Come on into our shop at 713 St. Patrick Street and see what we have in store! Fresh daily selection or frozen prepared meals easily popped in the oven for a hassle-free dinner.
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						Or find some of our dishes exclusively on our subscription meal plan.
-					</p>
+		<main class="max-w-6xl mx-auto py-20 px-4">
+			<!-- Featured Section -->
+			<section class="mb-24 bg-zinc-900 rounded-sm overflow-hidden shadow-2xl border border-zinc-800">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+					<div class="h-80 md:h-full overflow-hidden group order-2 md:order-1">
+						<img src={`${import.meta.env.BASE_URL}/9B5A97B1-F64C-4F35-A758-6038F4897CF0_1_201_a.jpeg`} alt="Fresh prepared meals" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+					</div>
+					<div class="p-12 flex flex-col justify-center order-1 md:order-2">
+						<h2 class="text-3xl font-serif text-white mb-4">Market & Prepared Meals</h2>
+						<p class="text-zinc-300 leading-relaxed mb-6 font-light">
+							Come on into our shop at 713 St. Patrick Street and see what we have in store! Fresh daily selection or frozen prepared meals easily popped in the oven for a hassle-free dinner.
+						</p>
+						<p class="text-zinc-400 leading-relaxed">
+							Or find some of our dishes exclusively on our subscription meal plan.
+						</p>
+					</div>
 				</div>
 			</section>
 
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">What We Offer</h2>
-				<ul class="text-zinc-300 leading-relaxed space-y-3 border-l-2 border-orange-500 pl-6">
-					<li><span class="text-orange-500">•</span> Fresh daily prepared meals</li>
-					<li><span class="text-orange-500">•</span> Frozen prepared dinners</li>
-					<li><span class="text-orange-500">•</span> Seasonal produce from Liv's Edible Gardens</li>
-					<li><span class="text-orange-500">•</span> Exclusive subscription meal plans</li>
-				</ul>
-			</section>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+				<!-- Left Column -->
+				<section class="mb-16 md:mb-0">
+					<h2 class="text-3xl font-serif text-white mb-6">What We Offer</h2>
+					<ul class="text-zinc-300 leading-relaxed space-y-4 border-l-2 border-orange-500 pl-6 mb-12">
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Fresh daily prepared meals</span>
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Frozen prepared dinners</span>
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Seasonal produce from Liv's Edible Gardens</span>
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Exclusive subscription meal plans</span>
+						</li>
+					</ul>
 
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Subscription Meal Plan</h2>
-				<div class="border-l-2 border-orange-500 pl-6 space-y-4">
-					<p class="text-zinc-300 leading-relaxed">
-						Enjoy exclusive dishes through our subscription meal plan. Get restaurant-quality meals delivered to your door or ready for pickup.
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						<a href="mailto:info@livcafeandbistro.com" class="text-orange-500 hover:text-orange-400 transition-colors">Email us</a> for more details about subscribing.
-					</p>
-				</div>
-			</section>
+					<h2 class="text-2xl font-serif text-white mb-4">Visit Us</h2>
+					<div class="space-y-3 border-l-2 border-orange-500 pl-6">
+						<div>
+							<p class="text-orange-500 font-serif mb-1">Location</p>
+							<p class="text-zinc-300 leading-relaxed">
+								713 St. Patrick Street<br />
+								Victoria, BC
+							</p>
+						</div>
+						<div>
+							<p class="text-orange-500 font-serif mb-1">Phone</p>
+							<p class="text-zinc-300">
+								<a href="tel:(250) 590-5229" class="text-orange-500 hover:text-orange-400 transition-colors">(250) 590-5229</a>
+							</p>
+						</div>
+						<div>
+							<p class="text-orange-500 font-serif mb-1">Email</p>
+							<p class="text-zinc-300">
+								<a href="mailto:info@livcafeandbistro.com" class="text-orange-500 hover:text-orange-400 transition-colors">info@livcafeandbistro.com</a>
+							</p>
+						</div>
+					</div>
+				</section>
 
-			<section>
-				<h2 class="text-3xl font-serif text-white mb-6">Visit Us</h2>
-				<div class="space-y-3">
-					<p class="text-zinc-300 leading-relaxed">
-						<span class="text-orange-500 font-serif">Location:</span> 713 St. Patrick Street, Victoria, BC
+				<!-- Right Column -->
+				<section>
+					<h2 class="text-3xl font-serif text-white mb-6">Subscription Meal Plan</h2>
+					<div class="bg-zinc-900 rounded-sm p-8 border border-zinc-800 mb-8 space-y-4">
+						<p class="text-zinc-300 leading-relaxed">
+							Enjoy exclusive dishes through our subscription meal plan. Get restaurant-quality meals delivered to your door or ready for pickup.
+						</p>
+						<p class="text-zinc-300 leading-relaxed">
+							Each week features a rotating selection of seasonal dishes, prepared with the same care and attention to detail as our in-restaurant offerings.
+						</p>
+						<p class="text-zinc-400 text-sm italic">
+							Perfect for busy professionals, families, or anyone who wants to enjoy fine dining from the comfort of home.
+						</p>
+					</div>
+
+					<h2 class="text-2xl font-serif text-white mb-4">Subscribe Today</h2>
+					<p class="text-zinc-400 text-sm mb-6">
+						Ready to bring Liv's cuisine into your weekly routine?
 					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						<span class="text-orange-500 font-serif">Phone:</span> <a href="tel:(250) 590-5229" class="text-orange-500 hover:text-orange-400 transition-colors">(250) 590-5229</a>
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						<span class="text-orange-500 font-serif">Email:</span> <a href="mailto:info@livcafeandbistro.com" class="text-orange-500 hover:text-orange-400 transition-colors">info@livcafeandbistro.com</a>
-					</p>
-				</div>
-			</section>
+					<a href="mailto:info@livcafeandbistro.com" class="inline-block border border-orange-500 text-orange-500 px-6 py-2 uppercase tracking-widest text-sm hover:bg-orange-500 hover:text-white transition-all duration-300 mb-8">
+						Learn More
+					</a>
+
+					<div class="bg-orange-500/10 border border-orange-500/30 rounded-sm p-6">
+						<p class="text-orange-500 font-serif text-lg mb-2">Farm Fueled</p>
+						<p class="text-zinc-300 text-sm leading-relaxed">
+							All our meals use ingredients from our own farm in Saanich and trusted local suppliers, ensuring freshness and sustainability.
+						</p>
+					</div>
+				</section>
+			</div>
+
+
 		</main>
 	</div>
 </Layout>

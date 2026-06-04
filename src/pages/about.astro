@@ -12,43 +12,33 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</header>
 
-		<main class="max-w-4xl mx-auto py-20 px-4">
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Our Philosophy</h2>
-				<div class="border-l-2 border-orange-500 pl-6 space-y-4">
-					<p class="text-zinc-300 leading-relaxed">
-						It's always the little things, isn't it? The coffee just so. The light in the window. That meal that satiates and yet, leaves you wanting more. That's what we are about here at Liv Café & Bistro.
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						A cocoon to live a little. As often as possible. Nestled within Oak Bay, Victoria's quaint neighbourhood, Liv is an ingredient-driven restaurant, founded by Chefs Louise Lu and Milton Rebello.
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						Both Louise and Milton have earned their stripes in kitchens across the globe, and the cuisine is a thoughtful coming together of their vast experience. At Liv, we focus on simplicity and elegance. We are about creating an experience, not just a meal.
-					</p>
+		<main class="max-w-6xl mx-auto py-20 px-4">
+			<!-- Philosophy, Seasonal Menus & Edible Gardens Section with Image -->
+			<section class="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+				<div class="h-96 rounded-sm shadow-2xl overflow-hidden group order-2 md:order-1">
+					<img src={`${import.meta.env.BASE_URL}/mainbowl.JPG`} alt="Our philosophy and farm-to-table ingredients" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 				</div>
-			</section>
+				<div class="order-1 md:order-2 space-y-12">
+					<div>
+						<h2 class="text-3xl font-serif text-white mb-6">Our Philosophy</h2>
+						<div class="border-l-2 border-orange-500 pl-6 space-y-4">
+							<p class="text-zinc-300 leading-relaxed">
+								It's always the little things, isn't it? The coffee just so. The light in the window. That meal that satiates and yet, leaves you wanting more. That's what we are about here at Liv Café & Bistro.
+							</p>
+							<p class="text-zinc-300 leading-relaxed">
+								A cocoon to live a little. Nestled within Oak Bay, Victoria's quaint neighbourhood, Liv is an ingredient-driven restaurant founded by Chefs Louise Lu and Milton Rebello.
+							</p>
+						</div>
+					</div>
 
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Seasonal Menus</h2>
-				<div class="border-l-2 border-orange-500 pl-6 space-y-4">
-					<p class="text-zinc-300 leading-relaxed">
-						The philosophy is simple: as the seasons change, so does the menu. Ancient wisdom dictates that we eat according to the seasons, like nature intended. It's great for you and the environment.
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						Our menu aims to reflect what grows seasonally on our island and around. A creative blend of tradition and innovation, it will change seasonally, pairing global influences with ethically sourced and sustainable local ingredients.
-					</p>
-				</div>
-			</section>
-
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Liv's Edible Gardens</h2>
-				<div class="border-l-2 border-orange-500 pl-6 space-y-4">
-					<p class="text-zinc-300 leading-relaxed">
-						Most of the produce is homegrown from our own little farm in Saanich, 'Liv's Edible Gardens'. We have dedicated this farmland to grow fresh ingredients and florals that we offer at the restaurant.
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						We challenge ourselves daily to make Liv Café & Bistro sustainable — we try our best to reduce waste and to make changes to our menu to reflect what is happening at the farms and ocean around us.
-					</p>
+					<div>
+						<h2 class="text-2xl font-serif text-white mb-4">Seasonal Menus & Edible Gardens</h2>
+						<div class="border-l-2 border-orange-500 pl-6 space-y-4">
+							<p class="text-zinc-300 leading-relaxed text-sm">
+								Our menu changes seasonally, reflecting what grows locally. Most produce is homegrown from our own farm in Saanich, 'Liv's Edible Gardens'. We believe in creating exceptional experiences through sustainable, locally-sourced ingredients that honor both tradition and innovation.
+							</p>
+						</div>
+					</div>
 				</div>
 			</section>
 		</main>

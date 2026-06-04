@@ -12,110 +12,74 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</header>
 
-		<main class="max-w-4xl mx-auto py-20 px-4">
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Chef Driven Catering</h2>
-				<div class="border-l-2 border-orange-500 pl-6 space-y-4">
-					<p class="text-zinc-300 leading-relaxed">
-						From small intimate gatherings to chef-driven five-course dinners at your home or any venue in and surrounding Oak Bay and Greater Victoria, we are passionate about what we do, and we strive to ensure all our celebrations are exceptional.
-					</p>
-					<p class="text-white font-serif text-lg">
-						We bring fine dining to you!
-					</p>
-				</div>
-			</section>
-
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Our Offerings</h2>
-				<ul class="text-zinc-300 leading-relaxed space-y-3 border-l-2 border-orange-500 pl-6">
-					<li><span class="text-orange-500">•</span> Canapés & Appetizers</li>
-					<li><span class="text-orange-500">•</span> Charcuterie Boards</li>
-					<li><span class="text-orange-500">•</span> Dessert Platters</li>
-					<li><span class="text-orange-500">•</span> Family Style Dinners</li>
-					<li><span class="text-orange-500">•</span> Custom Multi-Course Menus</li>
-				</ul>
-			</section>
-
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Philosophy</h2>
-				<div class="border-l-2 border-orange-500 pl-6">
-					<p class="text-orange-500 font-serif text-xl mb-3">
-						Farm Fueled ~ Chef Driven
-					</p>
-					<p class="text-zinc-300 leading-relaxed">
-						All our catering uses the same philosophy as our restaurant: seasonal, locally sourced, and beautifully presented. We believe in creating memorable experiences through exceptional food.
-					</p>
-				</div>
-			</section>
-
-			<section class="mb-16">
-				<h2 class="text-3xl font-serif text-white mb-6">Book Your Event</h2>
-				<p class="text-zinc-300 leading-relaxed mb-8">
-					For more information about our catering services and custom menus, please reach out:
-				</p>
-				
-				<div class="grid md:grid-cols-2 gap-8">
-					<div class="border-l-2 border-orange-500 pl-6">
-						<h3 class="text-orange-500 font-serif text-lg mb-3">Contact Us</h3>
-						<p class="text-zinc-300 mb-2">
-							<a href="tel:(250) 590-5229" class="text-orange-500 hover:text-orange-400 transition-colors">(250) 590-5229</a>
+		<main class="max-w-6xl mx-auto py-20 px-4">
+			<!-- Featured Section -->
+			<section class="mb-24 bg-zinc-900 rounded-sm overflow-hidden shadow-2xl border border-zinc-800">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:min-h-96">
+					<div class="h-80 md:h-auto overflow-hidden group">
+						<img src={`${import.meta.env.BASE_URL}/3BC55C12-0B88-4826-A269-3F37B56D2F06_1_201_a.jpeg`} alt="Chef-driven catering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+					</div>
+					<div class="p-12 flex flex-col justify-center">
+						<h2 class="text-3xl font-serif text-white mb-4">Chef Driven Catering</h2>
+						<p class="text-zinc-300 leading-relaxed mb-6 font-light">
+							From small intimate gatherings to chef-driven five-course dinners at your home or any venue in and surrounding Oak Bay and Greater Victoria, we are passionate about what we do, and we strive to ensure all our celebrations are exceptional.
 						</p>
-						<p class="text-zinc-300">
-							<a href="mailto:info@livcafeandbistro.com" class="text-orange-500 hover:text-orange-400 transition-colors">info@livcafeandbistro.com</a>
+						<p class="text-orange-500 font-serif text-xl">
+							We bring fine dining to you!
 						</p>
 					</div>
 				</div>
 			</section>
 
-			<section>
-				<h2 class="text-3xl font-serif text-white mb-8">Catering Inquiry Form</h2>
-				<p class="text-zinc-400 mb-8 text-sm">
-					Tell us about your event and we'll be in touch with catering options and pricing.
-				</p>
-				<form action="https://formspree.io/f/mzdokbnq" method="POST" class="space-y-6">
-					<input type="hidden" name="_subject" value="New Catering Inquiry from Liv Café" />
-					<input type="hidden" name="_captcha" value="false" />
-					
-					<div>
-						<label class="block text-zinc-300 font-serif mb-2">Name <span class="text-orange-500">*</span></label>
-						<input type="text" name="name" placeholder="Your name" required class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 placeholder-zinc-600 rounded focus:border-orange-500 focus:outline-none transition-colors" />
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+				<!-- Left Column -->
+				<section class="mb-16 md:mb-0">
+					<h2 class="text-3xl font-serif text-white mb-6">Our Offerings</h2>
+					<ul class="text-zinc-300 leading-relaxed space-y-4 border-l-2 border-orange-500 pl-6">
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Canapés & Appetizers</span>
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Charcuterie Boards</span>
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Dessert Platters</span>
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Family Style Dinners</span>
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="text-orange-500 mt-1">✦</span>
+							<span>Custom Multi-Course Menus</span>
+						</li>
+					</ul>
+				</section>
+
+				<!-- Right Column -->
+				<section>
+					<h2 class="text-3xl font-serif text-white mb-6">Philosophy</h2>
+					<div class="bg-zinc-900 rounded-sm p-8 border border-zinc-800 mb-8">
+						<p class="text-orange-500 font-serif text-xl mb-4">
+							Farm Fueled ~ Chef Driven
+						</p>
+						<p class="text-zinc-300 leading-relaxed">
+							All our catering uses the same philosophy as our restaurant: seasonal, locally sourced, and beautifully presented. We believe in creating memorable experiences through exceptional food.
+						</p>
 					</div>
-					
-					<div>
-						<label class="block text-zinc-300 font-serif mb-2">Phone <span class="text-orange-500">*</span></label>
-						<input type="tel" name="phone" placeholder="Your phone number" required class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 placeholder-zinc-600 rounded focus:border-orange-500 focus:outline-none transition-colors" />
-					</div>
-					
-					<div>
-						<label class="block text-zinc-300 font-serif mb-2">Email <span class="text-orange-500">*</span></label>
-						<input type="email" name="email" placeholder="Your email" required class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 placeholder-zinc-600 rounded focus:border-orange-500 focus:outline-none transition-colors" />
-					</div>
-					
-					<div>
-						<label class="block text-zinc-300 font-serif mb-2">Date & Time of Event <span class="text-orange-500">*</span></label>
-						<input type="datetime-local" name="event_date_time" required class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded focus:border-orange-500 focus:outline-none transition-colors" />
-					</div>
-					
-					<div>
-						<label class="block text-zinc-300 font-serif mb-2">Type of Celebration <span class="text-orange-500">*</span></label>
-						<input type="text" name="event_type" placeholder="e.g., Wedding, Birthday, Corporate Event" required class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 placeholder-zinc-600 rounded focus:border-orange-500 focus:outline-none transition-colors" />
-					</div>
-					
-					<div>
-						<label class="block text-zinc-300 font-serif mb-2">Number of Guests <span class="text-orange-500">*</span></label>
-						<input type="number" name="guest_count" placeholder="Guest count" min="1" required class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 placeholder-zinc-600 rounded focus:border-orange-500 focus:outline-none transition-colors" />
-					</div>
-					
-					<div>
-						<label class="block text-zinc-300 font-serif mb-2">Details & Special Requests</label>
-						<textarea name="details" placeholder="Tell us about your event..." rows="4" class="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 placeholder-zinc-600 rounded focus:border-orange-500 focus:outline-none transition-colors"></textarea>
-					</div>
-					
-					<button type="submit" class="w-full bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition-colors font-serif tracking-wide">
-						Submit Catering Inquiry
-					</button>
-				</form>
-			</section>
+
+					<h2 class="text-2xl font-serif text-white mb-4">Ready to Celebrate?</h2>
+					<p class="text-zinc-400 text-sm mb-6">
+						Let us help make your next event unforgettable with our chef-driven catering services.
+					</p>
+					<a href={`${import.meta.env.BASE_URL}/contact`} class="inline-block border border-orange-500 text-orange-500 px-6 py-2 uppercase tracking-widest text-sm hover:bg-orange-500 hover:text-white transition-all duration-300">
+						Get In Touch
+					</a>
+				</section>
+			</div>
 		</main>
 	</div>
 </Layout>
