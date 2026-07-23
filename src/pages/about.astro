@@ -1,6 +1,8 @@
 ---
 // src/pages/about.astro
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import mainbowlImg from '../assets/mainbowl.JPG';
 ---
 
 <Layout>
@@ -16,7 +18,7 @@ import Layout from '../layouts/Layout.astro';
 			<!-- Philosophy, Seasonal Menus & Edible Gardens Section with Image -->
 			<section class="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 				<div class="h-96 rounded-sm shadow-2xl overflow-hidden group order-2 md:order-1">
-					<img src={`${import.meta.env.BASE_URL}/mainbowl.JPG`} alt="Our philosophy and farm-to-table ingredients" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+					<Image src={mainbowlImg} alt="Our philosophy and farm-to-table ingredients" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 				</div>
 				<div class="order-1 md:order-2 space-y-12">
 					<div>

@@ -1,6 +1,8 @@
 ---
 // src/pages/menu.astro
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import menuImg from '../assets/2DD07909-9F91-434A-BFC3-2027EA93BCA6_1_201_a.jpeg';
 ---
 
 <Layout>
@@ -17,7 +19,7 @@ import Layout from '../layouts/Layout.astro';
 			<section class="mb-24 bg-zinc-900 rounded-sm overflow-hidden shadow-2xl border border-zinc-800">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-0">
 					<div class="h-80 md:h-full overflow-hidden group">
-						<img src={`${import.meta.env.BASE_URL}/2DD07909-9F91-434A-BFC3-2027EA93BCA6_1_201_a.jpeg`} alt="Featured Dish" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+						<Image src={menuImg} alt="Featured Dish" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 					</div>
 					<div class="p-12 flex flex-col justify-center">
 						<h2 class="text-3xl font-serif text-white mb-4">Culinary Excellence</h2>

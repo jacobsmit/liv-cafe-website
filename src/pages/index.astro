@@ -1,31 +1,56 @@
 ---
 // src/pages/index.astro
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import heroImg from "../assets/064F2D5A-7038-4DF8-B38C-B883F984D450_1_201_a.jpeg";
+import chickenWaffleImg from "../assets/chickenwaffel.JPG";
+import glimpse1Img from "../assets/01EF0F38-8901-424D-B93D-D17C807F895B_1_201_a.jpeg";
+import glimpse2Img from "../assets/AA04E02F-ADFF-4011-9CE5-F2D23BE31794_1_201_a.jpeg";
+import glimpse3Img from "../assets/0E04EB43-7590-4252-8E2D-FAB72BF9962E_1_201_a.jpeg";
+import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-80B8-0799B409C9F0.jpeg";
 ---
 
 <Layout>
     <!-- Main wrapper to enforce the dark theme across the page -->
-    <main class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-orange-500 selection:text-white">
-        
+    <main
+        class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-orange-500 selection:text-white"
+    >
         <!-- Hero Section with Background Image -->
-        <header class="relative flex flex-col items-center justify-center py-40 px-4 min-h-[75vh] bg-zinc-900 border-b border-zinc-800 overflow-hidden">
+        <header
+            class="relative flex flex-col items-center justify-center py-40 px-4 min-h-[75vh] bg-zinc-900 border-b border-zinc-800 overflow-hidden"
+        >
             <!-- Background Image -->
             <div class="absolute inset-0 z-0">
-                <img src={`${import.meta.env.BASE_URL}/064F2D5A-7038-4DF8-B38C-B883F984D450_1_201_a.jpeg`} alt="Liv Café & Bistro" class="w-full h-full object-cover opacity-30" />
-                <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-zinc-950/80"></div>
+                <Image
+                    src={heroImg}
+                    alt="Liv Café & Bistro"
+                    class="w-full h-full object-cover opacity-30"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-zinc-950/80"
+                >
+                </div>
             </div>
 
             <!-- Hero Content -->
             <div class="relative z-10 text-center">
-                <h1 class="text-6xl md:text-8xl font-serif text-white mb-8 tracking-wide">
+                <h1
+                    class="text-6xl md:text-8xl font-serif text-white mb-8 tracking-wide"
+                >
                     Liv Café & Bistro
                 </h1>
                 <!-- Elegant Orange Accent Divider -->
                 <div class="w-24 h-[2px] bg-orange-500 mx-auto mb-8"></div>
-                <p class="text-2xl md:text-3xl text-zinc-300 max-w-2xl mx-auto font-light mb-12">
+                <p
+                    class="text-2xl md:text-3xl text-zinc-300 max-w-2xl mx-auto font-light mb-12"
+                >
                     Ingredient-driven dining in the heart of Oak Bay.
                 </p>
-                <a href={`${import.meta.env.BASE_URL}/contact`} class="inline-block bg-orange-500 text-white px-10 py-4 text-xl font-semibold rounded-sm hover:bg-orange-600 transition-colors shadow-lg">
+                <a
+                    href={`${import.meta.env.BASE_URL}/contact`}
+                    class="inline-block bg-orange-500 text-white px-10 py-4 text-xl font-semibold rounded-sm hover:bg-orange-600 transition-colors shadow-lg"
+                >
                     Book a Table
                 </a>
             </div>
@@ -35,18 +60,35 @@ import Layout from '../layouts/Layout.astro';
         <section class="max-w-6xl mx-auto py-24 px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <!-- Portrait Image Placeholder -->
-                <div class="aspect-[4/5] bg-zinc-900 border border-zinc-800 flex items-center justify-center relative group overflow-hidden shadow-2xl">
-                    <img src={`${import.meta.env.BASE_URL}/chickenwaffel.JPG`} alt="Signature Dish - Chicken Waffle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div
+                    class="aspect-[4/5] bg-zinc-900 border border-zinc-800 flex items-center justify-center relative group overflow-hidden shadow-2xl"
+                >
+                    <Image
+                        src={chickenWaffleImg}
+                        alt="Signature Dish - Chicken Waffle"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                     <!-- Subtle decorative gradient -->
-                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500/30 to-transparent"></div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500/30 to-transparent"
+                    >
+                    </div>
                 </div>
-                
+
                 <div class="text-center md:text-left space-y-8">
-                    <h2 class="text-4xl md:text-6xl font-serif text-white">An Elevated Experience</h2>
-                    <p class="text-zinc-300 leading-relaxed font-light text-xl md:text-2xl">
-                        Immerse yourself in an atmosphere designed for elegance and comfort.
+                    <h2 class="text-4xl md:text-6xl font-serif text-white">
+                        An Elevated Experience
+                    </h2>
+                    <p
+                        class="text-zinc-300 leading-relaxed font-light text-xl md:text-2xl"
+                    >
+                        Immerse yourself in an atmosphere designed for elegance
+                        and comfort.
                     </p>
-                    <a href={`${import.meta.env.BASE_URL}/contact`} class="inline-block border-2 border-orange-500 text-orange-500 px-10 py-4 uppercase tracking-widest text-base font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300">
+                    <a
+                        href={`${import.meta.env.BASE_URL}/contact`}
+                        class="inline-block border-2 border-orange-500 text-orange-500 px-10 py-4 uppercase tracking-widest text-base font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300"
+                    >
                         Book a Table
                     </a>
                 </div>
@@ -57,33 +99,73 @@ import Layout from '../layouts/Layout.astro';
         <section class="bg-zinc-900 py-24 px-4 border-t border-zinc-800">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="text-5xl font-serif text-white mb-4 tracking-wide">A Glimpse of Liv</h2>
+                    <h2
+                        class="text-5xl font-serif text-white mb-4 tracking-wide"
+                    >
+                        A Glimpse of Liv
+                    </h2>
                     <div class="w-16 h-[2px] bg-orange-500 mx-auto"></div>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Image 1 -->
-                    <div class="group overflow-hidden rounded-sm shadow-xl h-80 relative">
-                        <img src={`${import.meta.env.BASE_URL}/01EF0F38-8901-424D-B93D-D17C807F895B_1_201_a.jpeg`} alt="Restaurant ambiance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                    <div
+                        class="group overflow-hidden rounded-sm shadow-xl h-80 relative"
+                    >
+                        <Image
+                            src={glimpse1Img}
+                            alt="Restaurant ambiance"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div
+                            class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"
+                        >
+                        </div>
                     </div>
 
                     <!-- Image 2 -->
-                    <div class="group overflow-hidden rounded-sm shadow-xl h-80 relative">
-                        <img src={`${import.meta.env.BASE_URL}/AA04E02F-ADFF-4011-9CE5-F2D23BE31794_1_201_a.jpeg`} alt="Dining experience" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                    <div
+                        class="group overflow-hidden rounded-sm shadow-xl h-80 relative"
+                    >
+                        <Image
+                            src={glimpse2Img}
+                            alt="Dining experience"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div
+                            class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"
+                        >
+                        </div>
                     </div>
 
                     <!-- Image 3 -->
-                    <div class="group overflow-hidden rounded-sm shadow-xl h-80 relative">
-                        <img src={`${import.meta.env.BASE_URL}/0E04EB43-7590-4252-8E2D-FAB72BF9962E_1_201_a.jpeg`} alt="Plated creation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                    <div
+                        class="group overflow-hidden rounded-sm shadow-xl h-80 relative"
+                    >
+                        <Image
+                            src={glimpse3Img}
+                            alt="Plated creation"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div
+                            class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"
+                        >
+                        </div>
                     </div>
 
                     <!-- Image 4 -->
-                    <div class="group overflow-hidden rounded-sm shadow-xl h-80 relative">
-                        <img src={`${import.meta.env.BASE_URL}/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-80B8-0799B409C9F0.jpeg`} alt="Culinary artistry" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                    <div
+                        class="group overflow-hidden rounded-sm shadow-xl h-80 relative"
+                    >
+                        <Image
+                            src={glimpse4Img}
+                            alt="Culinary artistry"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div
+                            class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"
+                        >
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,36 +174,65 @@ import Layout from '../layouts/Layout.astro';
         <!-- Location & Contact Footer-style Section -->
         <section class="bg-zinc-900 py-24 px-4 border-t border-zinc-800">
             <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-4xl font-serif mb-16 text-white tracking-wide">Nestled within Oak Bay</h2>
-                
-                <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-32">
+                <h2 class="text-4xl font-serif mb-16 text-white tracking-wide">
+                    Nestled within Oak Bay
+                </h2>
+
+                <div
+                    class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-32"
+                >
                     <!-- Location Info -->
                     <div class="space-y-4 md:w-1/3 text-center md:text-right">
-                        <h3 class="text-orange-500 uppercase tracking-[0.2em] text-sm font-bold">Location</h3>
+                        <h3
+                            class="text-orange-500 uppercase tracking-[0.2em] text-sm font-bold"
+                        >
+                            Location
+                        </h3>
                         <p class="text-zinc-300 font-light text-2xl">
                             713 St. Patrick Street<br />
                             Victoria, BC
                         </p>
                     </div>
-                    
+
                     <!-- Small Circular Image/Logo Placeholder -->
-                    <div class="w-32 h-32 bg-zinc-950 border border-zinc-800 flex items-center justify-center rounded-full shrink-0 shadow-lg">
-                        <span class="text-zinc-600 text-[10px] tracking-widest uppercase text-center px-2">
-                            <img src={`${import.meta.env.BASE_URL}/favicon.png`} alt="Logo Mark Placeholder" class="w-16 h-16 object-contain" />
-						</span>
+                    <div
+                        class="w-32 h-32 bg-zinc-950 border border-zinc-800 flex items-center justify-center rounded-full shrink-0 shadow-lg"
+                    >
+                        <span
+                            class="text-zinc-600 text-[10px] tracking-widest uppercase text-center px-2"
+                        >
+                            <img
+                                src={`${import.meta.env.BASE_URL}/favicon.png`}
+                                alt="Logo Mark Placeholder"
+                                class="w-16 h-16 object-contain"
+                            />
+                        </span>
                     </div>
 
                     <!-- Contact Info -->
                     <div class="space-y-4 md:w-1/3 text-center md:text-left">
-                        <h3 class="text-orange-500 uppercase tracking-[0.2em] text-sm font-bold">Contact</h3>
-                        <p class="text-zinc-300 font-light text-2xl flex flex-col space-y-3">
-                            <a href="tel:(250) 590-5229" class="hover:text-orange-400 transition-colors">(250) 590-5229</a>
-                            <a href="mailto:info@livcafeandbistro.com" class="hover:text-orange-400 transition-colors text-xl">info@livcafeandbistro.com</a>
+                        <h3
+                            class="text-orange-500 uppercase tracking-[0.2em] text-sm font-bold"
+                        >
+                            Contact
+                        </h3>
+                        <p
+                            class="text-zinc-300 font-light text-2xl flex flex-col space-y-3"
+                        >
+                            <a
+                                href="tel:2505905229"
+                                class="hover:text-orange-400 transition-colors"
+                                >(250) 590-5229</a
+                            >
+                            <a
+                                href="mailto:info@livcafeandbistro.com"
+                                class="hover:text-orange-400 transition-colors text-xl"
+                                >info@livcafeandbistro.com</a
+                            >
                         </p>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 </Layout>

@@ -1,6 +1,8 @@
 ---
 // src/pages/catering.astro
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import cateringImg from '../assets/3BC55C12-0B88-4826-A269-3F37B56D2F06_1_201_a.jpeg';
 ---
 
 <Layout>
@@ -17,7 +19,7 @@ import Layout from '../layouts/Layout.astro';
 			<section class="mb-24 bg-zinc-900 rounded-sm overflow-hidden shadow-2xl border border-zinc-800">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:min-h-96">
 					<div class="h-80 md:h-auto overflow-hidden group">
-						<img src={`${import.meta.env.BASE_URL}/3BC55C12-0B88-4826-A269-3F37B56D2F06_1_201_a.jpeg`} alt="Chef-driven catering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+						<Image src={cateringImg} alt="Chef-driven catering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 					</div>
 					<div class="p-12 flex flex-col justify-center">
 						<h2 class="text-3xl font-serif text-white mb-4">Chef Driven Catering</h2>
