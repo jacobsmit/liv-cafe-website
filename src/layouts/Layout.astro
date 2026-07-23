@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoImg from '../assets/logo.jpg';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -20,7 +22,7 @@ const currentYear = new Date().getFullYear();
         <nav class="bg-white shadow-sm p-4">
             <div class="max-w-4xl mx-auto flex justify-between items-center flex-wrap gap-4">
                 <a href={import.meta.env.BASE_URL} class="flex items-center">
-                    <img src={`${import.meta.env.BASE_URL}/logo.jpg`} alt="Liv Café & Bistro" class="h-20" />
+                    <Image src={logoImg} width={214} height={160} alt="Liv Café & Bistro" class="h-20 w-auto" loading="eager" />
                 </a>
                 <ul class="flex gap-6 font-medium text-neutral-600 flex-wrap items-center text-lg">
                     <li><a href={`${import.meta.env.BASE_URL}/about`} class="hover:text-orange-500 transition-colors">About</a></li>

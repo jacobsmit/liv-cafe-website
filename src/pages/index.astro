@@ -24,9 +24,12 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
             <div class="absolute inset-0 z-0">
                 <Image
                     src={heroImg}
-                    width={1920}
+                    widths={[640, 1024, 1920]}
+                    sizes="100vw"
                     alt="Liv Café & Bistro"
                     class="w-full h-full object-cover opacity-30"
+                    loading="eager"
+                    fetchpriority="high"
                 />
                 <div
                     class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-zinc-950/80"
@@ -200,19 +203,18 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
                         </p>
                     </div>
 
-                    <!-- Small Circular Image/Logo Placeholder -->
+                    <!-- Small Circular Logo Mark -->
                     <div
                         class="w-32 h-32 bg-zinc-950 border border-zinc-800 flex items-center justify-center rounded-full shrink-0 shadow-lg"
                     >
-                        <span
-                            class="text-zinc-600 text-[10px] tracking-widest uppercase text-center px-2"
-                        >
-                            <img
-                                src={`${import.meta.env.BASE_URL}/favicon.png`}
-                                alt="Logo Mark Placeholder"
-                                class="w-16 h-16 object-contain"
-                            />
-                        </span>
+                        <img
+                            src={`${import.meta.env.BASE_URL}/favicon.png`}
+                            alt="Liv Café & Bistro logo mark"
+                            width="64"
+                            height="64"
+                            loading="lazy"
+                            class="w-16 h-16 object-contain"
+                        />
                     </div>
 
                     <!-- Contact Info -->
