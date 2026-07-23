@@ -58,10 +58,11 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 							Our online booking form needs JavaScript enabled to pick an available time. Please <a href="tel:2505905229" class="underline">call us at (250) 590-5229</a> to reserve instead.
 						</p>
 					</noscript>
-					<form id="reservation_form" action="https://formspree.io/f/mzdokbnq" method="POST" class="space-y-6">
-						<input type="hidden" name="_subject" value="New Reservation Request from Liv Café" />
-						<input type="hidden" name="_next" value={thankYouUrl} />
-						<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+					<form id="reservation_form" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+						<input type="hidden" name="access_key" value="e078d5cf-50ba-406c-b20d-49a516de89a0" />
+						<input type="hidden" name="subject" value="New Reservation Request from Liv Café" />
+						<input type="hidden" name="redirect" value={thankYouUrl} />
+						<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" style="display:none" aria-hidden="true" />
 
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 							<div>
