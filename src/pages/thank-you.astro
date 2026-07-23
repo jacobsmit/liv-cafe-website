@@ -1,0 +1,20 @@
+---
+// src/pages/thank-you.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <main class="bg-zinc-950 text-zinc-300 min-h-[80vh] flex flex-col items-center justify-center text-center px-4">
+        <h1 class="text-5xl md:text-6xl font-serif text-white mb-6 tracking-wide">Thank You</h1>
+        <div class="w-16 h-[2px] bg-orange-500 mx-auto mb-8"></div>
+        <p class="text-xl text-zinc-400 mb-4 max-w-lg">
+            Your reservation request has been sent. We'll get back to you shortly to confirm.
+        </p>
+        <p class="text-lg text-zinc-500 mb-12 max-w-lg">
+            Need to reach us sooner? Call <a href="tel:2505905229" class="text-orange-500 hover:text-orange-400 transition-colors">(250) 590-5229</a>.
+        </p>
+        <a href={`${import.meta.env.BASE_URL}/`} class="inline-block bg-orange-500 text-white px-10 py-4 text-xl font-semibold rounded-sm hover:bg-orange-600 transition-colors shadow-lg">
+            Return Home
+        </a>
+    </main>
+</Layout>

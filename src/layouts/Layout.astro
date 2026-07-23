@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+
+const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -7,7 +9,6 @@ import '../styles/global.css';
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/favicon.png`} />
-		<link rel="stylesheet" href={`${import.meta.env.BASE_URL}/global.css`} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
         <title>Liv Café & Bistro</title>
@@ -53,7 +54,7 @@ import '../styles/global.css';
                     </a>
                 </div>
                 <div class="text-center">
-                    <p>&copy; 2026 Liv Café & Bistro.</p>
+                    <p>&copy; {currentYear} Liv Café & Bistro.</p>
                 </div>
             </div>
         </footer>

@@ -1,6 +1,8 @@
 ---
 // src/pages/contact.astro
 import Layout from '../layouts/Layout.astro';
+
+const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site).href;
 ---
 
 <Layout>
@@ -51,55 +53,61 @@ import Layout from '../layouts/Layout.astro';
 					<p class="text-zinc-400 mb-8">
 						Fill out the form below and we'll get back to you as soon as possible to confirm your reservation.
 					</p>
+					<noscript>
+						<p class="bg-orange-500 text-white font-bold p-6 rounded-sm mb-8">
+							Our online booking form needs JavaScript enabled to pick an available time. Please <a href="tel:2505905229" class="underline">call us at (250) 590-5229</a> to reserve instead.
+						</p>
+					</noscript>
 					<form id="reservation_form" action="https://formspree.io/f/mzdokbnq" method="POST" class="space-y-6">
 						<input type="hidden" name="_subject" value="New Reservation Request from Liv Café" />
-						<input type="hidden" name="_captcha" value="false" />
-						
+						<input type="hidden" name="_next" value={thankYouUrl} />
+						<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
 						<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 							<div>
-								<label class="block text-white font-bold text-lg mb-3">Name <span class="text-orange-500">*</span></label>
-								<input type="text" name="name" placeholder="Your name" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<label for="res_name" class="block text-white font-bold text-lg mb-3">Name <span class="text-orange-500">*</span></label>
+								<input type="text" name="name" id="res_name" placeholder="Your name" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 							</div>
 							
 							<div>
-								<label class="block text-white font-bold text-lg mb-3">Phone <span class="text-orange-500">*</span></label>
-								<input type="tel" name="phone" placeholder="(250) 590-5229" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<label for="res_phone" class="block text-white font-bold text-lg mb-3">Phone <span class="text-orange-500">*</span></label>
+								<input type="tel" name="phone" id="res_phone" placeholder="(250) 590-5229" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 							</div>
 						</div>
 						
 						<div class="mt-8">
-							<label class="block text-white font-bold text-lg mb-3">Email <span class="text-orange-500">*</span></label>
-							<input type="email" name="email" placeholder="your@email.com" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+							<label for="res_email" class="block text-white font-bold text-lg mb-3">Email <span class="text-orange-500">*</span></label>
+							<input type="email" name="email" id="res_email" placeholder="your@email.com" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 						</div>
 						
 						<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
 							<div>
-								<label class="block text-white font-bold text-lg mb-3">Date <span class="text-orange-500">*</span></label>
+								<label for="reservation_date" class="block text-white font-bold text-lg mb-3">Date <span class="text-orange-500">*</span></label>
 								<input type="date" name="date" id="reservation_date" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 							</div>
 							
 							<div>
-								<label class="block text-white font-bold text-lg mb-3">Time <span class="text-orange-500">*</span></label>
+								<label for="reservation_time" class="block text-white font-bold text-lg mb-3">Time <span class="text-orange-500">*</span></label>
 								<select name="time" id="reservation_time" required disabled class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm appearance-none disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed">
 									<option value="" disabled selected>Select date first</option>
 								</select>
 							</div>
 
 							<div>
-								<label class="block text-white font-bold text-lg mb-3">Party Size <span class="text-orange-500">*</span></label>
-								<input type="number" name="number_of_people" placeholder="1-12" min="1" max="12" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<label for="res_party_size" class="block text-white font-bold text-lg mb-3">Party Size <span class="text-orange-500">*</span></label>
+								<input type="number" name="number_of_people" id="res_party_size" placeholder="1-12" min="1" max="12" required class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 							</div>
 						</div>
 						<div id="date_error_msg" class="text-orange-500 font-bold hidden -mt-4"></div>
 						
 						<div class="mt-8">
-							<label class="block text-white font-bold text-lg mb-3">Type of Event (Optional)</label>
-							<input type="text" name="event_type" placeholder="e.g. Birthday, Anniversary, Business" class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+							<label for="res_event_type" class="block text-white font-bold text-lg mb-3">Type of Event (Optional)</label>
+							<input type="text" name="event_type" id="res_event_type" placeholder="e.g. Birthday, Anniversary, Business" class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 						</div>
 
 						<div class="mt-8">
-							<label class="block text-white font-bold text-lg mb-3">Are there any special food requests or allergies? (Optional)</label>
-							<textarea name="food_requests" placeholder="Please list any dietary requirements or allergies" rows="2" class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors resize-none shadow-sm"></textarea>
+							<label for="res_food_requests" class="block text-white font-bold text-lg mb-3">Are there any special food requests or allergies? (Optional)</label>
+							<textarea name="food_requests" id="res_food_requests" placeholder="Please list any dietary requirements or allergies" rows="2" class="w-full px-6 py-4 bg-zinc-900 border-2 border-zinc-700 text-white text-lg placeholder-zinc-500 rounded focus:border-orange-500 focus:outline-none transition-colors resize-none shadow-sm"></textarea>
 						</div>
 						
 						<button type="submit" class="w-full bg-orange-500 text-white px-8 py-5 mt-10 rounded font-bold text-xl hover:bg-orange-600 transition-colors shadow-lg">
