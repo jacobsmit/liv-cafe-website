@@ -21,11 +21,11 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 					<div class="p-12 flex flex-col justify-center">
 						<h2 class="text-3xl font-serif text-white mb-4">Culinary Excellence</h2>
-						<p class="text-zinc-400 leading-relaxed mb-6 font-light">
-							Every dish on our menu is crafted with meticulous attention to detail. We celebrate seasonal ingredients sourced from our own farm and trusted local suppliers, creating dishes that are both visually stunning and deliciously memorable.
+						<p class="text-zinc-300 leading-relaxed mb-6 font-light text-xl">
+							Every dish is crafted with meticulous attention to detail, using seasonal ingredients from our own farm.
 						</p>
-						<p class="text-zinc-300 text-sm italic">
-							"A creative blend of tradition and innovation, paired with ethically sourced and sustainable local ingredients."
+						<p class="text-zinc-300 text-lg italic border-l-4 border-orange-500 pl-4">
+							"A creative blend of tradition and innovation."
 						</p>
 					</div>
 				</div>
@@ -35,21 +35,24 @@ import Layout from '../layouts/Layout.astro';
 				<!-- Left Column -->
 				<section class="mb-16 md:mb-0">
 					<h2 class="text-3xl font-serif text-white mb-6">Dine In</h2>
-					<p class="text-zinc-300 leading-relaxed mb-8">
-						Explore our ever-changing seasonal menus that celebrate fresh, local, and sustainably sourced ingredients. Each menu is thoughtfully curated to reflect the bounty of our island and the vision of our chefs.
+					<p class="text-zinc-300 leading-relaxed mb-8 text-xl">
+						Explore our ever-changing seasonal menus celebrating fresh, local ingredients.
 					</p>
-					<ul class="text-zinc-300 leading-relaxed space-y-4 border-l-2 border-orange-500 pl-6">
-						<li>
-							<a href="#" class="text-orange-500 hover:text-orange-400 transition-colors font-serif text-lg">Bistro Lunch Menu</a>
-							<p class="text-zinc-400 text-sm mt-1">Casual elegance for your midday break</p>
+					<ul class="text-zinc-300 leading-relaxed space-y-8">
+						<li class="bg-zinc-900 border border-zinc-800 p-6 rounded-sm shadow-lg border-l-4 border-l-orange-500">
+							<h3 class="font-serif text-3xl text-white mb-2">Bistro Lunch Menu</h3>
+							<p class="text-zinc-400 text-lg mb-6">Casual elegance for your midday break</p>
+							<a href={`${import.meta.env.BASE_URL}/menus/LIV_Modern_Menu_Design.pdf`} target="_blank" rel="noopener noreferrer" class="inline-block bg-orange-500 text-white font-semibold px-8 py-3 rounded hover:bg-orange-600 transition-colors shadow-sm text-center w-full md:w-auto">View Lunch Menu</a>
 						</li>
-						<li>
-							<a href="#" class="text-orange-500 hover:text-orange-400 transition-colors font-serif text-lg">Weekend Brunch Menu</a>
-							<p class="text-zinc-400 text-sm mt-1">Leisurely dining at its finest</p>
+						<li class="bg-zinc-900 border border-zinc-800 p-6 rounded-sm shadow-lg border-l-4 border-l-orange-500">
+							<h3 class="font-serif text-3xl text-white mb-2">Weekend Brunch Menu</h3>
+							<p class="text-zinc-400 text-lg mb-6">Leisurely dining at its finest</p>
+							<a href={`${import.meta.env.BASE_URL}/menus/LIV_Weekend_Brunch_Menu.pdf`} target="_blank" rel="noopener noreferrer" class="inline-block bg-orange-500 text-white font-semibold px-8 py-3 rounded hover:bg-orange-600 transition-colors shadow-sm text-center w-full md:w-auto">View Brunch Menu</a>
 						</li>
-						<li>
-							<a href="#" class="text-orange-500 hover:text-orange-400 transition-colors font-serif text-lg">Dinner Menu</a>
-							<p class="text-zinc-400 text-sm mt-1">An evening of culinary artistry</p>
+						<li class="bg-zinc-900 border border-zinc-800 p-6 rounded-sm shadow-lg border-l-4 border-l-zinc-700 opacity-80">
+							<h3 class="font-serif text-3xl text-white mb-2">Dinner Menu</h3>
+							<p class="text-zinc-400 text-lg mb-6">An evening of culinary artistry</p>
+							<a href="#" class="inline-block bg-zinc-700 text-zinc-300 font-semibold px-8 py-3 rounded cursor-default text-center w-full md:w-auto">Coming Soon</a>
 						</li>
 					</ul>
 				</section>
@@ -80,8 +83,8 @@ import Layout from '../layouts/Layout.astro';
 
 					<h2 class="text-3xl font-serif text-white mb-6">Our Philosophy</h2>
 					<div class="border-l-2 border-orange-500 pl-6">
-						<p class="text-zinc-300 leading-relaxed">
-							Our menu changes seasonally to reflect what grows locally and sustainably. From our own farm in Saanich to your plate, every ingredient is chosen with care and intention. We blend tradition with innovation, always prioritizing simplicity and elegance.
+						<p class="text-zinc-300 leading-relaxed text-xl">
+							Our menu changes seasonally to reflect what grows locally. From our farm in Saanich to your plate, every ingredient is chosen with care.
 						</p>
 					</div>
 				</section>
