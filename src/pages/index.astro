@@ -12,13 +12,13 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
 ---
 
 <Layout>
-    <!-- Main wrapper to enforce the dark theme across the page -->
+    <!-- Main wrapper -->
     <main
-        class="bg-zinc-950 text-zinc-300 min-h-screen font-sans selection:bg-orange-500 selection:text-white"
+        class="bg-white text-zinc-700 min-h-screen font-sans selection:bg-orange-500 selection:text-white"
     >
         <!-- Hero Section with Background Image -->
         <header
-            class="relative flex flex-col items-center justify-center py-40 px-4 min-h-[75vh] bg-zinc-900 border-b border-zinc-800 overflow-hidden"
+            class="relative flex flex-col items-center justify-center py-40 px-4 min-h-[75vh] bg-zinc-50 border-b border-zinc-200 overflow-hidden"
         >
             <!-- Background Image -->
             <div class="absolute inset-0 z-0">
@@ -32,7 +32,7 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
                     fetchpriority="high"
                 />
                 <div
-                    class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-zinc-950/80"
+                    class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-white/80"
                 >
                 </div>
             </div>
@@ -40,14 +40,14 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
             <!-- Hero Content -->
             <div class="relative z-10 text-center">
                 <h1
-                    class="text-6xl md:text-8xl font-serif text-white mb-8 tracking-wide"
+                    class="text-6xl md:text-8xl font-serif text-zinc-900 mb-8 tracking-wide"
                 >
                     Liv Café & Bistro
                 </h1>
                 <!-- Elegant Orange Accent Divider -->
                 <div class="w-24 h-[2px] bg-orange-500 mx-auto mb-8"></div>
                 <p
-                    class="text-2xl md:text-3xl text-zinc-300 max-w-2xl mx-auto font-light mb-12"
+                    class="text-2xl md:text-3xl text-zinc-600 max-w-2xl mx-auto font-light mb-12"
                 >
                     Ingredient-driven dining in the heart of Oak Bay.
                 </p>
@@ -65,7 +65,7 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <!-- Portrait Image Placeholder -->
                 <div
-                    class="aspect-[4/5] bg-zinc-900 border border-zinc-800 flex items-center justify-center relative group overflow-hidden shadow-2xl"
+                    class="aspect-[4/5] bg-zinc-50 border border-zinc-200 flex items-center justify-center relative group overflow-hidden shadow-2xl"
                 >
                     <Image
                         src={chickenWaffleImg}
@@ -81,11 +81,11 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
                 </div>
 
                 <div class="text-center md:text-left space-y-8">
-                    <h2 class="text-4xl md:text-6xl font-serif text-white">
+                    <h2 class="text-4xl md:text-6xl font-serif text-zinc-900">
                         An Elevated Experience
                     </h2>
                     <p
-                        class="text-zinc-300 leading-relaxed font-light text-xl md:text-2xl"
+                        class="text-zinc-600 leading-relaxed font-light text-xl md:text-2xl"
                     >
                         Immerse yourself in an atmosphere designed for elegance
                         and comfort.
@@ -101,11 +101,11 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
         </section>
 
         <!-- Photo Gallery Section -->
-        <section class="bg-zinc-900 py-24 px-4 border-t border-zinc-800">
+        <section class="bg-zinc-50 py-24 px-4 border-t border-zinc-200">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-16">
                     <h2
-                        class="text-5xl font-serif text-white mb-4 tracking-wide"
+                        class="text-5xl font-serif text-zinc-900 mb-4 tracking-wide"
                     >
                         A Glimpse of Liv
                     </h2>
@@ -181,9 +181,9 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
         </section>
 
         <!-- Location & Contact Footer-style Section -->
-        <section class="bg-zinc-900 py-24 px-4 border-t border-zinc-800">
+        <section class="bg-zinc-50 py-24 px-4 border-t border-zinc-200">
             <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-4xl font-serif mb-16 text-white tracking-wide">
+                <h2 class="text-4xl font-serif mb-16 text-zinc-900 tracking-wide">
                     Nestled within Oak Bay
                 </h2>
 
@@ -197,7 +197,7 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
                         >
                             Location
                         </h3>
-                        <p class="text-zinc-300 font-light text-2xl">
+                        <p class="text-zinc-600 font-light text-2xl">
                             713 St. Patrick Street<br />
                             Victoria, BC
                         </p>
@@ -205,7 +205,7 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
 
                     <!-- Small Circular Logo Mark -->
                     <div
-                        class="w-32 h-32 bg-zinc-950 border border-zinc-800 flex items-center justify-center rounded-full shrink-0 shadow-lg"
+                        class="w-32 h-32 bg-white border border-zinc-200 flex items-center justify-center rounded-full shrink-0 shadow-lg"
                     >
                         <img
                             src={`${import.meta.env.BASE_URL}/favicon.png`}
@@ -225,16 +225,16 @@ import glimpse4Img from "../assets/67b4e6d02d00bb9779f5a2f8_3CE77DC7-9C0E-44D2-8
                             Contact
                         </h3>
                         <p
-                            class="text-zinc-300 font-light text-2xl flex flex-col space-y-3"
+                            class="text-zinc-600 font-light text-2xl flex flex-col space-y-3"
                         >
                             <a
                                 href="tel:2505905229"
-                                class="hover:text-orange-400 transition-colors"
+                                class="hover:text-orange-500 transition-colors"
                                 >(250) 590-5229</a
                             >
                             <a
                                 href="mailto:info@livcafeandbistro.com"
-                                class="hover:text-orange-400 transition-colors text-xl"
+                                class="hover:text-orange-500 transition-colors text-xl"
                                 >info@livcafeandbistro.com</a
                             >
                         </p>
