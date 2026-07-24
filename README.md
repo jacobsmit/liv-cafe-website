@@ -1,46 +1,56 @@
-# Astro Starter Kit: Basics
+# Liv Café & Bistro — Website
+
+Marketing site for Liv Café & Bistro (713 St. Patrick Street, Victoria, BC). Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com), deployed as a static site to GitHub Pages.
+
+## Requirements
+
+- Node.js 22.12.0 or newer
+
+## Local development
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The site runs at `http://localhost:4321/liv-cafe-website/` (the `/liv-cafe-website/` path prefix matches production — see **Deployment** below).
 
-## 🚀 Project Structure
+| Command           | Action                                       |
+| :----------------- | :-------------------------------------------- |
+| `npm install`       | Install dependencies                          |
+| `npm run dev`        | Start the local dev server                    |
+| `npm run build`       | Build the production site to `./dist/`        |
+| `npm run preview`      | Preview the production build locally          |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+│   ├── favicon.png
+│   └── menus/           # Downloadable menu & catering PDFs
+├── src/
+│   ├── assets/           # Images, optimized automatically by Astro at build time
+│   ├── layouts/
+│   │   └── Layout.astro   # Shared nav, footer, and <head> for every page
+│   └── pages/            # One file per route (about.astro -> /about, etc.)
+└── astro.config.mjs      # Site URL, base path, integrations
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Updating the menus
 
-## 🧞 Commands
+Menu PDFs live in `public/menus/`. To update or add one:
 
-All commands are run from the root of the project, from a terminal:
+1. Drop the new PDF into `public/menus/`.
+2. Link to it from `src/pages/menu.astro` (or `catering.astro` for the catering menu) using `${import.meta.env.BASE_URL}/menus/your-file.pdf` — this keeps the link working whether the site is served from a subpath or a custom domain.
+3. Prefer PDFs over Word docs for anything public — Word files can carry hidden author/edit-history metadata.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Reservation form
 
-## 👀 Want to learn more?
+The reservation form on `/contact` submits directly to [Web3Forms](https://web3forms.com) (no backend of our own). The access key in `contact.astro` is meant to be public — it only routes submissions to an inbox, it isn't a secret. To change which inbox receives reservations, generate a new access key at web3forms.com under the desired email and swap it in.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Deployment
+
+Deployment is automatic: pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages.
+
+`astro.config.mjs` currently has `site` and `base` set for GitHub's default project-page URL (`https://jacobsmit.github.io/liv-cafe-website`). **If the site moves to a custom domain**, update both of those, add a `public/CNAME` file containing the new domain, and point DNS at GitHub Pages — every internal link in the site is built from `import.meta.env.BASE_URL`, so once those two config values are correct, no page needs to be touched individually.
