@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { Image } from 'astro:assets';
-import logoImg from '../assets/logo.jpg';
+import logoImg from '../assets/logo copy.jpg';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -20,20 +20,64 @@ const currentYear = new Date().getFullYear();
         
         <!-- Navigation -->
         <nav class="bg-white shadow-sm p-4">
-            <div class="max-w-4xl mx-auto flex justify-between items-center flex-wrap gap-4">
+            <div class="max-w-4xl mx-auto flex justify-between items-center gap-4">
                 <a href={import.meta.env.BASE_URL} class="flex items-center">
-                    <Image src={logoImg} width={214} height={160} alt="Liv Café & Bistro" class="h-20 w-auto" loading="eager" />
+                    <Image src={logoImg} width={310} height={160} alt="Liv Café & Bistro" class="h-20 w-auto shadow-sm" loading="eager" />
                 </a>
-                <ul class="flex gap-6 font-medium text-neutral-600 flex-wrap items-center text-xl">
-                    <li><a href={`${import.meta.env.BASE_URL}/about`} class="hover:text-orange-500 transition-colors">About</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/hours`} class="hover:text-orange-500 transition-colors">Hours</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/menu`} class="hover:text-orange-500 transition-colors">Menu</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/catering`} class="hover:text-orange-500 transition-colors">Catering</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/food-to-go`} class="hover:text-orange-500 transition-colors">Food To Go</a></li>
+
+                <!-- Desktop links -->
+                <ul class="hidden md:flex gap-6 font-medium text-neutral-600 items-center text-xl">
+                    <li><a href={`${import.meta.env.BASE_URL}/about`} class="hover:text-orange-500 transition-colors px-1 py-2">About</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}/hours`} class="hover:text-orange-500 transition-colors px-1 py-2">Hours</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}/menu`} class="hover:text-orange-500 transition-colors px-1 py-2">Menu</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}/catering`} class="hover:text-orange-500 transition-colors px-1 py-2">Catering</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}/food-to-go`} class="hover:text-orange-500 transition-colors px-1 py-2">Food To Go</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}/contact`} class="bg-orange-500 text-white px-6 py-2 rounded-sm hover:bg-orange-600 transition-colors shadow-sm font-semibold">Reservations</a></li>
                 </ul>
+
+                <!-- Mobile menu toggle -->
+                <button
+                    id="nav-toggle"
+                    type="button"
+                    class="md:hidden p-2 -mr-2 text-neutral-700"
+                    aria-label="Toggle menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    <svg id="nav-icon-open" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg id="nav-icon-close" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
+
+            <!-- Mobile menu panel -->
+            <ul id="mobile-menu" class="hidden md:hidden max-w-4xl mx-auto mt-4 font-medium text-neutral-600 text-xl border-t border-zinc-200 pt-2">
+                <li><a href={`${import.meta.env.BASE_URL}/about`} class="block py-3 hover:text-orange-500 transition-colors">About</a></li>
+                <li><a href={`${import.meta.env.BASE_URL}/hours`} class="block py-3 hover:text-orange-500 transition-colors">Hours</a></li>
+                <li><a href={`${import.meta.env.BASE_URL}/menu`} class="block py-3 hover:text-orange-500 transition-colors">Menu</a></li>
+                <li><a href={`${import.meta.env.BASE_URL}/catering`} class="block py-3 hover:text-orange-500 transition-colors">Catering</a></li>
+                <li><a href={`${import.meta.env.BASE_URL}/food-to-go`} class="block py-3 hover:text-orange-500 transition-colors">Food To Go</a></li>
+                <li class="pt-2 pb-1"><a href={`${import.meta.env.BASE_URL}/contact`} class="block text-center bg-orange-500 text-white px-6 py-3 rounded-sm hover:bg-orange-600 transition-colors shadow-sm font-semibold">Reservations</a></li>
+            </ul>
         </nav>
+
+        <script>
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('nav-icon-open');
+            const iconClose = document.getElementById('nav-icon-close');
+
+            navToggle?.addEventListener('click', () => {
+                const willOpen = mobileMenu?.classList.contains('hidden');
+                mobileMenu?.classList.toggle('hidden');
+                iconOpen?.classList.toggle('hidden');
+                iconClose?.classList.toggle('hidden');
+                navToggle.setAttribute('aria-expanded', String(!!willOpen));
+            });
+        </script>
 
         <!-- Main Content is injected here -->
         <main class="flex-grow">
