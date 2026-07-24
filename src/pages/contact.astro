@@ -82,21 +82,21 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 						</div>
 
 						<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-							<div>
+							<div class="min-w-0">
 								<label for="reservation_date" class="block text-zinc-900 font-bold text-lg mb-3">Date <span class="text-orange-500">*</span></label>
-								<input type="date" name="date" id="reservation_date" required class="w-full px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<input type="date" name="date" id="reservation_date" required class="w-full min-w-0 px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 							</div>
 
-							<div>
+							<div class="min-w-0">
 								<label for="reservation_time" class="block text-zinc-900 font-bold text-lg mb-3">Time <span class="text-orange-500">*</span></label>
-								<select name="time" id="reservation_time" required disabled class="w-full px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm appearance-none disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed">
+								<select name="time" id="reservation_time" required disabled class="w-full min-w-0 px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm appearance-none disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed">
 									<option value="" disabled selected>Select date first</option>
 								</select>
 							</div>
 
-							<div>
+							<div class="min-w-0">
 								<label for="res_party_size" class="block text-zinc-900 font-bold text-lg mb-3">Party Size <span class="text-orange-500">*</span></label>
-								<input type="number" name="number_of_people" id="res_party_size" placeholder="1-12" min="1" max="12" required class="w-full px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<input type="number" name="number_of_people" id="res_party_size" placeholder="1-12" min="1" max="12" required class="w-full min-w-0 px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
 							</div>
 						</div>
 						<div id="date_error_msg" class="text-orange-600 font-bold hidden -mt-4"></div>
