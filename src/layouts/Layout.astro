@@ -26,7 +26,7 @@ const currentYear = new Date().getFullYear();
                 </a>
 
                 <!-- Desktop links -->
-                <ul class="hidden md:flex gap-6 font-medium text-neutral-600 items-center text-xl">
+                <ul class="hidden lg:flex gap-6 font-medium text-neutral-600 items-center text-xl">
                     <li><a href={`${import.meta.env.BASE_URL}/about`} class="hover:text-orange-500 transition-colors px-1 py-2">About</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}/hours`} class="hover:text-orange-500 transition-colors px-1 py-2">Hours</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}/menu`} class="hover:text-orange-500 transition-colors px-1 py-2">Menu</a></li>
@@ -39,7 +39,7 @@ const currentYear = new Date().getFullYear();
                 <button
                     id="nav-toggle"
                     type="button"
-                    class="md:hidden p-2 -mr-2 text-neutral-700"
+                    class="lg:hidden p-2 -mr-2 text-neutral-700"
                     aria-label="Toggle menu"
                     aria-expanded="false"
                     aria-controls="mobile-menu"
@@ -54,7 +54,7 @@ const currentYear = new Date().getFullYear();
             </div>
 
             <!-- Mobile menu panel -->
-            <ul id="mobile-menu" class="hidden md:hidden max-w-4xl mx-auto mt-4 font-medium text-neutral-600 text-xl border-t border-zinc-200 pt-2">
+            <ul id="mobile-menu" class="hidden lg:hidden max-w-4xl mx-auto mt-4 font-medium text-neutral-600 text-xl border-t border-zinc-200 pt-2">
                 <li><a href={`${import.meta.env.BASE_URL}/about`} class="block py-3 hover:text-orange-500 transition-colors">About</a></li>
                 <li><a href={`${import.meta.env.BASE_URL}/hours`} class="block py-3 hover:text-orange-500 transition-colors">Hours</a></li>
                 <li><a href={`${import.meta.env.BASE_URL}/menu`} class="block py-3 hover:text-orange-500 transition-colors">Menu</a></li>
