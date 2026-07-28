@@ -40,6 +40,28 @@ import mainbowlImg from '../assets/mainbowl.JPG';
 					</div>
 				</div>
 			</section>
+
+			<!-- Newsletter Signup -->
+			<section class="max-w-2xl mx-auto text-center bg-zinc-50 border border-zinc-200 rounded-sm p-12">
+				<h2 class="text-3xl font-serif text-zinc-900 mb-4">Come Along With Us</h2>
+				<p class="text-zinc-600 leading-relaxed mb-8">
+					Join our mailing list for seasonal menu updates, farm news, and the occasional invitation to something special.
+				</p>
+				<form
+					id="about_newsletter_form"
+					action="https://shaw.us4.list-manage.com/subscribe/post?u=a960eed57ecf2a87053739cba&id=755ee53402&f_id=0054d9e3f0"
+					method="post"
+					target="_blank"
+					class="flex flex-col sm:flex-row gap-4 justify-center"
+				>
+					<input type="email" id="newsletter_email" name="EMAIL" placeholder="your@email.com" required class="flex-grow sm:max-w-xs px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+					<input type="text" name="b_a960eed57ecf2a87053739cba_755ee53402" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+					<button type="submit" class="bg-orange-500 text-white px-8 py-4 rounded font-bold text-lg hover:bg-orange-600 transition-colors shadow-lg whitespace-nowrap">
+						Subscribe
+					</button>
+				</form>
+				<p class="mt-4 text-sm text-zinc-500">A confirmation will open in a new tab.</p>
+			</section>
 		</main>
 	</div>
 </Layout>
