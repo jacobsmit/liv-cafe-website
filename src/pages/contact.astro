@@ -96,7 +96,10 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 
 							<div class="min-w-0">
 								<label for="res_party_size" class="block text-zinc-900 font-bold text-lg mb-3">Party Size <span class="text-orange-500">*</span></label>
-								<input type="number" name="number_of_people" id="res_party_size" placeholder="1-12" min="1" max="12" required class="w-full min-w-0 px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<input type="number" name="number_of_people" id="res_party_size" placeholder="1-6" min="1" max="20" required class="w-full min-w-0 px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<p id="party_size_msg" class="text-orange-600 text-sm font-semibold hidden mt-2">
+									For parties larger than 6, please <a href="mailto:info@livcafeandbistro.com" class="underline">email us</a> so we can best accommodate your group.
+								</p>
 							</div>
 						</div>
 						<div id="date_error_msg" class="text-orange-600 font-bold hidden -mt-4"></div>
@@ -235,6 +238,20 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 
 			dateInput.addEventListener('change', updateTimes);
 
+			const partySizeInput = document.getElementById('res_party_size');
+			const partySizeMsg = document.getElementById('party_size_msg');
+
+			function partySizeIsValid() {
+				const size = parseInt(partySizeInput.value, 10);
+				const tooLarge = !isNaN(size) && size > 6;
+				partySizeMsg.classList.toggle('hidden', !tooLarge);
+				return !tooLarge;
+			}
+
+			if (partySizeInput && partySizeMsg) {
+				partySizeInput.addEventListener('input', partySizeIsValid);
+			}
+
 			const mailingListCheckbox = document.getElementById('join_mailing_list');
 			const emailInput = document.getElementById('res_email');
 			const mcForm = document.getElementById('mc_signup_form');
@@ -245,6 +262,11 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 					e.preventDefault();
 					errorMsg.textContent = 'Please select a valid date and time before submitting.';
 					errorMsg.classList.remove('hidden');
+					return;
+				}
+
+				if (partySizeInput && partySizeMsg && !partySizeIsValid()) {
+					e.preventDefault();
 					return;
 				}
 
