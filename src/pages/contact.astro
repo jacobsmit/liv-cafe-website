@@ -111,6 +111,13 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 							<textarea name="food_requests" id="res_food_requests" placeholder="Please list any dietary requirements or allergies" rows="2" class="w-full px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors resize-none shadow-sm"></textarea>
 						</div>
 
+						<div class="mt-8 flex items-start gap-3">
+							<input type="checkbox" name="join_mailing_list" id="join_mailing_list" class="mt-1 w-5 h-5 accent-orange-500 shrink-0" />
+							<label for="join_mailing_list" class="text-zinc-700">
+								Keep me updated on specials, events, and news by email.
+							</label>
+						</div>
+
 						<button type="submit" class="w-full bg-orange-500 text-white px-8 py-5 mt-10 rounded font-bold text-xl hover:bg-orange-600 transition-colors shadow-lg">
 							Send Reservation Request
 						</button>
@@ -218,11 +225,28 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 
 			dateInput.addEventListener('change', updateTimes);
 
+			const mailingListCheckbox = document.getElementById('join_mailing_list');
+			const emailInput = document.getElementById('res_email');
+
 			form.addEventListener('submit', (e) => {
 				if (timeSelect.disabled || !timeSelect.value) {
 					e.preventDefault();
 					errorMsg.textContent = 'Please select a valid date and time before submitting.';
 					errorMsg.classList.remove('hidden');
+					return;
+				}
+
+				if (mailingListCheckbox && mailingListCheckbox.checked && emailInput && emailInput.value) {
+					const params = new URLSearchParams();
+					params.append('EMAIL', emailInput.value);
+					params.append('b_a960eed57ecf2a87053739cba_755ee53402', '');
+					fetch('https://shaw.us4.list-manage.com/subscribe/post?u=a960eed57ecf2a87053739cba&id=755ee53402&f_id=0054d9e3f0', {
+						method: 'POST',
+						mode: 'no-cors',
+						keepalive: true,
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: params.toString(),
+					});
 				}
 			});
 		});
