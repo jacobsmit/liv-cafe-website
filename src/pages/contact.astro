@@ -122,6 +122,16 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 							Send Reservation Request
 						</button>
 					</form>
+
+					<!-- Hidden mailing-list signup: submits alongside the reservation via a real
+					     form navigation (into a hidden iframe) rather than a background fetch,
+					     since ad-blockers/tracking protection commonly block fetch calls to
+					     marketing domains but not form navigations. -->
+					<iframe name="mc_signup_target" title="Mailing list signup" class="hidden" aria-hidden="true"></iframe>
+					<form id="mc_signup_form" action="https://shaw.us4.list-manage.com/subscribe/post?u=a960eed57ecf2a87053739cba&id=755ee53402&f_id=0054d9e3f0" method="post" target="mc_signup_target" class="hidden" aria-hidden="true">
+						<input type="hidden" name="EMAIL" id="mc_signup_email" value="" />
+						<input type="text" name="b_a960eed57ecf2a87053739cba_755ee53402" tabindex="-1" autocomplete="off" value="" />
+					</form>
 				</section>
 			</div>
 		</main>
@@ -227,6 +237,8 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 
 			const mailingListCheckbox = document.getElementById('join_mailing_list');
 			const emailInput = document.getElementById('res_email');
+			const mcForm = document.getElementById('mc_signup_form');
+			const mcEmailField = document.getElementById('mc_signup_email');
 
 			form.addEventListener('submit', (e) => {
 				if (timeSelect.disabled || !timeSelect.value) {
@@ -236,17 +248,9 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 					return;
 				}
 
-				if (mailingListCheckbox && mailingListCheckbox.checked && emailInput && emailInput.value) {
-					const params = new URLSearchParams();
-					params.append('EMAIL', emailInput.value);
-					params.append('b_a960eed57ecf2a87053739cba_755ee53402', '');
-					fetch('https://shaw.us4.list-manage.com/subscribe/post?u=a960eed57ecf2a87053739cba&id=755ee53402&f_id=0054d9e3f0', {
-						method: 'POST',
-						mode: 'no-cors',
-						keepalive: true,
-						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-						body: params.toString(),
-					});
+				if (mailingListCheckbox && mailingListCheckbox.checked && emailInput && emailInput.value && mcForm && mcEmailField) {
+					mcEmailField.value = emailInput.value;
+					mcForm.submit();
 				}
 			});
 		});
