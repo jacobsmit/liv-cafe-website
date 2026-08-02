@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: 24px 16px 48px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        color: #3f3f46;
+        background: #fff;
+        line-height: 1.5;
+      }
+
+      .wrap { max-width: 560px; margin: 0 auto; }
+
+      h1 {
+        font-size: 28px;
+        color: #18181b;
+        margin: 0 0 8px;
+      }
+
+      .accent { width: 56px; height: 2px; background: #f97316; margin-bottom: 20px; }
+
+      p.intro { margin: 0 0 28px; color: #71717a; }
+
+      .menu {
+        border: 1px solid #e4e4e7;
+        border-radius: 4px;
+        padding: 14px 16px;
+        margin-bottom: 10px;
+        background: #fafafa;
+      }
+      .menu .label { font-weight: 700; color: #18181b; }
+      .menu .detail { font-size: 14px; color: #71717a; margin-top: 2px; word-break: break-word; }
+      .menu.bad { border-color: #fca5a5; background: #fef2f2; }
+      .menu.bad .detail { color: #b91c1c; }
+
+      button {
+        width: 100%;
+        margin-top: 24px;
+        padding: 18px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        background: #f97316;
+        border: 0;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover:not(:disabled) { background: #ea580c; }
+      button:disabled { background: #d4d4d8; cursor: not-allowed; }
+
+      #results { margin-top: 24px; }
+      .row { padding: 10px 0; border-bottom: 1px solid #f4f4f5; font-size: 15px; }
+      .row:last-child { border-bottom: 0; }
+      .tag { font-weight: 700; }
+      .updated   { color: #15803d; }
+      .unchanged { color: #a1a1aa; }
+      .error     { color: #b91c1c; }
+
+      .note {
+        margin-top: 20px;
+        padding: 14px 16px;
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #9a3412;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <h1>Publish Menus</h1>
+      <div class="accent"></div>
+      <p class="intro">
+        Put the new menu PDF into its Google Drive folder, then press the button below.
+        The newest PDF in each folder is the one that gets published.
+      </p>
+
+      <div id="status">Checking your Drive folders&hellip;</div>
+
+      <button id="publish" disabled>Update Website</button>
+
+      <div id="results"></div>
+    </div>
+
+    <script>
+      var statusEl = document.getElementById('status');
+      var resultsEl = document.getElementById('results');
+      var button = document.getElementById('publish');
+
+      function escapeHtml(text) {
+        return String(text).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function renderStatus(menus) {
+        statusEl.innerHTML = menus.map(function (menu) {
+          return '<div class="menu' + (menu.ok ? '' : ' bad') + '">' +
+                   '<div class="label">' + escapeHtml(menu.label) + '</div>' +
+                   '<div class="detail">' + escapeHtml(menu.detail) + '</div>' +
+                 '</div>';
+        }).join('');
+        button.disabled = false;
+      }
+
+      function renderResults(results) {
+        var anyUpdated = results.some(function (r) { return r.status === 'updated'; });
+
+        resultsEl.innerHTML =
+          results.map(function (r) {
+            var symbol = r.status === 'updated' ? '&#10003;'
+                       : r.status === 'error'   ? '&#10007;'
+                       : '&ndash;';
+            return '<div class="row">' +
+                     '<span class="tag ' + r.status + '">' + symbol + ' ' +
+                       escapeHtml(r.label) + '</span> &middot; ' + escapeHtml(r.detail) +
+                   '</div>';
+          }).join('') +
+          (anyUpdated
+            ? '<div class="note">Changes sent. The website will show them in about 2 minutes.</div>'
+            : '<div class="note">No changes were needed &mdash; the website already has these menus.</div>');
+
+        button.disabled = false;
+        button.textContent = 'Update Website';
+        loadStatus();
+      }
+
+      function showFailure(err) {
+        resultsEl.innerHTML =
+          '<div class="note">Something went wrong: ' + escapeHtml(err.message || err) + '</div>';
+        button.disabled = false;
+        button.textContent = 'Update Website';
+      }
+
+      function loadStatus() {
+        google.script.run.withSuccessHandler(renderStatus).getMenuStatus();
+      }
+
+      button.addEventListener('click', function () {
+        button.disabled = true;
+        button.textContent = 'Publishing…';
+        resultsEl.innerHTML = '';
+        google.script.run
+          .withSuccessHandler(renderResults)
+          .withFailureHandler(showFailure)
+          .publishMenus();
+      });
+
+      loadStatus();
+    </script>
+  </body>
+</html>
