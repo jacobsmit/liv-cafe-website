@@ -53,7 +53,9 @@ The reservation form on `/contact` submits directly to [Web3Forms](https://web3f
 
 Visitor stats use [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) — free, and it sets no cookies, so the site needs no cookie consent banner.
 
-To switch it on: in the Cloudflare dashboard go to **Web Analytics → Add a site**, enter the site's hostname, and copy the token out of the snippet it gives you. Paste that into `CLOUDFLARE_ANALYTICS_TOKEN` at the top of `src/layouts/Layout.astro`.
+This is already configured — the token lives in `CLOUDFLARE_ANALYTICS_TOKEN` at the top of `src/layouts/Layout.astro`. It's a public identifier, not a secret; it appears in the page source of every site that uses it.
+
+To point it at a different site or account: in the Cloudflare dashboard go to **Web Analytics → Add a site**, enter the hostname, and copy the token out of the snippet it gives you into that same constant. Cloudflare only records traffic for hostnames registered there, so when the custom domain goes live it needs adding alongside the current one.
 
 While that value is empty, no analytics script is added to the site at all. It also only loads in the production build, so local development never shows up in the numbers.
 
