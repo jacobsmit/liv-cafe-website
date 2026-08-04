@@ -4,6 +4,12 @@ import { Image } from 'astro:assets';
 import logoImg from '../assets/logo copy.jpg';
 
 const currentYear = new Date().getFullYear();
+
+// Cloudflare Web Analytics.
+// Get this from the Cloudflare dashboard: Web Analytics -> your site -> Manage site.
+// While it's empty, no analytics script is added to the site at all.
+// It also only loads in the built site, so local development isn't counted.
+const CLOUDFLARE_ANALYTICS_TOKEN = '';
 ---
 
 <!doctype html>
@@ -119,5 +125,13 @@ const currentYear = new Date().getFullYear();
             </div>
         </footer>
 
+        {CLOUDFLARE_ANALYTICS_TOKEN && import.meta.env.PROD && (
+            <script
+                is:inline
+                defer
+                src="https://static.cloudflareinsights.com/beacon.min.js"
+                data-cf-beacon={JSON.stringify({ token: CLOUDFLARE_ANALYTICS_TOKEN })}
+            ></script>
+        )}
     </body>
 </html>

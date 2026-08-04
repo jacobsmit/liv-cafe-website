@@ -49,6 +49,16 @@ Menu PDFs live in `public/menus/`. To update or add one:
 
 The reservation form on `/contact` submits directly to [Web3Forms](https://web3forms.com) (no backend of our own). The access key in `contact.astro` is meant to be public — it only routes submissions to an inbox, it isn't a secret. To change which inbox receives reservations, generate a new access key at web3forms.com under the desired email and swap it in.
 
+## Analytics
+
+Visitor stats use [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) — free, and it sets no cookies, so the site needs no cookie consent banner.
+
+To switch it on: in the Cloudflare dashboard go to **Web Analytics → Add a site**, enter the site's hostname, and copy the token out of the snippet it gives you. Paste that into `CLOUDFLARE_ANALYTICS_TOKEN` at the top of `src/layouts/Layout.astro`.
+
+While that value is empty, no analytics script is added to the site at all. It also only loads in the production build, so local development never shows up in the numbers.
+
+Worth knowing: `/thank-you` is only reachable after a successful reservation submission, so its page-view count doubles as a count of reservation requests.
+
 ## Deployment
 
 Deployment is automatic: pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages.
