@@ -210,8 +210,8 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 				// Dinner (Thu, Fri, Sat)
 				if (day >= 4 && day <= 6) {
 					let h = 17, m = 0;
-					// Up to 8:30 PM (closes at 9:00pm)
-					while (h < 20 || (h === 20 && m <= 30)) {
+					// Up to 7:45 PM (closes at 9:00pm)
+					while (h < 19 || (h === 19 && m <= 45)) {
 						const displayH = h > 12 ? h - 12 : h;
 						const mm = String(m).padStart(2, '0');
 						const timeStr = `${displayH}:${mm} PM`;
