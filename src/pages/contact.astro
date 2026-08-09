@@ -124,6 +124,9 @@ const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site)
 						<button type="submit" class="w-full bg-orange-500 text-white px-8 py-5 mt-10 rounded font-bold text-xl hover:bg-orange-600 transition-colors shadow-lg">
 							Send Reservation Request
 						</button>
+						<p class="text-center text-zinc-500 text-sm mt-4">
+							This is a request, not a confirmed booking. We'll follow up by email to confirm your table.
+						</p>
 					</form>
 
 					<!-- Hidden mailing-list signup: submits alongside the reservation via a real
