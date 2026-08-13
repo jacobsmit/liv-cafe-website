@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { Image } from 'astro:assets';
 import logoImg from '../assets/logo copy.jpg';
+import { withBase } from '../lib/url';
 
 const currentYear = new Date().getFullYear();
 
@@ -16,7 +17,7 @@ const CLOUDFLARE_ANALYTICS_TOKEN = 'de5a2f13353e4d98901a9202ed55b7b8';
 <html lang="en" class="scroll-smooth">
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/favicon.png`} />
+        <link rel="icon" type="image/png" href={withBase('/favicon.png')} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
         <title>Liv Café & Bistro</title>
@@ -33,12 +34,12 @@ const CLOUDFLARE_ANALYTICS_TOKEN = 'de5a2f13353e4d98901a9202ed55b7b8';
 
                 <!-- Desktop links -->
                 <ul class="hidden lg:flex gap-6 font-medium text-neutral-600 items-center text-xl">
-                    <li><a href={`${import.meta.env.BASE_URL}/about`} class="hover:text-orange-500 transition-colors px-1 py-2">About</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/hours`} class="hover:text-orange-500 transition-colors px-1 py-2">Hours</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/menu`} class="hover:text-orange-500 transition-colors px-1 py-2">Menu</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/catering`} class="hover:text-orange-500 transition-colors px-1 py-2">Catering</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/food-to-go`} class="hover:text-orange-500 transition-colors px-1 py-2">Food To Go</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}/contact`} class="bg-orange-500 text-white px-6 py-2 rounded-sm hover:bg-orange-600 transition-colors shadow-sm font-semibold">Reservations</a></li>
+                    <li><a href={withBase('/about')} class="hover:text-orange-500 transition-colors px-1 py-2">About</a></li>
+                    <li><a href={withBase('/hours')} class="hover:text-orange-500 transition-colors px-1 py-2">Hours</a></li>
+                    <li><a href={withBase('/menu')} class="hover:text-orange-500 transition-colors px-1 py-2">Menu</a></li>
+                    <li><a href={withBase('/catering')} class="hover:text-orange-500 transition-colors px-1 py-2">Catering</a></li>
+                    <li><a href={withBase('/food-to-go')} class="hover:text-orange-500 transition-colors px-1 py-2">Food To Go</a></li>
+                    <li><a href={withBase('/contact')} class="bg-orange-500 text-white px-6 py-2 rounded-sm hover:bg-orange-600 transition-colors shadow-sm font-semibold">Reservations</a></li>
                     <li class="ml-4">
                         <a href="https://www.instagram.com/livcafebistro/" target="_blank" rel="noopener noreferrer" class="block text-neutral-600 hover:text-orange-500 transition-colors" title="Follow us on Instagram" aria-label="Instagram">
                             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -75,12 +76,12 @@ const CLOUDFLARE_ANALYTICS_TOKEN = 'de5a2f13353e4d98901a9202ed55b7b8';
 
             <!-- Mobile menu panel -->
             <ul id="mobile-menu" class="hidden lg:hidden max-w-4xl mx-auto mt-4 font-medium text-neutral-600 text-xl border-t border-zinc-200 pt-2">
-                <li><a href={`${import.meta.env.BASE_URL}/about`} class="block py-3 hover:text-orange-500 transition-colors">About</a></li>
-                <li><a href={`${import.meta.env.BASE_URL}/hours`} class="block py-3 hover:text-orange-500 transition-colors">Hours</a></li>
-                <li><a href={`${import.meta.env.BASE_URL}/menu`} class="block py-3 hover:text-orange-500 transition-colors">Menu</a></li>
-                <li><a href={`${import.meta.env.BASE_URL}/catering`} class="block py-3 hover:text-orange-500 transition-colors">Catering</a></li>
-                <li><a href={`${import.meta.env.BASE_URL}/food-to-go`} class="block py-3 hover:text-orange-500 transition-colors">Food To Go</a></li>
-                <li class="pt-2 pb-1"><a href={`${import.meta.env.BASE_URL}/contact`} class="block text-center bg-orange-500 text-white px-6 py-3 rounded-sm hover:bg-orange-600 transition-colors shadow-sm font-semibold">Reservations</a></li>
+                <li><a href={withBase('/about')} class="block py-3 hover:text-orange-500 transition-colors">About</a></li>
+                <li><a href={withBase('/hours')} class="block py-3 hover:text-orange-500 transition-colors">Hours</a></li>
+                <li><a href={withBase('/menu')} class="block py-3 hover:text-orange-500 transition-colors">Menu</a></li>
+                <li><a href={withBase('/catering')} class="block py-3 hover:text-orange-500 transition-colors">Catering</a></li>
+                <li><a href={withBase('/food-to-go')} class="block py-3 hover:text-orange-500 transition-colors">Food To Go</a></li>
+                <li class="pt-2 pb-1"><a href={withBase('/contact')} class="block text-center bg-orange-500 text-white px-6 py-3 rounded-sm hover:bg-orange-600 transition-colors shadow-sm font-semibold">Reservations</a></li>
             </ul>
         </nav>
 

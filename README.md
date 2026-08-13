@@ -65,4 +65,6 @@ Worth knowing: `/thank-you` is only reachable after a successful reservation sub
 
 Deployment is automatic: pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages.
 
-`astro.config.mjs` currently has `site` and `base` set for GitHub's default project-page URL (`https://jacobsmit.github.io/liv-cafe-website`). **If the site moves to a custom domain**, update both of those, add a `public/CNAME` file containing the new domain, and point DNS at GitHub Pages — every internal link in the site is built from `import.meta.env.BASE_URL`, so once those two config values are correct, no page needs to be touched individually.
+`astro.config.mjs` currently has `site` and `base` set for GitHub's default project-page URL (`https://jacobsmit.github.io/liv-cafe-website`). **If the site moves to a custom domain**, update both of those, add a `public/CNAME` file containing the new domain, and point DNS at GitHub Pages.
+
+See [MIGRATION.md](MIGRATION.md) for the full step-by-step checklist — moving to a root domain requires a code fix first (the `${import.meta.env.BASE_URL}/path` pattern breaks once the base path becomes `/`), plus GoDaddy DNS records and confirming which inbox each form service delivers to.

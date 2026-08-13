@@ -2,6 +2,7 @@
 // src/pages/index.astro
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import { withBase } from "../lib/url";
 
 import heroImg from "../assets/064F2D5A-7038-4DF8-B38C-B883F984D450_1_201_a.jpeg";
 import chickenWaffleImg from "../assets/chickenwaffel.JPG";
@@ -54,7 +55,7 @@ import glimpse6Img from "../assets/IMG_7829.jpg";
                     Ingredient-driven dining in the heart of Oak Bay.
                 </p>
                 <a
-                    href={`${import.meta.env.BASE_URL}/contact`}
+                    href={withBase('/contact')}
                     class="inline-block bg-orange-500 text-white px-10 py-4 text-xl font-semibold rounded-sm hover:bg-orange-600 transition-colors shadow-lg"
                 >
                     Book a Table
@@ -93,7 +94,7 @@ import glimpse6Img from "../assets/IMG_7829.jpg";
                         and comfort.
                     </p>
                     <a
-                        href={`${import.meta.env.BASE_URL}/contact`}
+                        href={withBase('/contact')}
                         class="inline-block border-2 border-orange-500 text-orange-500 px-10 py-4 uppercase tracking-widest text-base font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300"
                     >
                         Book a Table
@@ -242,7 +243,7 @@ import glimpse6Img from "../assets/IMG_7829.jpg";
                         class="w-32 h-32 bg-white border border-zinc-200 flex items-center justify-center rounded-full shrink-0 shadow-lg"
                     >
                         <img
-                            src={`${import.meta.env.BASE_URL}/favicon.png`}
+                            src={withBase('/favicon.png')}
                             alt="Liv Café & Bistro logo mark"
                             width="64"
                             height="64"

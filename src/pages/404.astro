@@ -1,6 +1,7 @@
 ---
 // src/pages/404.astro
 import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
 ---
 
 <Layout>
@@ -10,7 +11,7 @@ import Layout from '../layouts/Layout.astro';
         <p class="text-xl text-zinc-500 mb-12 max-w-lg">
             We couldn't find the page you were looking for. It might have been moved or doesn't exist.
         </p>
-        <a href={`${import.meta.env.BASE_URL}/`} class="inline-block bg-orange-500 text-white px-10 py-4 text-xl font-semibold rounded-sm hover:bg-orange-600 transition-colors shadow-lg">
+        <a href={withBase('/')} class="inline-block bg-orange-500 text-white px-10 py-4 text-xl font-semibold rounded-sm hover:bg-orange-600 transition-colors shadow-lg">
             Return Home
         </a>
     </main>

@@ -1,8 +1,9 @@
 ---
 // src/pages/contact.astro
 import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/url';
 
-const thankYouUrl = new URL(`${import.meta.env.BASE_URL}/thank-you`, Astro.site).href;
+const thankYouUrl = new URL(withBase('/thank-you'), Astro.site).href;
 ---
 
 <Layout>
