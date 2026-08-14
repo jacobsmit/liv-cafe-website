@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://livcafeandbistro.com/sitemap-index.xml
+Sitemap: https://livcafeandbistro.ca/sitemap-index.xml
