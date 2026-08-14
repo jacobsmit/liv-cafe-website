@@ -4,11 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // Your GitHub Pages full site URL (project site)
-  site: 'https://jacobsmit.github.io/liv-cafe-website',
+  // Production custom domain
+  site: 'https://livcafeandbistro.com',
 
-  // The exact name of your repository, starting with a forward slash
-  base: '/liv-cafe-website',
+  // Served from the domain root, not a subpath
+  base: '/',
 
   vite: {
     plugins: [tailwindcss()],

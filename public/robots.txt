@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jacobsmit.github.io/liv-cafe-website/sitemap-index.xml
+Sitemap: https://livcafeandbistro.com/sitemap-index.xml
