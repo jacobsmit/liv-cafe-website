@@ -292,6 +292,13 @@ function getSpecialEventStatus() {
  * events.json rather than recorded with the wrong file, so the site never
  * shows a name/date next to the wrong flyer (or a broken link).
  *
+ * `entries` comes from the page, so it isn't trusted for *which files* to
+ * publish — only for the name/date text attached to each one. The set of
+ * fileIds actually eligible to publish is re-derived here from the Drive
+ * folder itself, the same way getSpecialEventStatus() does it, so this
+ * can never be made to publish a file from outside that folder no matter
+ * what a caller passes in.
+ *
  * Slots left over from a previous, larger set of events are not deleted —
  * they just become unreferenced once events.json no longer points at them,
  * which is harmless.
@@ -303,6 +310,15 @@ function publishSpecialEvents(entries) {
   } catch (err) {
     return [{ label: 'Special Events', status: 'error', detail: String(err.message || err) }];
   }
+
+  var allowedFileIds = {};
+  newestPdfsIn(SPECIAL_EVENTS_FOLDER_ID, MAX_SPECIAL_EVENTS).forEach(function (file) {
+    allowedFileIds[file.getId()] = true;
+  });
+
+  entries = entries
+    .filter(function (entry) { return allowedFileIds[entry.fileId]; })
+    .slice(0, MAX_SPECIAL_EVENTS);
 
   var results = [];
   var newEventsJson = [];
