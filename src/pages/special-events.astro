@@ -101,6 +101,9 @@ function formatDate(dateStr) {
 							<div>
 								<label for="se_party_size" class="block text-zinc-900 font-bold text-lg mb-3">Party Size <span class="text-orange-500">*</span></label>
 								<input type="number" name="number_of_people" id="se_party_size" placeholder="1-6" min="1" max="20" required class="w-full px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm" />
+								<p id="se_party_size_msg" class="text-orange-600 text-sm font-semibold hidden mt-2">
+									For parties larger than 6, please <a href="mailto:info@livcafeandbistro.com" class="underline">email us</a> so we can best accommodate your group.
+								</p>
 							</div>
 						</div>
 
@@ -120,4 +123,29 @@ function formatDate(dateStr) {
 			)}
 		</main>
 	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const partySizeInput = document.getElementById('se_party_size');
+			const partySizeMsg = document.getElementById('se_party_size_msg');
+			const form = document.getElementById('special_event_form');
+
+			if (!partySizeInput || !partySizeMsg || !form) return;
+
+			function partySizeIsValid() {
+				const size = parseInt(partySizeInput.value, 10);
+				const tooLarge = !isNaN(size) && size > 6;
+				partySizeMsg.classList.toggle('hidden', !tooLarge);
+				return !tooLarge;
+			}
+
+			partySizeInput.addEventListener('input', partySizeIsValid);
+
+			form.addEventListener('submit', (e) => {
+				if (!partySizeIsValid()) {
+					e.preventDefault();
+				}
+			});
+		});
+	</script>
 </Layout>

@@ -1,30 +1,39 @@
-# Menu publisher (Google Drive → website)
+# Menu & special events publisher (Google Drive → website)
 
-Lets the chef update menus by dropping a PDF into a Google Drive folder and
-pressing a button — no GitHub account, no password, no technical steps.
+Lets the chef update menus and upcoming special-event dinners by dropping
+PDFs into Google Drive folders and pressing a button — no GitHub account, no
+password, no technical steps.
 
-**How it works:** each Drive folder maps to one fixed filename in
+**How menus work:** each Drive folder maps to one fixed filename in
 `public/menus/`. The script takes the *newest PDF* in each folder and commits it
 to that filename, which triggers the normal GitHub Actions deploy. Because the
 destination filename is fixed, whatever the chef names their file, the links on
 the site can never break.
 
+**How special events work:** one Drive folder holds up to 3 PDFs at a time —
+one per upcoming special dinner. The script takes the *newest 3* PDFs in that
+folder, and the chef gives each one a name and date on the same publish page.
+Removing a PDF from the folder removes that event from the site on the next
+publish.
+
 ---
 
-## Setup (one time, ~20 minutes)
+## Setup (one time, ~25 minutes)
 
 ### 1. Create the Drive folders
 
-Make four folders in Google Drive — for example inside one parent folder called
-"Liv Website Menus":
+Make five folders in Google Drive — for example inside one parent folder
+called "Liv Website Menus":
 
 - `Lunch Menu`
 - `Brunch Menu`
 - `Dinner Menu`
 - `Canapé Menu`
+- `Special Events`
 
-Put the current PDF in each one. Share the parent folder with the chef so they
-can add files.
+Put the current PDF in each menu folder (the Special Events folder can start
+empty, or with up to 3 PDFs for any dinners already planned). Share the parent
+folder with the chef so they can add files.
 
 For each folder, open it and copy the ID from the URL:
 
@@ -50,8 +59,9 @@ Copy the token — GitHub only shows it once.
 2. Rename it "Liv Menu Publisher".
 3. Replace the contents of `Code.gs` with this folder's `Code.gs`.
 4. Add a file: **+ → HTML**, name it exactly `Page`, and paste in `Page.html`.
-5. In `Code.gs`, replace the four `PASTE_..._FOLDER_ID` placeholders with the
-   folder IDs from step 1.
+5. In `Code.gs`, replace the four menu `PASTE_..._FOLDER_ID` placeholders and
+   the `PASTE_SPECIAL_EVENTS_FOLDER_ID` placeholder with the folder IDs from
+   step 1.
 
 ### 4. Store the token
 
