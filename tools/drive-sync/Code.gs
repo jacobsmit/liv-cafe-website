@@ -37,11 +37,28 @@ var SPECIAL_EVENTS_FOLDER_ID = 'PASTE_SPECIAL_EVENTS_FOLDER_ID';
 var EVENTS_DIR = 'public/events';
 var MAX_SPECIAL_EVENTS = 3;
 
+// Only these Google accounts may use this tool. This only takes effect once
+// the deployment's "Execute as" is set to "User accessing the web app" —
+// with "Execute as: Me", Apps Script doesn't reliably expose the caller's
+// email, so this check would have nothing to check against. See README.md.
+var ALLOWED_EMAILS = [
+  'PASTE_CHEFS_EMAIL_HERE'
+];
+
+/** Throws if the current user isn't in ALLOWED_EMAILS. Call at the top of every function reachable from the page. */
+function requireAuthorizedUser() {
+  var email = Session.getActiveUser().getEmail();
+  if (!email || ALLOWED_EMAILS.indexOf(email) === -1) {
+    throw new Error('Not authorized. Signed in as: ' + (email || 'unknown') + '.');
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Web app entry point
 // ---------------------------------------------------------------------------
 
 function doGet() {
+  requireAuthorizedUser();
   return HtmlService.createHtmlOutputFromFile('Page')
     .setTitle('Liv Café — Publish Menus')
     .addMetaTag('viewport', 'width=device-width, initial-scale=1');
@@ -79,6 +96,7 @@ function newestPdfsIn(folderId, limit) {
 
 /** Shown on the page so the chef can confirm the right file is about to publish. */
 function getMenuStatus() {
+  requireAuthorizedUser();
   return MENUS.map(function (menu) {
     try {
       var file = newestPdfIn(menu.folderId);
@@ -200,6 +218,7 @@ function fetchPublishedEvents() {
 // ---------------------------------------------------------------------------
 
 function publishMenus() {
+  requireAuthorizedUser();
   var existing;
   try {
     existing = listRepoMenus();
@@ -264,6 +283,7 @@ function publishMenus() {
  * details.
  */
 function getSpecialEventStatus() {
+  requireAuthorizedUser();
   var byFileId = {};
   try {
     fetchPublishedEvents().events.forEach(function (e) { byFileId[e.fileId] = e; });
@@ -304,6 +324,7 @@ function getSpecialEventStatus() {
  * which is harmless.
  */
 function publishSpecialEvents(entries) {
+  requireAuthorizedUser();
   var existingFiles;
   try {
     existingFiles = listRepoEventFiles();
@@ -316,8 +337,19 @@ function publishSpecialEvents(entries) {
     allowedFileIds[file.getId()] = true;
   });
 
+  var MAX_NAME_LENGTH = 100;
+  var DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
   entries = entries
     .filter(function (entry) { return allowedFileIds[entry.fileId]; })
+    .filter(function (entry) { return DATE_PATTERN.test(entry.date); })
+    .map(function (entry) {
+      return {
+        fileId: entry.fileId,
+        name: String(entry.name || '').slice(0, MAX_NAME_LENGTH),
+        date: entry.date
+      };
+    })
     .slice(0, MAX_SPECIAL_EVENTS);
 
   var results = [];

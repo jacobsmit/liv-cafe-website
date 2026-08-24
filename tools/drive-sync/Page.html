@@ -287,8 +287,8 @@
     }
 
     function loadStatus() {
-      google.script.run.withSuccessHandler(renderStatus).getMenuStatus();
-      google.script.run.withSuccessHandler(renderEventStatus).getSpecialEventStatus();
+      google.script.run.withSuccessHandler(renderStatus).withFailureHandler(showFailure).getMenuStatus();
+      google.script.run.withSuccessHandler(renderEventStatus).withFailureHandler(showFailure).getSpecialEventStatus();
     }
 
     button.addEventListener('click', function () {
