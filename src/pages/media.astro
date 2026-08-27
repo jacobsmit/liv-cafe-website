@@ -19,6 +19,7 @@ const restaurantPress = [
 		outlet: 'CHEK News',
 		title: 'Order Up: Liv Cafe & Bistro',
 		description: 'A visit to our little slice of culinary comfort in the heart of Oak Bay.',
+		thumbnail: 'https://img.youtube.com/vi/DzcLDCkjuQ4/hqdefault.jpg',
 		links: [
 			{ label: 'Read on CHEK News', url: 'https://cheknews.ca/order-up-liv-cafe-bistro-1283112/' },
 			{ label: 'Watch on YouTube', url: 'https://www.youtube.com/watch?v=DzcLDCkjuQ4' },
@@ -98,23 +99,28 @@ const chefPress = [
 				<h2 class="text-3xl font-serif text-zinc-900 mb-10 text-center">Liv Café & Bistro in the News</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{restaurantPress.map((item) => (
-						<div class="bg-zinc-50 border border-zinc-200 rounded-sm p-8 shadow-sm">
-							<p class="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">{item.outlet}</p>
-							<h3 class="text-xl font-serif text-zinc-900 mb-3">{item.title}</h3>
-							<p class="text-zinc-600 text-sm leading-relaxed mb-6">{item.description}</p>
-							{item.links ? (
-								<div class="flex flex-wrap gap-4">
-									{item.links.map((link) => (
-										<a href={link.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
-											{link.label}
-										</a>
-									))}
-								</div>
-							) : (
-								<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
-									Read Article
-								</a>
+						<div class="bg-zinc-50 border border-zinc-200 rounded-sm overflow-hidden shadow-sm">
+							{item.thumbnail && (
+								<img src={item.thumbnail} alt={item.title} class="w-full h-48 object-cover" loading="lazy" />
 							)}
+							<div class="p-8">
+								<p class="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">{item.outlet}</p>
+								<h3 class="text-xl font-serif text-zinc-900 mb-3">{item.title}</h3>
+								<p class="text-zinc-600 text-sm leading-relaxed mb-6">{item.description}</p>
+								{item.links ? (
+									<div class="flex flex-wrap gap-4">
+										{item.links.map((link) => (
+											<a href={link.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
+												{link.label}
+											</a>
+										))}
+									</div>
+								) : (
+									<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
+										Read Article
+									</a>
+								)}
+							</div>
 						</div>
 					))}
 				</div>
