@@ -1,0 +1,143 @@
+---
+// src/pages/media.astro
+import Layout from '../layouts/Layout.astro';
+
+const restaurantPress = [
+	{
+		outlet: 'Vancouver Island Free Daily',
+		title: 'Globetrotting chefs grow farm to table dream on Vancouver Island',
+		description: "A conversation with Milton Rebello, chef and co-owner of Liv Café & Bistro.",
+		url: 'https://vancouverislandfreedaily.com/2025/10/18/globetrotting-chefs-grow-farm-to-table-dream-on-vancouver-island/',
+	},
+	{
+		outlet: 'LIV Magazine',
+		title: 'Liv a Little on the Island',
+		description: 'A feature on the little things that make Liv Café & Bistro what it is.',
+		url: 'https://www.livmagazine.ca/latest-1/c/0/i/93109183/liv-little-island',
+	},
+	{
+		outlet: 'CHEK News',
+		title: 'Order Up: Liv Cafe & Bistro',
+		description: 'A visit to our little slice of culinary comfort in the heart of Oak Bay.',
+		links: [
+			{ label: 'Read on CHEK News', url: 'https://cheknews.ca/order-up-liv-cafe-bistro-1283112/' },
+			{ label: 'Watch on YouTube', url: 'https://www.youtube.com/watch?v=DzcLDCkjuQ4' },
+		],
+	},
+	{
+		outlet: 'My VanCity',
+		title: 'Liv Café & Bistro opens in Oak Bay',
+		description: '"Oak Bay has been very kind to us and we are grateful for the support." — Milton Rebello',
+		url: 'https://myvancity.ca/2025/05/23/liv-cafe-bistro-opens-in-oak-bay/',
+	},
+	{
+		outlet: 'Tasting Victoria',
+		title: 'Now Open in Oak Bay: Liv Café and Bistro, a new spot for fresh, seasonal fare',
+		description: "Global flavours, local charm — Oak Bay's fresh take on brunch, lunch, and beyond.",
+		url: 'https://tastingvictoria.com/p/now-open-in-oak-bay-liv-caf-and-bistro-a-new-spot-for-fresh-seasonal-fare',
+	},
+];
+
+const chefPress = [
+	{
+		outlet: 'My Toast Life',
+		title: 'Chef Milton Rebello Competes on Fire Masters',
+		description: 'A look back at a Regina-based culinary competition from 2020.',
+		url: 'https://mytoastlife.com/chef-milton-rebello-competes-on-fire-masters/',
+	},
+	{
+		outlet: 'CBC News',
+		title: 'Regina chef represents the prairies at culinary showcase in NYC',
+		description: 'Bringing prairie flavours to a prestigious culinary event south of the border.',
+		url: 'https://www.cbc.ca/news/canada/saskatchewan/regina-chef-nyc-dinner-1.4166633',
+	},
+	{
+		outlet: 'CBC News',
+		title: 'Pallets of pasta donated to Regina Food Bank',
+		description: 'A partnership with a pasta manufacturer helping feed the hungry in Regina.',
+		url: 'https://www.cbc.ca/news/canada/saskatchewan/pallets-of-pasta-donated-to-regina-1.3577238',
+	},
+	{
+		outlet: 'Leader Post',
+		title: 'Taste Regina: Rebello cooks up bronze for Sask.',
+		description: 'Competing on behalf of Saskatchewan in a national culinary showcase.',
+		url: 'https://leaderpost.com/life/food/taste-regina-milton-rebello-cooks-up-bronze-for-saskatchewan',
+	},
+	{
+		outlet: 'Leader Post',
+		title: 'Hotel Sask chef wins gold at gala culinary competition in Regina',
+		description: 'A gold medal win at a gala culinary competition in Regina.',
+		url: 'https://leaderpost.com/life/hotel-sask-chef-wins-gold-at-gala-culinary-competiton-in-regina',
+	},
+	{
+		outlet: 'JustLuxe',
+		title: 'Executive Chef Milton Rebello Dishes On Culinary Tattoos, Cooking for Royalty, & Exciting Cooking Trends',
+		description: 'An interview covering career highlights, from culinary tattoos to cooking for royalty.',
+		url: 'https://www.justluxe.com/community/executive-chef-milton-rebello-dishes-on-culinary-tattoos-cooking-for-royalty-exciting-cooking-trends-920020714/',
+	},
+	{
+		outlet: 'Quench Magazine',
+		title: 'Mangalorean Mustard & Coconut Fish Curry',
+		description: "A family recipe, straight from the chef: 'from my early days watching my Ma prepare this beautiful fish curry.'",
+		url: 'https://quench.me/food/mangalorean-mustard-coconut-fish-curry/',
+	},
+];
+---
+
+<Layout>
+	<div class="bg-white text-zinc-700 min-h-screen font-sans selection:bg-orange-500 selection:text-white">
+		<header class="relative py-20 px-4 border-b border-zinc-200">
+			<div class="max-w-4xl mx-auto text-center">
+				<h1 class="text-5xl md:text-6xl font-serif text-zinc-900 mb-4 tracking-wide">In the Media</h1>
+				<div class="w-16 h-[2px] bg-orange-500 mx-auto"></div>
+			</div>
+		</header>
+
+		<main class="max-w-5xl mx-auto py-20 px-4">
+			<section class="mb-24">
+				<h2 class="text-3xl font-serif text-zinc-900 mb-10 text-center">Liv Café & Bistro in the News</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					{restaurantPress.map((item) => (
+						<div class="bg-zinc-50 border border-zinc-200 rounded-sm p-8 shadow-sm">
+							<p class="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">{item.outlet}</p>
+							<h3 class="text-xl font-serif text-zinc-900 mb-3">{item.title}</h3>
+							<p class="text-zinc-600 text-sm leading-relaxed mb-6">{item.description}</p>
+							{item.links ? (
+								<div class="flex flex-wrap gap-4">
+									{item.links.map((link) => (
+										<a href={link.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
+											{link.label}
+										</a>
+									))}
+								</div>
+							) : (
+								<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
+									Read Article
+								</a>
+							)}
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section>
+				<h2 class="text-3xl font-serif text-zinc-900 mb-4 text-center">About Chef Milton Rebello</h2>
+				<p class="text-zinc-500 mb-10 text-center max-w-2xl mx-auto">
+					Before Oak Bay, Chef Milton's career took him across competitions and kitchens on the prairies and beyond.
+				</p>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					{chefPress.map((item) => (
+						<div class="bg-zinc-50 border border-zinc-200 rounded-sm p-8 shadow-sm">
+							<p class="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">{item.outlet}</p>
+							<h3 class="text-xl font-serif text-zinc-900 mb-3">{item.title}</h3>
+							<p class="text-zinc-600 text-sm leading-relaxed mb-6">{item.description}</p>
+							<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
+								Read Article
+							</a>
+						</div>
+					))}
+				</div>
+			</section>
+		</main>
+	</div>
+</Layout>
