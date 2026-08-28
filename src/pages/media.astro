@@ -7,6 +7,7 @@ const restaurantPress = [
 		outlet: 'Vancouver Island Free Daily',
 		title: 'Globetrotting chefs grow farm to table dream on Vancouver Island',
 		description: "A conversation with Milton Rebello, chef and co-owner of Liv Café & Bistro.",
+		thumbnail: 'https://vancouverislandfreedaily.com/wp-content/uploads/sites/17/2025/10/livcafe.jpg?w=1024',
 		url: 'https://vancouverislandfreedaily.com/2025/10/18/globetrotting-chefs-grow-farm-to-table-dream-on-vancouver-island/',
 	},
 	{
@@ -35,6 +36,7 @@ const restaurantPress = [
 		outlet: 'Tasting Victoria',
 		title: 'Now Open in Oak Bay: Liv Café and Bistro, a new spot for fresh, seasonal fare',
 		description: "Global flavours, local charm — Oak Bay's fresh take on brunch, lunch, and beyond.",
+		thumbnail: 'https://www.tastingvictoria.com/api/og?title=Liv+Cafe+%26+Bistro+in+Oak+Bay&description=A+story+about+Liv+Cafe+%26+Bistro%2C+Liv+Cafe+and+Bistro+reviews+archive+interest%2C+Liv%27s+restaurant+search+interest%2C+Oak+Bay+dining%2C+brunch%2C+lunch%2C+and+fresh+seasonal+plates.&eyebrow=Article&kind=Article&image=https%3A%2F%2Fbeehiiv-images-production.s3.amazonaws.com%2Fuploads%2Fasset%2Ffile%2F8c3a8d74-e8df-46fc-96a8-8d683b4026cb%2FScreen_Shot_2025-05-12_at_2.16.47_PM.png%3Ft%3D1747084622',
 		url: 'https://tastingvictoria.com/p/now-open-in-oak-bay-liv-caf-and-bistro-a-new-spot-for-fresh-seasonal-fare',
 	},
 ];
@@ -44,6 +46,7 @@ const chefPress = [
 		outlet: 'My Toast Life',
 		title: 'Chef Milton Rebello Competes on Fire Masters',
 		description: 'A look back at a Regina-based culinary competition from 2020.',
+		thumbnail: 'https://mytoastlife.com/wp-content/uploads/2020/05/Firemasters_EP1-137823.jpg',
 		url: 'https://mytoastlife.com/chef-milton-rebello-competes-on-fire-masters/',
 	},
 	{
@@ -80,6 +83,7 @@ const chefPress = [
 		outlet: 'Quench Magazine',
 		title: 'Mangalorean Mustard & Coconut Fish Curry',
 		description: "A family recipe, straight from the chef: 'from my early days watching my Ma prepare this beautiful fish curry.'",
+		thumbnail: 'https://quench.me/wp-content/uploads/2021/05/fish-curry-1-horizontal-rotated.jpeg',
 		url: 'https://quench.me/food/mangalorean-mustard-coconut-fish-curry/',
 	},
 ];
@@ -133,13 +137,18 @@ const chefPress = [
 				</p>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{chefPress.map((item) => (
-						<div class="bg-zinc-50 border border-zinc-200 rounded-sm p-8 shadow-sm">
-							<p class="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">{item.outlet}</p>
-							<h3 class="text-xl font-serif text-zinc-900 mb-3">{item.title}</h3>
-							<p class="text-zinc-600 text-sm leading-relaxed mb-6">{item.description}</p>
-							<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
-								Read Article
-							</a>
+						<div class="bg-zinc-50 border border-zinc-200 rounded-sm overflow-hidden shadow-sm">
+							{item.thumbnail && (
+								<img src={item.thumbnail} alt={item.title} class="w-full h-48 object-cover" loading="lazy" />
+							)}
+							<div class="p-8">
+								<p class="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">{item.outlet}</p>
+								<h3 class="text-xl font-serif text-zinc-900 mb-3">{item.title}</h3>
+								<p class="text-zinc-600 text-sm leading-relaxed mb-6">{item.description}</p>
+								<a href={item.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
+									Read Article
+								</a>
+							</div>
 						</div>
 					))}
 				</div>
