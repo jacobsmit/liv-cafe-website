@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "fileId": "1D6tVMoMXE2xDWeSMxz8y8NSaygnqy3Tj",
+    "name": "Cooking Class",
+    "date": "2026-09-18",
+    "file": "/events/event-1.pdf"
+  },
+  {
+    "fileId": "1tl3Vci6P3kpYoaoyS9Xc1PTxexOMu4QP",
+    "name": "French Dinner",
+    "date": "2026-09-25",
+    "file": "/events/event-2.pdf"
+  }
+]
