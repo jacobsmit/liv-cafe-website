@@ -1,10 +1,43 @@
 ---
 import '../styles/global.css';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import logoImg from '../assets/logo copy.jpg';
 import { withBase } from '../lib/url';
+import ogImg from '../assets/064F2D5A-7038-4DF8-B38C-B883F984D450_1_201_a.jpeg';
 
 const currentYear = new Date().getFullYear();
+
+// Per-page <head> text. Pages pass a short `title` ("Menus", "Catering") and
+// their own `description`; both fall back to the site-wide wording, which is
+// what the home page uses.
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const SITE_NAME = 'Liv Café & Bistro';
+const DEFAULT_DESCRIPTION =
+	'Ingredient-driven dining in the heart of Oak Bay, Victoria. Join Liv Café & Bistro for an exceptional, seasonal menu.';
+
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
+const pageDescription = description ?? DEFAULT_DESCRIPTION;
+
+// Astro.site is set in astro.config.mjs, so these are absolute — which is what
+// search engines and link previews require.
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+// Resized to the 1200x630 link-preview standard. A bare `ogImg.src` would
+// point at the untouched 3 MB original, which most link-preview scrapers
+// reject or time out on.
+const ogImage = await getImage({
+	src: ogImg,
+	width: 1200,
+	height: 630,
+	fit: 'cover',
+	format: 'jpeg',
+});
+const ogImageUrl = new URL(ogImage.src, Astro.site).href;
 
 // Cloudflare Web Analytics.
 // Get this from the Cloudflare dashboard: Web Analytics -> your site -> Manage site.
@@ -20,8 +53,18 @@ const CLOUDFLARE_ANALYTICS_TOKEN = 'eda56ca0d1ab4d529ec0013a34c22369';
         <link rel="icon" type="image/png" href={withBase('/favicon.png')} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
-        <title>Liv Café & Bistro</title>
-        <meta name="description" content="Ingredient-driven dining in the heart of Oak Bay, Victoria. Join Liv Café & Bistro for an exceptional, seasonal menu." />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+
+        <!-- Link previews (Instagram, Facebook, iMessage, WhatsApp, search results) -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
     </head>
     <body class="bg-neutral-50 text-neutral-900 font-sans min-h-screen flex flex-col">
         
@@ -138,6 +181,16 @@ const CLOUDFLARE_ANALYTICS_TOKEN = 'eda56ca0d1ab4d529ec0013a34c22369';
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') closeMoreMenu();
+            });
+
+            // Keyboard users tab out of the menu rather than clicking away, so
+            // the click-outside handler above never fires for them and the menu
+            // would stay open behind them.
+            moreToggle?.parentElement?.addEventListener('focusout', (e) => {
+                const next = e.relatedTarget;
+                if (!next || !moreToggle.parentElement?.contains(next)) {
+                    closeMoreMenu();
+                }
             });
         </script>
 
