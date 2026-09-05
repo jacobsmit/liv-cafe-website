@@ -1,6 +1,7 @@
 ---
 // src/pages/media.astro
 import Layout from '../layouts/Layout.astro';
+import { getImage } from 'astro:assets';
 
 import pancakesImg from '../assets/67b4e71d34469ad7adc2412d_IMG_6703.JPG';
 import dessertImg from '../assets/3BC55C12-0B88-4826-A269-3F37B56D2F06_1_201_a.jpeg';
@@ -8,6 +9,20 @@ import brunchPlateImg from '../assets/2DD07909-9F91-434A-BFC3-2027EA93BCA6_1_201
 import falafelBowlImg from '../assets/mainbowl.JPG';
 import latteImg from '../assets/67b4e6fe71e6bd52cde977ea_IMG_6645.jpeg';
 import canapesImg from '../assets/IMG_5340.jpeg';
+
+// The cards are plain <img> tags rather than <Image>, because `thumbnail` is
+// sometimes a local asset and sometimes an outlet's URL. A bare `img.src` on
+// an import points at the *original* file though — several of these are 3 MB,
+// 6000px-wide photos being drawn into a 350x192 box — so resize them here and
+// hand the markup the optimized URL instead.
+//
+// 700x384 is the 350x192 slot at 2x, which covers retina displays.
+const thumbnail = async (img: ImageMetadata) =>
+	(await getImage({ src: img, width: 700, height: 384, fit: 'cover', format: 'webp' })).src;
+
+const [pancakes, dessert, brunchPlate, falafelBowl, latte, canapes] = await Promise.all(
+	[pancakesImg, dessertImg, brunchPlateImg, falafelBowlImg, latteImg, canapesImg].map(thumbnail),
+);
 
 const pressItems = [
 	{
@@ -25,7 +40,7 @@ const pressItems = [
 	{
 		outlet: 'LIV Magazine',
 		title: 'Liv a Little on the Island',
-		thumbnail: pancakesImg.src,
+		thumbnail: pancakes,
 		url: 'https://www.livmagazine.ca/taste/i/93109183/liv-little-island',
 	},
 	{
@@ -58,31 +73,31 @@ const pressItems = [
 	{
 		outlet: 'CBC News',
 		title: 'Regina chef represents the prairies at culinary showcase in NYC',
-		thumbnail: brunchPlateImg.src,
+		thumbnail: brunchPlate,
 		url: 'https://www.cbc.ca/news/canada/saskatchewan/regina-chef-nyc-dinner-1.4166633',
 	},
 	{
 		outlet: 'CBC News',
 		title: 'Pallets of pasta donated to Regina Food Bank',
-		thumbnail: falafelBowlImg.src,
+		thumbnail: falafelBowl,
 		url: 'https://www.cbc.ca/news/canada/saskatchewan/pallets-of-pasta-donated-to-regina-1.3577238',
 	},
 	{
 		outlet: 'Leader Post',
 		title: 'Taste Regina: Rebello cooks up bronze for Sask.',
-		thumbnail: latteImg.src,
+		thumbnail: latte,
 		url: 'https://leaderpost.com/life/food/taste-regina-milton-rebello-cooks-up-bronze-for-saskatchewan',
 	},
 	{
 		outlet: 'Leader Post',
 		title: 'Hotel Sask chef wins gold at gala culinary competition in Regina',
-		thumbnail: canapesImg.src,
+		thumbnail: canapes,
 		url: 'https://leaderpost.com/life/hotel-sask-chef-wins-gold-at-gala-culinary-competiton-in-regina',
 	},
 	{
 		outlet: 'JustLuxe',
 		title: 'Executive Chef Milton Rebello Dishes On Culinary Tattoos, Cooking for Royalty, & Exciting Cooking Trends',
-		thumbnail: dessertImg.src,
+		thumbnail: dessert,
 		url: 'https://www.justluxe.com/community/executive-chef-milton-rebello-dishes-on-culinary-tattoos-cooking-for-royalty-exciting-cooking-trends-920020714/',
 	},
 	{
