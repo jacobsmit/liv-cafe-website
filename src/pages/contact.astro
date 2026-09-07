@@ -2,8 +2,40 @@
 // src/pages/contact.astro
 import Layout from '../layouts/Layout.astro';
 import { withBase } from '../lib/url';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const thankYouUrl = new URL(withBase('/thank-you'), Astro.site).href;
+
+// Upcoming special dinners, read at build time from the same file the Drive
+// publisher writes. Past dates are dropped so a finished event never gets
+// advertised here — note "today" is the moment the site was built, so this
+// only re-evaluates on the next deploy.
+const eventsFile = path.join(process.cwd(), 'public/events/events.json');
+let upcomingEvents: { name: string; date: string }[] = [];
+if (fs.existsSync(eventsFile)) {
+	try {
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+		upcomingEvents = JSON.parse(fs.readFileSync(eventsFile, 'utf-8'))
+			.filter((event: { date: string }) => {
+				const [y, m, d] = event.date.split('-').map(Number);
+				return new Date(y, m - 1, d) >= today;
+			})
+			.sort((a: { date: string }, b: { date: string }) => a.date.localeCompare(b.date));
+	} catch {
+		upcomingEvents = [];
+	}
+}
+
+function formatEventDate(dateStr: string): string {
+	const [year, month, day] = dateStr.split('-').map(Number);
+	return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+		weekday: 'long',
+		month: 'long',
+		day: 'numeric',
+	});
+}
 ---
 
 <Layout title="Reservations" description="Request a table at Liv Café & Bistro in Oak Bay, Victoria BC. Book online or call (250) 590-5229.">
@@ -141,6 +173,29 @@ const thankYouUrl = new URL(withBase('/thank-you'), Astro.site).href;
 					</form>
 				</section>
 			</div>
+
+			{upcomingEvents.length > 0 && (
+				<!-- Sits after the grid so it follows the booking form in both layouts:
+				     below it on desktop, and after it on mobile once the columns stack. -->
+				<section class="border-t border-zinc-200 pt-12 text-center">
+					<p class="text-orange-600 uppercase tracking-[0.2em] text-sm font-bold mb-3">Also On At Liv</p>
+					<ul class="text-zinc-700 mb-6 space-y-1">
+						{upcomingEvents.map((event) => (
+							<!-- Stacked on phones so a long name never breaks a date across lines;
+							     one line from sm up, where there is room for both. -->
+							<li class="mb-2 sm:mb-0">
+								<span class="font-serif text-xl text-zinc-900 block sm:inline">{event.name}</span>
+								<span class="text-zinc-500 block sm:inline whitespace-nowrap">
+									<span class="hidden sm:inline">&middot;</span> {formatEventDate(event.date)}
+								</span>
+							</li>
+						))}
+					</ul>
+					<a href={withBase('/special-events')} class="inline-block border border-orange-500 text-orange-600 px-6 py-3 rounded-sm text-sm uppercase tracking-widest font-semibold hover:bg-orange-500 hover:text-white transition-colors">
+						See Special Events
+					</a>
+				</section>
+			)}
 		</main>
 	</div>
 
