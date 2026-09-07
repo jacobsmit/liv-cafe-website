@@ -1,0 +1,152 @@
+---
+// src/pages/media.astro
+import Layout from '../layouts/Layout.astro';
+import { getImage } from 'astro:assets';
+
+import pancakesImg from '../assets/67b4e71d34469ad7adc2412d_IMG_6703.JPG';
+import dessertImg from '../assets/3BC55C12-0B88-4826-A269-3F37B56D2F06_1_201_a.jpeg';
+import brunchPlateImg from '../assets/2DD07909-9F91-434A-BFC3-2027EA93BCA6_1_201_a.jpeg';
+import falafelBowlImg from '../assets/mainbowl.JPG';
+import latteImg from '../assets/67b4e6fe71e6bd52cde977ea_IMG_6645.jpeg';
+import canapesImg from '../assets/IMG_5340.jpeg';
+
+// The cards are plain <img> tags rather than <Image>, because `thumbnail` is
+// sometimes a local asset and sometimes an outlet's URL. A bare `img.src` on
+// an import points at the *original* file though — several of these are 3 MB,
+// 6000px-wide photos being drawn into a 350x192 box — so resize them here and
+// hand the markup the optimized URL instead.
+//
+// 700x384 is the 350x192 slot at 2x, which covers retina displays.
+const thumbnail = async (img: ImageMetadata) =>
+	(await getImage({ src: img, width: 700, height: 384, fit: 'cover', format: 'webp' })).src;
+
+const [pancakes, dessert, brunchPlate, falafelBowl, latte, canapes] = await Promise.all(
+	[pancakesImg, dessertImg, brunchPlateImg, falafelBowlImg, latteImg, canapesImg].map(thumbnail),
+);
+
+const pressItems = [
+	{
+		outlet: 'My VanCity',
+		title: 'In Conversation with Milton Rebello',
+		thumbnail: 'https://myvancity.ca/wp-content/uploads/2026/08/liv-edited.png',
+		url: 'https://myvancity.ca/2026/08/27/in-conversation-with-milton-rebello-liv-cafe-bistro/',
+	},
+	{
+		outlet: 'Vancouver Island Free Daily',
+		title: 'Globetrotting chefs grow farm to table dream on Vancouver Island',
+		thumbnail: 'https://vancouverislandfreedaily.com/wp-content/uploads/sites/17/2025/10/livcafe.jpg?w=1024',
+		url: 'https://vancouverislandfreedaily.com/2025/10/18/globetrotting-chefs-grow-farm-to-table-dream-on-vancouver-island/',
+	},
+	{
+		outlet: 'LIV Magazine',
+		title: 'Liv a Little on the Island',
+		thumbnail: pancakes,
+		url: 'https://www.livmagazine.ca/taste/i/93109183/liv-little-island',
+	},
+	{
+		outlet: 'CHEK News',
+		title: 'Order Up: Liv Cafe & Bistro',
+		thumbnail: 'https://img.youtube.com/vi/DzcLDCkjuQ4/hqdefault.jpg',
+		links: [
+			{ label: 'Read on CHEK News', url: 'https://cheknews.ca/order-up-liv-cafe-bistro-1283112/' },
+			{ label: 'Watch on YouTube', url: 'https://www.youtube.com/watch?v=DzcLDCkjuQ4' },
+		],
+	},
+	{
+		outlet: 'My VanCity',
+		title: 'Liv Café & Bistro opens in Oak Bay',
+		thumbnail: 'https://myvancity.ca/wp-content/uploads/2025/05/Liv-eggs-benedict-1.jpeg',
+		url: 'https://myvancity.ca/2025/05/23/liv-cafe-bistro-opens-in-oak-bay/',
+	},
+	{
+		outlet: 'Tasting Victoria',
+		title: 'Now Open in Oak Bay: Liv Café and Bistro, a new spot for fresh, seasonal fare',
+		thumbnail: 'https://www.tastingvictoria.com/api/og?title=Liv+Cafe+%26+Bistro+in+Oak+Bay&description=A+story+about+Liv+Cafe+%26+Bistro%2C+Liv+Cafe+and+Bistro+reviews+archive+interest%2C+Liv%27s+restaurant+search+interest%2C+Oak+Bay+dining%2C+brunch%2C+lunch%2C+and+fresh+seasonal+plates.&eyebrow=Article&kind=Article&image=https%3A%2F%2Fbeehiiv-images-production.s3.amazonaws.com%2Fuploads%2Fasset%2Ffile%2F8c3a8d74-e8df-46fc-96a8-8d683b4026cb%2FScreen_Shot_2025-05-12_at_2.16.47_PM.png%3Ft%3D1747084622',
+		url: 'https://tastingvictoria.com/p/now-open-in-oak-bay-liv-caf-and-bistro-a-new-spot-for-fresh-seasonal-fare',
+	},
+	{
+		outlet: 'My Toast Life',
+		title: 'Chef Milton Rebello Competes on Fire Masters',
+		thumbnail: 'https://mytoastlife.com/wp-content/uploads/2020/05/Firemasters_EP1-137823.jpg',
+		url: 'https://mytoastlife.com/chef-milton-rebello-competes-on-fire-masters/',
+	},
+	{
+		outlet: 'CBC News',
+		title: 'Regina chef represents the prairies at culinary showcase in NYC',
+		thumbnail: brunchPlate,
+		url: 'https://www.cbc.ca/news/canada/saskatchewan/regina-chef-nyc-dinner-1.4166633',
+	},
+	{
+		outlet: 'CBC News',
+		title: 'Pallets of pasta donated to Regina Food Bank',
+		thumbnail: falafelBowl,
+		url: 'https://www.cbc.ca/news/canada/saskatchewan/pallets-of-pasta-donated-to-regina-1.3577238',
+	},
+	{
+		outlet: 'Leader Post',
+		title: 'Taste Regina: Rebello cooks up bronze for Sask.',
+		thumbnail: latte,
+		url: 'https://leaderpost.com/life/food/taste-regina-milton-rebello-cooks-up-bronze-for-saskatchewan',
+	},
+	{
+		outlet: 'Leader Post',
+		title: 'Hotel Sask chef wins gold at gala culinary competition in Regina',
+		thumbnail: canapes,
+		url: 'https://leaderpost.com/life/hotel-sask-chef-wins-gold-at-gala-culinary-competiton-in-regina',
+	},
+	{
+		outlet: 'JustLuxe',
+		title: 'Executive Chef Milton Rebello Dishes On Culinary Tattoos, Cooking for Royalty, & Exciting Cooking Trends',
+		thumbnail: dessert,
+		url: 'https://www.justluxe.com/community/executive-chef-milton-rebello-dishes-on-culinary-tattoos-cooking-for-royalty-exciting-cooking-trends-920020714/',
+	},
+	{
+		outlet: 'Quench Magazine',
+		title: 'Mangalorean Mustard & Coconut Fish Curry',
+		thumbnail: 'https://quench.me/wp-content/uploads/2021/05/fish-curry-1-horizontal-rotated.jpeg',
+		url: 'https://quench.me/food/mangalorean-mustard-coconut-fish-curry/',
+	},
+];
+---
+
+<Layout title="In the Media" description="Press coverage of Liv Café &amp; Bistro in Oak Bay, and of Chef Milton Rebello.">
+	<div class="bg-white text-zinc-700 min-h-screen font-sans selection:bg-orange-500 selection:text-white">
+		<header class="relative py-20 px-4 border-b border-zinc-200">
+			<div class="max-w-4xl mx-auto text-center">
+				<h1 class="text-5xl md:text-6xl font-serif text-zinc-900 mb-4 tracking-wide">In the Media</h1>
+				<div class="w-16 h-[2px] bg-orange-500 mx-auto"></div>
+			</div>
+		</header>
+
+		<main class="max-w-6xl mx-auto py-20 px-4">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+				{pressItems.map((item) => (
+					item.links ? (
+						<div class="bg-zinc-50 border border-zinc-200 rounded-sm overflow-hidden shadow-sm">
+							<img src={item.thumbnail} alt={item.title} class="w-full h-48 object-cover" loading="lazy" referrerpolicy="no-referrer" />
+							<div class="p-6">
+								<p class="text-orange-500 font-semibold text-xs uppercase tracking-widest mb-2">{item.outlet}</p>
+								<h3 class="text-lg font-serif text-zinc-900 mb-3">{item.title}</h3>
+								<div class="flex flex-wrap gap-3 text-sm">
+									{item.links.map((link) => (
+										<a href={link.url} target="_blank" rel="noopener noreferrer" class="text-orange-500 font-semibold hover:text-orange-600 transition-colors underline">
+											{link.label}
+										</a>
+									))}
+								</div>
+							</div>
+						</div>
+					) : (
+						<a href={item.url} target="_blank" rel="noopener noreferrer" class="group block bg-zinc-50 border border-zinc-200 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+							<img src={item.thumbnail} alt={item.title} class="w-full h-48 object-cover" loading="lazy" referrerpolicy="no-referrer" />
+							<div class="p-6">
+								<p class="text-orange-500 font-semibold text-xs uppercase tracking-widest mb-2">{item.outlet}</p>
+								<h3 class="text-lg font-serif text-zinc-900 group-hover:text-orange-600 transition-colors">{item.title}</h3>
+							</div>
+						</a>
+					)
+				))}
+			</div>
+		</main>
+	</div>
+</Layout>
