@@ -10,6 +10,20 @@ permissions:
   pages: write
   id-token: write
 
+# Only one deployment at a time. The Drive publisher writes each file as its
+# own commit, so updating a special event pushes twice within a second and
+# starts two runs — which then race for the same Pages environment. That is
+# what wedged the deploy for f63fb03: the second run inherited a CDN purge it
+# could never finish, timed out twice, and left the site half-updated.
+#
+# cancel-in-progress stays false so a deployment already running is allowed to
+# finish rather than being killed part-way. A run queued behind it waits, and
+# if a newer one arrives while waiting, the older queued run is dropped — the
+# most recent content is the one that ships, which is what we want.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
