@@ -1,0 +1,240 @@
+---
+// src/pages/thanksgiving.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { withBase } from '../lib/url';
+import { PICKUP_WINDOWS, pickupTimes, thanksgivingIsOpen } from '../lib/thanksgiving';
+import menuImg from '../assets/thanksgiving-takeout-menu.png';
+
+const thankYouUrl = new URL(withBase('/thank-you'), Astro.site).href;
+const menuPdf = withBase('/seasonal/thanksgiving-takeout.pdf');
+
+// What a customer can order. The PDF is what people actually read; these
+// prices are only shown beside each item in the form, so if the PDF's prices
+// change, change them here too.
+const MEALS = [
+	{ name: 'turkey_meals', label: 'Roasted Free-run Turkey', price: 49 },
+	{ name: 'lasagna_meals', label: 'Mediterranean Vegetable Lasagna', price: 34 },
+];
+const DESSERTS = [
+	{ name: 'pumpkin_cheesecake', label: 'Pumpkin Spice Basque Cheesecake (GF)', price: 11 },
+	{ name: 'lemon_cheesecake', label: 'Lemon Basque Cheesecake (GF)', price: 11 },
+	{ name: 'pecan_tart', label: 'Caramel Pecan Tart', price: 8 },
+];
+
+// If the site is built after the last pickup, render the closed notice
+// outright. Otherwise the script below re-checks in the visitor's browser,
+// because a static page can still be served long after it was built.
+const openAtBuild = thanksgivingIsOpen();
+
+// The menu is shown as an image of the PDF, so screen readers and search
+// engines get its full contents here instead.
+const menuAlt =
+	"liv's Thanksgiving Takeout menu. Each two-course takeout meal includes one salad and one warm entree; desserts are extra. " +
+	'Artisan Green Salad: tomato, cucumber, sundried cranberries, crispy chickpeas, balsamic vinaigrette. ' +
+	'Roasted Free-run Turkey, $49: sage gravy, cranberry sage stuffing, Grand Marnier cranberry chutney, honey glazed root veg, green bean almondine, herb roasted potatoes. ' +
+	'Mediterranean Vegetable Lasagna, $34: layers of grilled Mediterranean veg, fire roasted tomato sauce, sauteed spinach, herb ricotta and gratinated Italian cheese. ' +
+	'Desserts: Pumpkin Spice Basque Cheesecake (GF) $11, Lemon Basque Cheesecake (GF) $11, Caramel Pecan Tart $8. ' +
+	'Pre-order only. Pickup Sunday, October 11, 4 to 6 pm, or Monday, October 12, 3 to 5 pm.';
+
+const fieldClass = 'w-full px-6 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg placeholder-zinc-400 rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm';
+const qtyClass = 'tg-qty w-20 shrink-0 px-3 py-2 bg-white border-2 border-zinc-300 text-zinc-900 text-lg text-center rounded focus:border-orange-500 focus:outline-none transition-colors';
+---
+
+<Layout title="Thanksgiving Takeout" description="Pre-order liv's Thanksgiving takeout: roasted free-run turkey or Mediterranean vegetable lasagna with salad, plus desserts. Pickup October 11 or 12 in Oak Bay, Victoria BC.">
+	<div class="bg-white text-zinc-700 min-h-screen font-sans selection:bg-orange-500 selection:text-white">
+		<header class="relative py-20 px-4 border-b border-zinc-200">
+			<div class="max-w-4xl mx-auto text-center">
+				<h1 class="text-5xl md:text-6xl font-serif text-zinc-900 mb-4 tracking-wide">Thanksgiving Takeout</h1>
+				<div class="w-16 h-[2px] bg-orange-500 mx-auto mb-6"></div>
+				<p class="text-xl text-zinc-600 font-light">Pre-order a two-course meal for pickup Sunday, October 11 or Monday, October 12.</p>
+			</div>
+		</header>
+
+		<main class="max-w-6xl mx-auto py-20 px-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+				<!-- The menu, shown as the PDF itself. Stays in view on desktop while
+				     the form is filled in alongside it. -->
+				<section class="md:sticky md:top-8">
+					<a href={menuPdf} target="_blank" rel="noopener noreferrer" class="block">
+						<Image
+							src={menuImg}
+							widths={[480, 720, 1000, 1500]}
+							sizes="(min-width: 768px) 540px, 100vw"
+							alt={menuAlt}
+							loading="eager"
+							fetchpriority="high"
+							class="w-full h-auto border border-zinc-200 rounded-sm shadow-lg"
+						/>
+					</a>
+					<p class="text-center mt-4">
+						<a href={menuPdf} target="_blank" rel="noopener noreferrer" class="text-orange-600 font-semibold underline hover:text-orange-700 transition-colors">Open the menu as a PDF</a>
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-3xl font-serif text-zinc-900 mb-4">Place a Pre-Order</h2>
+					<p class="text-zinc-500 mb-10">
+						Every meal comes with the Artisan Green Salad. Desserts are extra, and payment is taken at pickup.
+					</p>
+
+					<div id="tg_closed" class:list={['bg-zinc-50 border border-zinc-200 rounded-sm p-8 text-center', { hidden: openAtBuild }]}>
+						<p class="text-2xl font-serif text-zinc-900 mb-2">Thanksgiving pre-orders have closed</p>
+						<p class="text-zinc-500">Thank you to everyone who ordered!</p>
+					</div>
+
+					{openAtBuild && (
+						<form id="thanksgiving_form" action="https://api.web3forms.com/submit" method="POST" class="space-y-8">
+							<input type="hidden" name="access_key" value="eb5bcc4e-9c39-45bf-9f72-c0aa5439dde0" />
+							<input type="hidden" name="subject" value="Thanksgiving Takeout Pre-Order" />
+							<input type="hidden" name="redirect" value={thankYouUrl} />
+							<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" style="display:none" aria-hidden="true" />
+
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+								<div>
+									<label for="tg_name" class="block text-zinc-900 font-bold text-lg mb-3">Name <span class="text-orange-500">*</span></label>
+									<input type="text" name="name" id="tg_name" placeholder="Your name" required class={fieldClass} />
+								</div>
+								<div>
+									<label for="tg_phone" class="block text-zinc-900 font-bold text-lg mb-3">Phone <span class="text-orange-500">*</span></label>
+									<input type="tel" name="phone" id="tg_phone" placeholder="(250) 590-5229" required class={fieldClass} />
+								</div>
+							</div>
+
+							<div>
+								<label for="tg_email" class="block text-zinc-900 font-bold text-lg mb-3">Email <span class="text-orange-500">*</span></label>
+								<input type="email" name="email" id="tg_email" placeholder="your@email.com" required class={fieldClass} />
+							</div>
+
+							<div>
+								<label for="tg_pickup_time" class="block text-zinc-900 font-bold text-lg mb-3">Pickup Time <span class="text-orange-500">*</span></label>
+								<div class="relative">
+									<select name="pickup_time" id="tg_pickup_time" required class="w-full pl-6 pr-14 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm appearance-none cursor-pointer">
+										<option value="" disabled selected>Choose a time</option>
+										{PICKUP_WINDOWS.map((pickupWindow) => (
+											<optgroup label={pickupWindow.day}>
+												{pickupTimes(pickupWindow).map((time) => (
+													<option value={time.value} data-at={time.at}>{time.label}</option>
+												))}
+											</optgroup>
+										))}
+									</select>
+									<svg class="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+									</svg>
+								</div>
+							</div>
+
+							<!-- Filled in by the script below. It sits here so a readable summary
+							     of what was ordered appears near the top of the order email. -->
+							<input type="hidden" name="order_summary" id="tg_order_summary" value="" />
+
+							<fieldset>
+								<legend class="block text-zinc-900 font-bold text-lg">Two-Course Meals</legend>
+								<p class="text-zinc-500 text-sm mb-3">Salad and a warm entree.</p>
+								<div class="border-t border-zinc-200">
+									{MEALS.map((item) => (
+										<div class="flex items-center justify-between gap-4 py-3 border-b border-zinc-200">
+											<label for={`tg_${item.name}`} class="text-zinc-800">
+												{item.label} <span class="text-zinc-500 whitespace-nowrap">${item.price}</span>
+											</label>
+											<input type="number" name={item.name} id={`tg_${item.name}`} min="0" step="1" value="0" inputmode="numeric" data-label={item.label} class={qtyClass} />
+										</div>
+									))}
+								</div>
+							</fieldset>
+
+							<fieldset>
+								<legend class="block text-zinc-900 font-bold text-lg mb-3">Desserts</legend>
+								<div class="border-t border-zinc-200">
+									{DESSERTS.map((item) => (
+										<div class="flex items-center justify-between gap-4 py-3 border-b border-zinc-200">
+											<label for={`tg_${item.name}`} class="text-zinc-800">
+												{item.label} <span class="text-zinc-500 whitespace-nowrap">${item.price}</span>
+											</label>
+											<input type="number" name={item.name} id={`tg_${item.name}`} min="0" step="1" value="0" inputmode="numeric" data-label={item.label} class={qtyClass} />
+										</div>
+									))}
+								</div>
+							</fieldset>
+
+							<div>
+								<label for="tg_notes" class="block text-zinc-900 font-bold text-lg mb-3">Allergies or Notes (Optional)</label>
+								<textarea name="notes" id="tg_notes" rows="3" placeholder="Dietary requirements, allergies, anything we should know" class={`${fieldClass} resize-none`}></textarea>
+							</div>
+
+							<p id="tg_error" class="hidden text-orange-600 font-bold" role="alert"></p>
+
+							<div>
+								<button type="submit" class="w-full bg-orange-500 text-white px-8 py-5 rounded font-bold text-xl hover:bg-orange-600 transition-colors shadow-lg">
+									Send Pre-Order Request
+								</button>
+								<p class="text-center text-zinc-500 text-sm mt-4">
+									This is a request, not a confirmed order. We'll follow up by email to confirm, and payment is taken at pickup.
+								</p>
+							</div>
+						</form>
+					)}
+				</section>
+			</div>
+		</main>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const form = document.getElementById('thanksgiving_form') as HTMLFormElement | null;
+			const closed = document.getElementById('tg_closed');
+			if (!form || !closed) return;
+
+			// Drop pickup times that have already passed, and a day's heading once
+			// all of its times are gone, so nobody can pre-order for a pickup in the
+			// past. When none are left, the form gives way to the closed notice.
+			const now = new Date();
+			const pickup = form.querySelector<HTMLSelectElement>('#tg_pickup_time');
+			pickup?.querySelectorAll<HTMLOptionElement>('option[data-at]').forEach((option) => {
+				if (now >= new Date(option.dataset.at ?? '')) option.remove();
+			});
+			pickup?.querySelectorAll('optgroup').forEach((group) => {
+				if (!group.querySelector('option')) group.remove();
+			});
+			if (!pickup?.querySelector('option[data-at]')) {
+				form.classList.add('hidden');
+				closed.classList.remove('hidden');
+				return;
+			}
+
+			const quantities = [...form.querySelectorAll<HTMLInputElement>('.tg-qty')];
+			const summaryField = document.getElementById('tg_order_summary') as HTMLInputElement | null;
+			const errorEl = document.getElementById('tg_error');
+
+			/** Writes the readable order line for the email; returns how many items are ordered. */
+			function update(): number {
+				let count = 0;
+				const lines: string[] = [];
+				for (const input of quantities) {
+					const qty = Math.max(0, Math.floor(Number(input.value) || 0));
+					if (qty === 0) continue;
+					count += qty;
+					lines.push(`${qty} × ${input.dataset.label}`);
+				}
+				if (summaryField) summaryField.value = lines.join('; ');
+				if (count) errorEl?.classList.add('hidden');
+				return count;
+			}
+
+			quantities.forEach((input) => input.addEventListener('input', update));
+			update();
+
+			form.addEventListener('submit', (e) => {
+				if (update() === 0) {
+					e.preventDefault();
+					if (errorEl) {
+						errorEl.textContent = 'Choose at least one meal or dessert.';
+						errorEl.classList.remove('hidden');
+						errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					}
+				}
+			});
+		});
+	</script>
+</Layout>
