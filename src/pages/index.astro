@@ -3,6 +3,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { withBase } from "../lib/url";
+import { thanksgivingIsOpen } from "../lib/thanksgiving";
 
 import heroImg from "../assets/064F2D5A-7038-4DF8-B38C-B883F984D450_1_201_a.jpeg";
 import chickenWaffleImg from "../assets/chickenwaffel.JPG";
@@ -19,6 +20,19 @@ import glimpse6Img from "../assets/IMG_7829.jpg";
     <main
         class="bg-white text-zinc-700 min-h-screen font-sans selection:bg-orange-500 selection:text-white"
     >
+        <!-- Thanksgiving pre-orders. Built into the site only until the last
+             pickup has passed; see src/lib/thanksgiving.ts. -->
+        {thanksgivingIsOpen() && (
+            <a
+                href={withBase('/thanksgiving')}
+                class="block bg-orange-500 text-white text-center px-4 py-3 hover:bg-orange-600 transition-colors"
+            >
+                <span class="font-semibold">Thanksgiving takeout</span>
+                <span class="text-orange-50"> — pre-order now for pickup October 11 or 12</span>
+                <span aria-hidden="true"> →</span>
+            </a>
+        )}
+
         <!-- Hero Section with Background Image -->
         <header
             class="relative flex flex-col items-center justify-center py-40 px-4 min-h-[75vh] bg-zinc-50 border-b border-zinc-200 overflow-hidden"

@@ -2,6 +2,8 @@
 // src/pages/food-to-go.astro
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { withBase } from '../lib/url';
+import { thanksgivingIsOpen } from '../lib/thanksgiving';
 import foodImg from '../assets/9B5A97B1-F64C-4F35-A758-6038F4897CF0_1_201_a.jpeg';
 ---
 
@@ -15,6 +17,17 @@ import foodImg from '../assets/9B5A97B1-F64C-4F35-A758-6038F4897CF0_1_201_a.jpeg
 		</header>
 
 		<main class="max-w-6xl mx-auto py-20 px-4">
+			<!-- Thanksgiving pre-orders. Built into the site only until the last
+			     pickup has passed; see src/lib/thanksgiving.ts. -->
+			{thanksgivingIsOpen() && (
+				<a href={withBase('/thanksgiving')} class="block mb-16 bg-orange-500/10 border border-orange-500/30 rounded-sm p-8 text-center hover:bg-orange-500/15 transition-colors">
+					<p class="text-orange-600 uppercase tracking-[0.2em] text-sm font-bold mb-2">Now Taking Pre-Orders</p>
+					<h2 class="text-3xl font-serif text-zinc-900 mb-2">Thanksgiving Takeout</h2>
+					<p class="text-zinc-600">Two-course meals and desserts for pickup Sunday, October 11 or Monday, October 12.</p>
+					<span class="inline-block mt-4 text-orange-600 font-semibold underline">See the menu and order</span>
+				</a>
+			)}
+
 			<!-- Featured Section -->
 			<section class="mb-24 bg-zinc-50 rounded-sm overflow-hidden shadow-2xl border border-zinc-200">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-0">
