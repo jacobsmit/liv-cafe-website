@@ -3,15 +3,15 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { withBase } from '../lib/url';
-import { PICKUP_SLOTS, thanksgivingIsOpen } from '../lib/thanksgiving';
+import { PICKUP_WINDOWS, pickupTimes, thanksgivingIsOpen } from '../lib/thanksgiving';
 import menuImg from '../assets/thanksgiving-takeout-menu.png';
 
 const thankYouUrl = new URL(withBase('/thank-you'), Astro.site).href;
 const menuPdf = withBase('/seasonal/thanksgiving-takeout.pdf');
 
 // What a customer can order. The PDF is what people actually read; these
-// prices only drive the estimated total and the summary in the order email,
-// so if the PDF's prices change, change them here too.
+// prices are only shown beside each item in the form, so if the PDF's prices
+// change, change them here too.
 const MEALS = [
 	{ name: 'turkey_meals', label: 'Roasted Free-run Turkey', price: 49 },
 	{ name: 'lasagna_meals', label: 'Mediterranean Vegetable Lasagna', price: 34 },
@@ -106,24 +106,28 @@ const qtyClass = 'tg-qty w-20 shrink-0 px-3 py-2 bg-white border-2 border-zinc-3
 								<input type="email" name="email" id="tg_email" placeholder="your@email.com" required class={fieldClass} />
 							</div>
 
-							<fieldset>
-								<legend class="block text-zinc-900 font-bold text-lg mb-3">Pickup Time <span class="text-orange-500">*</span></legend>
-								<div class="space-y-3">
-									{PICKUP_SLOTS.map((slot) => (
-										<label class="flex items-center gap-3 px-5 py-4 bg-white border-2 border-zinc-300 rounded cursor-pointer transition-colors has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
-											<input type="radio" name="pickup" value={slot.label} data-ends-at={slot.endsAt} required class="w-5 h-5 accent-orange-500 shrink-0" />
-											<span class="text-lg text-zinc-900">{slot.label}</span>
-											<span class="tg-slot-passed hidden ml-auto text-sm text-zinc-500">Passed</span>
-										</label>
-									))}
+							<div>
+								<label for="tg_pickup_time" class="block text-zinc-900 font-bold text-lg mb-3">Pickup Time <span class="text-orange-500">*</span></label>
+								<div class="relative">
+									<select name="pickup_time" id="tg_pickup_time" required class="w-full pl-6 pr-14 py-4 bg-white border-2 border-zinc-300 text-zinc-900 text-lg rounded focus:border-orange-500 focus:outline-none transition-colors shadow-sm appearance-none cursor-pointer">
+										<option value="" disabled selected>Choose a time</option>
+										{PICKUP_WINDOWS.map((pickupWindow) => (
+											<optgroup label={pickupWindow.day}>
+												{pickupTimes(pickupWindow).map((time) => (
+													<option value={time.value} data-at={time.at}>{time.label}</option>
+												))}
+											</optgroup>
+										))}
+									</select>
+									<svg class="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+									</svg>
 								</div>
-							</fieldset>
+							</div>
 
-							<!-- Filled in by the script below. They sit here so they appear near
-							     the top of the order email: a readable summary of what was
-							     ordered, then the estimate. -->
+							<!-- Filled in by the script below. It sits here so a readable summary
+							     of what was ordered appears near the top of the order email. -->
 							<input type="hidden" name="order_summary" id="tg_order_summary" value="" />
-							<input type="hidden" name="estimated_total" id="tg_estimated_total" value="" />
 
 							<fieldset>
 								<legend class="block text-zinc-900 font-bold text-lg">Two-Course Meals</legend>
@@ -134,7 +138,7 @@ const qtyClass = 'tg-qty w-20 shrink-0 px-3 py-2 bg-white border-2 border-zinc-3
 											<label for={`tg_${item.name}`} class="text-zinc-800">
 												{item.label} <span class="text-zinc-500 whitespace-nowrap">${item.price}</span>
 											</label>
-											<input type="number" name={item.name} id={`tg_${item.name}`} min="0" step="1" value="0" inputmode="numeric" data-price={item.price} data-label={item.label} class={qtyClass} />
+											<input type="number" name={item.name} id={`tg_${item.name}`} min="0" step="1" value="0" inputmode="numeric" data-label={item.label} class={qtyClass} />
 										</div>
 									))}
 								</div>
@@ -148,19 +152,11 @@ const qtyClass = 'tg-qty w-20 shrink-0 px-3 py-2 bg-white border-2 border-zinc-3
 											<label for={`tg_${item.name}`} class="text-zinc-800">
 												{item.label} <span class="text-zinc-500 whitespace-nowrap">${item.price}</span>
 											</label>
-											<input type="number" name={item.name} id={`tg_${item.name}`} min="0" step="1" value="0" inputmode="numeric" data-price={item.price} data-label={item.label} class={qtyClass} />
+											<input type="number" name={item.name} id={`tg_${item.name}`} min="0" step="1" value="0" inputmode="numeric" data-label={item.label} class={qtyClass} />
 										</div>
 									))}
 								</div>
 							</fieldset>
-
-							<div class="flex items-baseline justify-between gap-4 py-4 border-y-2 border-zinc-300">
-								<span class="text-lg font-bold text-zinc-900">Estimated total</span>
-								<span class="text-right">
-									<span id="tg_total" class="text-2xl font-bold text-zinc-900">$0</span>
-									<span class="block text-sm text-zinc-500">before tax · pay at pickup</span>
-								</span>
-							</div>
 
 							<div>
 								<label for="tg_notes" class="block text-zinc-900 font-bold text-lg mb-3">Allergies or Notes (Optional)</label>
@@ -190,46 +186,38 @@ const qtyClass = 'tg-qty w-20 shrink-0 px-3 py-2 bg-white border-2 border-zinc-3
 			const closed = document.getElementById('tg_closed');
 			if (!form || !closed) return;
 
-			// Grey out any pickup slot that has already ended, and close the form
-			// once none are left — so nobody can pre-order for a pickup in the past.
+			// Drop pickup times that have already passed, and a day's heading once
+			// all of its times are gone, so nobody can pre-order for a pickup in the
+			// past. When none are left, the form gives way to the closed notice.
 			const now = new Date();
-			const slots = [...form.querySelectorAll<HTMLInputElement>('input[name="pickup"]')];
-			for (const slot of slots) {
-				if (now >= new Date(slot.dataset.endsAt ?? '')) {
-					slot.disabled = true;
-					const row = slot.closest('label');
-					row?.classList.add('opacity-50', 'cursor-not-allowed');
-					row?.querySelector('.tg-slot-passed')?.classList.remove('hidden');
-				}
-			}
-			if (slots.length > 0 && slots.every((slot) => slot.disabled)) {
+			const pickup = form.querySelector<HTMLSelectElement>('#tg_pickup_time');
+			pickup?.querySelectorAll<HTMLOptionElement>('option[data-at]').forEach((option) => {
+				if (now >= new Date(option.dataset.at ?? '')) option.remove();
+			});
+			pickup?.querySelectorAll('optgroup').forEach((group) => {
+				if (!group.querySelector('option')) group.remove();
+			});
+			if (!pickup?.querySelector('option[data-at]')) {
 				form.classList.add('hidden');
 				closed.classList.remove('hidden');
 				return;
 			}
 
 			const quantities = [...form.querySelectorAll<HTMLInputElement>('.tg-qty')];
-			const totalEl = document.getElementById('tg_total');
 			const summaryField = document.getElementById('tg_order_summary') as HTMLInputElement | null;
-			const totalField = document.getElementById('tg_estimated_total') as HTMLInputElement | null;
 			const errorEl = document.getElementById('tg_error');
 
-			/** Recalculates the total and the email summary; returns how many items are ordered. */
+			/** Writes the readable order line for the email; returns how many items are ordered. */
 			function update(): number {
-				let total = 0;
 				let count = 0;
 				const lines: string[] = [];
 				for (const input of quantities) {
 					const qty = Math.max(0, Math.floor(Number(input.value) || 0));
 					if (qty === 0) continue;
-					const price = Number(input.dataset.price);
-					total += qty * price;
 					count += qty;
-					lines.push(`${qty} × ${input.dataset.label} ($${qty * price})`);
+					lines.push(`${qty} × ${input.dataset.label}`);
 				}
-				if (totalEl) totalEl.textContent = `$${total}`;
 				if (summaryField) summaryField.value = lines.join('; ');
-				if (totalField) totalField.value = count ? `$${total} before tax` : '';
 				if (count) errorEl?.classList.add('hidden');
 				return count;
 			}
