@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "fileId": "1ye2mGCtSImM6cm4DC3qQQug2mqw4qgbw",
+    "name": "Winemaker's Dinner",
+    "date": "2026-11-08",
+    "file": "/events/event-1.pdf"
+  },
+  {
+    "fileId": "14h_QDgsAZ_BzZ_6-VqIm6-GSChxYGqua",
+    "name": "Afternoon Tea",
+    "date": "2026-11-15",
+    "file": "/events/event-2.pdf"
+  }
+]
