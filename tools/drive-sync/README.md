@@ -16,6 +16,12 @@ folder, and the chef gives each one a name and date on the same publish page.
 Removing a PDF from the folder removes that event from the site on the next
 publish.
 
+**Seating times are optional.** For an event with set seatings (an afternoon
+tea at 3:00, 3:15 and 3:30, say), the chef adds each time on the publish page
+with **+ Add a seating time**. Guests then choose a seating as part of picking
+the event when they book, and the time shows on the event's card. An event with
+no seating times books as a single choice, exactly as before.
+
 ---
 
 ## Setup (one time, ~25 minutes)
@@ -103,6 +109,14 @@ them to authorize it. That's expected, not an error.
 
 Authorise it yourself when prompted, then copy the web app URL and send it to
 the chef to bookmark.
+
+### Updating the script later
+
+After pasting a new `Code.gs` or `Page.html` into the editor, publish it with
+**Deploy → Manage deployments → ✏️ (edit) → Version: New version → Deploy**.
+
+Don't use **New deployment** for an update: that creates a second web app with
+a different URL, and the chef's bookmark keeps pointing at the old version.
 
 ---
 
