@@ -100,6 +100,77 @@
       font-family: inherit;
     }
 
+    .seatings {
+      margin-top: 12px;
+    }
+
+    .seatings-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #52525b;
+    }
+
+    .seatings-label span {
+      font-weight: 400;
+      color: #a1a1aa;
+    }
+
+    .seating-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .seating {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #d4d4d8;
+      border-radius: 4px;
+      background: #fff;
+    }
+
+    .seating input {
+      padding: 6px 8px;
+      font-size: 15px;
+      border: 0;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    /* The small seating buttons, kept apart from the big orange "Update
+       Website" button that every other <button> on this page is styled as. */
+    .seatings button,
+    .seatings button:hover:not(:disabled) {
+      width: auto;
+      margin: 0;
+      font-weight: 700;
+      background: transparent;
+      border-radius: 4px;
+    }
+
+    .seatings .remove-seating {
+      padding: 4px 10px;
+      font-size: 18px;
+      line-height: 1;
+      color: #a1a1aa;
+    }
+
+    .seatings .remove-seating:hover:not(:disabled) {
+      color: #b91c1c;
+    }
+
+    .seatings .add-seating {
+      margin-top: 8px;
+      padding: 6px 0;
+      font-size: 14px;
+      color: #ea580c;
+    }
+
+    .seatings .add-seating:hover:not(:disabled) {
+      color: #c2410c;
+    }
+
     .empty-note {
       font-size: 14px;
       color: #71717a;
@@ -184,7 +255,9 @@
     <h2>Special Events</h2>
     <p class="intro">
       Drop up to 3 PDFs into the Special Events folder — one per upcoming dinner.
-      Give each one a name and date below before publishing.
+      Give each one a name and date below before publishing. If an event has set
+      seatings, add their times — guests will pick one when they book. Leave them
+      out and guests just book the event.
     </p>
     <div id="event-status">Checking the Special Events folder&hellip;</div>
 
@@ -233,9 +306,35 @@
           '<input type="date" class="event-date" value="' + escapeHtml(event.date) + '" required />' +
           '</label>' +
           '</div>' +
+          '<div class="seatings">' +
+          '<div class="seatings-label">Seating times <span>(optional)</span></div>' +
+          '<div class="seating-list">' + (event.seatings || []).map(seatingHtml).join('') + '</div>' +
+          '<button type="button" class="add-seating">+ Add a seating time</button>' +
+          '</div>' +
           '</div>';
       }).join('');
     }
+
+    /** One seating time picker, with a button to remove it. */
+    function seatingHtml(time) {
+      return '<span class="seating">' +
+        '<input type="time" class="seating-time" value="' + escapeHtml(time || '') + '" aria-label="Seating time" />' +
+        '<button type="button" class="remove-seating" aria-label="Remove this seating time">&times;</button>' +
+        '</span>';
+    }
+
+    // The event rows are re-drawn whenever the page refreshes, so listen once on
+    // their container rather than on each button.
+    eventStatusEl.addEventListener('click', function (e) {
+      var target = e.target;
+      if (target.classList.contains('add-seating')) {
+        var list = target.parentNode.querySelector('.seating-list');
+        list.insertAdjacentHTML('beforeend', seatingHtml(''));
+        list.lastChild.querySelector('input').focus();
+      } else if (target.classList.contains('remove-seating')) {
+        target.parentNode.parentNode.removeChild(target.parentNode);
+      }
+    });
 
     /** Reads the current Special Events rows back out of the page. */
     function collectEventEntries() {
@@ -243,7 +342,11 @@
         return {
           fileId: row.getAttribute('data-file-id'),
           name: row.querySelector('.event-name').value.trim(),
-          date: row.querySelector('.event-date').value
+          date: row.querySelector('.event-date').value,
+          // A picker that was added but left blank is simply ignored.
+          seatings: Array.prototype.map.call(row.querySelectorAll('.seating-time'), function (input) {
+            return input.value;
+          }).filter(Boolean)
         };
       });
     }

@@ -275,6 +275,43 @@ function publishMenus() {
 // Special Events
 // ---------------------------------------------------------------------------
 
+// Optional seating times per event, stored as sorted 24-hour "HH:MM" strings.
+var MAX_SEATINGS = 12;
+var SEATING_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+/**
+ * Cleans seating times sent from the page: anything that isn't a real time is
+ * dropped, duplicates are removed, and the list is sorted and capped. An event
+ * with no seatings just gets an empty list, which leaves it working as before.
+ */
+function cleanSeatings(raw) {
+  if (!Array.isArray(raw)) return [];
+  var seen = {};
+  var times = [];
+  raw.forEach(function (value) {
+    var time = String(value).trim().slice(0, 5); // drop seconds if a browser sends them
+    if (SEATING_PATTERN.test(time) && !seen[time]) {
+      seen[time] = true;
+      times.push(time);
+    }
+  });
+  return times.sort().slice(0, MAX_SEATINGS);
+}
+
+/**
+ * One entry in events.json. `seatings` is only written when there are some,
+ * so an event without them serializes exactly as it did before seatings
+ * existed — which keeps publishSpecialEvents() from committing a change that
+ * isn't one.
+ */
+function publishedEvent(entry, target) {
+  var event = { fileId: entry.fileId, name: entry.name, date: entry.date, file: '/events/' + target };
+  if (entry.seatings.length) {
+    event.seatings = entry.seatings;
+  }
+  return event;
+}
+
 /**
  * Shown on the page: whichever PDFs are currently in the Special Events
  * folder (newest first, up to MAX_SPECIAL_EVENTS), each paired with the
@@ -300,13 +337,14 @@ function getSpecialEventStatus() {
       driveFileName: file.getName(),
       lastModified: Utilities.formatDate(file.getLastUpdated(), Session.getScriptTimeZone(), 'd MMM yyyy'),
       name: existing ? existing.name : '',
-      date: existing ? existing.date : ''
+      date: existing ? existing.date : '',
+      seatings: existing ? cleanSeatings(existing.seatings) : []
     };
   });
 }
 
 /**
- * Publishes the given events (each {fileId, name, date}, in the order shown
+ * Publishes the given events (each {fileId, name, date, seatings}, in the order shown
  * on the page) to fixed paths event-1.pdf, event-2.pdf, etc., and rewrites
  * events.json to match. A slot that fails to publish is left out of
  * events.json rather than recorded with the wrong file, so the site never
@@ -347,7 +385,8 @@ function publishSpecialEvents(entries) {
       return {
         fileId: entry.fileId,
         name: String(entry.name || '').slice(0, MAX_NAME_LENGTH),
-        date: entry.date
+        date: entry.date,
+        seatings: cleanSeatings(entry.seatings)
       };
     })
     .slice(0, MAX_SPECIAL_EVENTS);
@@ -366,7 +405,7 @@ function publishSpecialEvents(entries) {
 
       if (currentSha && currentSha === gitBlobSha(bytes)) {
         results.push({ label: label, status: 'unchanged', detail: 'Already up to date' });
-        newEventsJson.push({ fileId: entry.fileId, name: entry.name, date: entry.date, file: '/events/' + target });
+        newEventsJson.push(publishedEvent(entry, target));
         return;
       }
 
@@ -386,7 +425,7 @@ function publishSpecialEvents(entries) {
 
       if (response.code === 200 || response.code === 201) {
         results.push({ label: label, status: 'updated', detail: file.getName() });
-        newEventsJson.push({ fileId: entry.fileId, name: entry.name, date: entry.date, file: '/events/' + target });
+        newEventsJson.push(publishedEvent(entry, target));
       } else if (response.code === 401 || response.code === 403) {
         results.push({ label: label, status: 'error', detail: 'GitHub refused the access token — it has probably expired.' });
       } else {
