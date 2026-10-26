@@ -3,12 +3,22 @@
     "fileId": "1ye2mGCtSImM6cm4DC3qQQug2mqw4qgbw",
     "name": "Winemaker's Dinner",
     "date": "2026-11-08",
-    "file": "/events/event-1.pdf"
+    "file": "/events/event-1.pdf",
+    "seatings": [
+      "17:30",
+      "17:45",
+      "18:00"
+    ]
   },
   {
     "fileId": "14h_QDgsAZ_BzZ_6-VqIm6-GSChxYGqua",
     "name": "Afternoon Tea",
     "date": "2026-11-15",
-    "file": "/events/event-2.pdf"
+    "file": "/events/event-2.pdf",
+    "seatings": [
+      "15:00",
+      "15:15",
+      "15:30"
+    ]
   }
 ]
