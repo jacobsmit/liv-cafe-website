@@ -1,9 +1,22 @@
 [
   {
+    "fileId": "171VIZdC41gKF58l-xBEEQFfMEE8H3l2O",
+    "name": "Indian Dinner",
+    "date": "2026-11-22",
+    "file": "/events/event-1.pdf",
+    "seatings": [
+      "17:30",
+      "17:45",
+      "18:00",
+      "18:15",
+      "18:30"
+    ]
+  },
+  {
     "fileId": "14h_QDgsAZ_BzZ_6-VqIm6-GSChxYGqua",
     "name": "Afternoon Tea",
     "date": "2026-11-15",
-    "file": "/events/event-1.pdf",
+    "file": "/events/event-2.pdf",
     "seatings": [
       "15:00",
       "15:15",
