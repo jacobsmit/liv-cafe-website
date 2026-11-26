@@ -1,9 +1,29 @@
 [
   {
+    "fileId": "1HXYsBfI2s179XZ6eVb_Z9jGMUhsHkXnA",
+    "name": "Christmas Day Takeout Dinner",
+    "date": "2026-12-25",
+    "file": "/events/event-1.pdf",
+    "seatings": [
+      "14:40",
+      "14:50",
+      "15:10",
+      "15:20",
+      "15:40",
+      "15:50",
+      "16:10",
+      "16:20",
+      "16:40",
+      "16:50",
+      "17:10",
+      "17:20"
+    ]
+  },
+  {
     "fileId": "1bJ9USi488VBWdOMTdR0HK7S6YzmoaYGZ",
     "name": "Christmas Eve Takeout Dinner",
     "date": "2026-12-24",
-    "file": "/events/event-1.pdf",
+    "file": "/events/event-2.pdf",
     "seatings": [
       "15:40",
       "15:50",
