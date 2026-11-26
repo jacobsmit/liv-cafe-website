@@ -1,26 +1,20 @@
 [
   {
-    "fileId": "171VIZdC41gKF58l-xBEEQFfMEE8H3l2O",
-    "name": "Indian Dinner",
-    "date": "2026-11-22",
+    "fileId": "1bJ9USi488VBWdOMTdR0HK7S6YzmoaYGZ",
+    "name": "Christmas Eve Takeout Dinner",
+    "date": "2026-12-24",
     "file": "/events/event-1.pdf",
     "seatings": [
-      "17:30",
-      "17:45",
-      "18:00",
-      "18:15",
-      "18:30"
-    ]
-  },
-  {
-    "fileId": "14h_QDgsAZ_BzZ_6-VqIm6-GSChxYGqua",
-    "name": "Afternoon Tea",
-    "date": "2026-11-15",
-    "file": "/events/event-2.pdf",
-    "seatings": [
-      "15:00",
-      "15:15",
-      "15:30"
+      "15:40",
+      "15:50",
+      "16:10",
+      "16:20",
+      "16:40",
+      "16:50",
+      "17:10",
+      "17:20",
+      "17:40",
+      "17:50"
     ]
   }
 ]
